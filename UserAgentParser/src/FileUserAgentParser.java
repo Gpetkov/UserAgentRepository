@@ -18,21 +18,12 @@ public class FileUserAgentParser extends UserAgentParser{
 	public FileUserAgentParser(){
 		this(null);
 	}
-	
-	@Override
-	public File getFile() {
-		return file;
-	}
 
-	public void setFile(File file) {
-		this.file = file;
-	}
-	
 	public UserAgent findUserAgent(){
 		Scanner input = null;
 		UserAgent userAgent = null;
 		try {
-			input = new Scanner(getFile());
+			input = new Scanner(file);
 			Pattern p = Pattern.compile(regex);
 			
 			while(input.hasNextLine()){
