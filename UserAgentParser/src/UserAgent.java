@@ -6,13 +6,12 @@
  */
 public class UserAgent {
 	// type of device
-	enum deviceType {
+	enum DeviceType {
 		SMARTPHON, TABLET, PC
 		
 	}
 	
-	//user agent type 
-	 UserAgent type;
+	DeviceType type;
 	// hardware model for example BlackBerry
 	private String hardware;
 	//device's model for example Bold
@@ -25,14 +24,13 @@ public class UserAgent {
 	private String softwareVersion;
 
 	public UserAgent(String mHardware, String mModel, String mModelVersion,
-			String mSoftware, String mSoftwareVersion,UserAgent mType) {
+			String mSoftware, String mSoftwareVersion,DeviceType mType) {
 		setHardware(mHardware);
 		setModel(mModel);
 		setModelVersion(mModel);
 		setSoftware(mSoftware);
 		setSoftwareVersion(mSoftwareVersion);
-		setType(mType);
-
+		setType(type);
 	}
 
 	public UserAgent() {
@@ -85,11 +83,13 @@ public class UserAgent {
 	public void setSoftwareVersion(String softwareVersion) {
 		this.softwareVersion = softwareVersion;
 	}
-	  public UserAgent getType() {
-			return type;
-		}
 
-		public void setType(UserAgent type) {
-			this.type = type;
-		}
+	public DeviceType getType() {
+		return type;
+	}
+
+	public void setType(DeviceType type) {
+		this.type = type;
+	}
+	 
 }
