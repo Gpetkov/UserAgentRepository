@@ -1,10 +1,5 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+<<<<<<< HEAD
 public class UserAgentParser {
 
 	private File file;
@@ -50,6 +45,12 @@ public class UserAgentParser {
 	}
 
 	public UserAgent parse(String line) {
+=======
+public abstract class UserAgentParser {
+	
+	
+	public UserAgent parse(String userAgentString){
+>>>>>>> adab9c9c6d61cd08734bfd8634dab9fc0c032072
 		return null;
 	}
 
