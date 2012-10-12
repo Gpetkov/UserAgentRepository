@@ -5,14 +5,13 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class UserAgentParser {
-	
-	private File file;	
+
+	private File file;
 	public ArrayList<UserAgent> userAgents;
-	public String regex = "(blackberry)+?(\\d{2,4}?.*)*?/(\\d+.\\d+.\\d*?.\\d*?)+?((profile/midp-)+?" +
-			"(\\d.\\d)+?)*?((configuration/)+?(\\w+?-\\d.\\d)+?)*?((vendorid/)+?\\d+?)*?.*?";
-	
+	public String regex = "(blackberry)+?(\\d{2,4}?.*)*?/(\\d+.\\d+.\\d*?.\\d*?)+?((profile/midp-)+?"
+			+ "(\\d.\\d)+?)*?((configuration/)+?(\\w+?-\\d.\\d)+?)*?((vendorid/)+?\\d+?)*?.*?";
+
 	public File getFile() {
 		return file;
 	}
@@ -21,24 +20,24 @@ public class UserAgentParser {
 		this.file = file;
 	}
 
-	public UserAgentParser(File file){
+	public UserAgentParser(File file) {
 		this.file = file;
 	}
-	
-	public UserAgentParser(){
+
+	public UserAgentParser() {
 		this(null);
 	}
-	
-	public void readFileLines(){
+
+	public void readFileLines() {
 		Scanner input = null;
 		try {
 			input = new Scanner(getFile());
 			Pattern p = Pattern.compile(regex);
-			
-			while(input.hasNextLine()){
+
+			while (input.hasNextLine()) {
 				String line = input.nextLine();
 				Matcher m = p.matcher(line);
-				if (m.find()){
+				if (m.find()) {
 					String userAgent = m.toString();
 					parse(userAgent);
 				}
@@ -47,9 +46,10 @@ public class UserAgentParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	public UserAgent parse(String line){
+
+	public UserAgent parse(String line) {
 		return null;
 	}
 
