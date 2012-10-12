@@ -10,7 +10,7 @@ public class UserAgentParserTest {
 	String input = "BlackBerry8520/4.6.1.314 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/301,platform,unknown";
 	String input1 = "BlackBerry9300/6.6.0.124 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/310 The Times/1.0,platform,unknown";
 	String input2 = "BlackBerry9300/6.6.0.124 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/609 The Times/1.0 UP.Link/6.5.1.3.0,platform,unknown";
-	UserAgent result = new UserAgent("BlackBerry", "", "", "", "");
+	UserAgent result = new UserAgent("BlackBerry", "", "", "", "", UserAgent.DeviceType.SMARTPHONE);
 
 	@Test
 	public void testParse() {

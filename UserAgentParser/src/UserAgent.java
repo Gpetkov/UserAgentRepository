@@ -6,8 +6,8 @@
  */
 public class UserAgent {
 	// type of device
-	enum DeviceType {
-		SMARTPHON, TABLET, PC
+	public enum DeviceType {
+		SMARTPHONE, TABLET, PC
 		
 	}
 	
