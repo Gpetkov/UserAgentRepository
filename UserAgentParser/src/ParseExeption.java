@@ -1,5 +1,3 @@
-package ua.paket;
-
 public class ParseExeption extends Exception {
 	 
 	/**
