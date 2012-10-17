@@ -7,7 +7,7 @@ public abstract class UserAgentParser {
 		UserAgent ua = new UserAgent();
 		String regexBB4i5 = "((?i:blackberry)+?)\\s?(\\d{2,4}?.?)/((\\d.\\d.\\d.\\d+)+)";
 		String regexBB6i7 = "((?i:blackberry)+?)\\s?(\\d{2,4}?);\\s?\\w+?.\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?(?i:version/)+((\\S+)+)\\s?";
-		String regexBBPlayBook = "((?i:playbook)+?);\\s?.;\\s?((\\w+\\s+\\w*\\s?\\w*\\s?)+)((\\d+.\\d+.\\d+)+)";
+		String regexBBPlayBook = "((?i:playbook)+?);\\s?.;\\s?(\\w+\\s+\\w*\\s?\\w*\\s?)+((\\d+.\\d+.\\d+)+)";
 		Pattern pattern = Pattern.compile(regexBB4i5);
 		Matcher match = pattern.matcher(userAgentString);
 		if (match.find()) {
@@ -38,7 +38,7 @@ public abstract class UserAgentParser {
 			ua.setModel(match.group(1));
 			ua.setModelVersion(match.group(1));
 			ua.setSoftware(match.group(2));
-			ua.setSoftwareVersion(match.group(4));
+			ua.setSoftwareVersion(match.group(3));
 			return ua;
 		} else {
 			throw new ParseExeption("UA not found!");
