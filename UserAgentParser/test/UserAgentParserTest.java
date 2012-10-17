@@ -52,16 +52,12 @@ public class UserAgentParserTest {
 				new UserAgent("BlackBerry", "9300", "9300", "OS6", "6.6.0.124", UserAgent.DeviceType.SMARTPHONE),
 				new ParseException()},
 				{"BlackBerry8520/Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/115,platform,unknown",
-<<<<<<< HEAD
 					new UserAgent("BlackBerry", "9300", "9300", "OS6", "6.6.0.124", UserAgent.DeviceType.SMARTPHONE),
-					new ParseExeption()},
+					new ParseException()},
 				{null,
 					new UserAgent("BlackBerry", "9300", "9300", "OS6", "6.6.0.124", UserAgent.DeviceType.SMARTPHONE),
-					new ParseExeption()}};
-=======
-					null,
 					new ParseException()}};
->>>>>>> ac0b6c679f549cd551408b56204841dfebd63782
+					
 		return Arrays.asList(exeValues);
 	}
 	 
