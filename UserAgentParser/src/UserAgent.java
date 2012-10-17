@@ -27,10 +27,10 @@ public class UserAgent {
 			String mSoftware, String mSoftwareVersion,DeviceType mType) {
 		setHardware(mHardware);
 		setModel(mModel);
-		setModelVersion(mModel);
+		setModelVersion(mModelVersion);
 		setSoftware(mSoftware);
 		setSoftwareVersion(mSoftwareVersion);
-		setType(type);
+		setType(mType);
 	}
 
 	public UserAgent() {
