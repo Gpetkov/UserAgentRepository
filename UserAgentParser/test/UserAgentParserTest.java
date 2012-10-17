@@ -53,7 +53,10 @@ public class UserAgentParserTest {
 				new UserAgent("BlackBerry", "9300", "9300", "OS6", "6.6.0.124", UserAgent.DeviceType.SMARTPHONE),
 				new ParseExeption()},
 				{"BlackBerry8520/Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/115,platform,unknown",
-					null,
+					new UserAgent("BlackBerry", "9300", "9300", "OS6", "6.6.0.124", UserAgent.DeviceType.SMARTPHONE),
+					new ParseExeption()},
+				{null,
+					new UserAgent("BlackBerry", "9300", "9300", "OS6", "6.6.0.124", UserAgent.DeviceType.SMARTPHONE),
 					new ParseExeption()}};
 		return Arrays.asList(exeValues);
 	}
@@ -68,7 +71,7 @@ public class UserAgentParserTest {
 		// testUserAgentParser.parse(input));
 	//	assertEquals("Test with null string", result, testUserAgentParser.parse(null));
 		assertEquals("The regular expression didn't find the same user agent!", expectedUserAgent, testUserAgentParser.parse(userAgentString));
-		
+		testUserAgentParser.parse(userAgentString);
 		//assertEquals("The regular expression didn't find the same user agent!", parseException, testUserAgentParser.parse(userAgentString));
 	//	assertEquals("Test2", null, testUserAgentParser.parse(input1));
 	//	assertEquals("", testParseException, testUserAgentParser.parse(input2));
@@ -79,4 +82,7 @@ public class UserAgentParserTest {
 	public void testUserAgentParserException() throws Exception{
 		testUserAgentParser.parse(userAgentString);
 	}
+	
+	
+	//private static final 
 }
