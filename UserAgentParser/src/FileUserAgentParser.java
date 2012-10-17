@@ -19,7 +19,7 @@ public class FileUserAgentParser extends UserAgentParser{
 		this(null);
 	}
 
-	public UserAgent findUserAgent() throws ParseExeption{
+	public UserAgent findUserAgent() throws ParseException{
 		Scanner input = null;
 		UserAgent userAgent = null;
 		try {

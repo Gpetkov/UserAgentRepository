@@ -18,13 +18,13 @@ public class UserAgentParserTest {
 	//private static final String input2 = "BlackBerry9300/6.6.0.124 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/609 The Times/1.0 UP.Link/6.5.1.3.0,platform,unknown";
 	
 	private static String userAgentString;
-	private static ParseExeption parseException;
+	private static ParseException parseException;
 	private static UserAgent expectedUserAgent;
 	//private static UserAgent actualUserAgent;
 	private static UserAgentParser testUserAgentParser;
 	@BeforeClass
 	public static void setUpBeforeClass()throws Exception{
-		//parseException = new ParseExeption();
+		//parseException = new ParseException();
 		//expectedUserAgent = new UserAgent("BlackBerry", "BlackBerry8520", "8520", "OS4", "4.6.1.314", UserAgent.DeviceType.SMARTPHONE);
 		testUserAgentParser = new UserAgentParser() {};
 	}
@@ -37,7 +37,7 @@ public class UserAgentParserTest {
 		//actualUserAgent = null;
 	}
 	
-	public UserAgentParserTest(String currentUserAgentString, UserAgent currentExpectedUserAgent, ParseExeption currentException){
+	public UserAgentParserTest(String currentUserAgentString, UserAgent currentExpectedUserAgent, ParseException currentException){
 		userAgentString = currentUserAgentString;
 		expectedUserAgent = currentExpectedUserAgent;
 		parseException = currentException;
@@ -48,17 +48,17 @@ public class UserAgentParserTest {
 	public static Collection parserTestExValues(){
 		Object[][] exeValues = {{"BlackBerry8520/4.6.1.314 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/301,platform,unknown",
 			new UserAgent("BlackBerry", "8520", "8520", "OS4", "4.6.1.314", UserAgent.DeviceType.SMARTPHONE),
-			new ParseExeption()},
+			new ParseException()},
 			{"BlackBerry9300/6.6.0.124 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/310 The Times/1.0,platform,unknown",
 				new UserAgent("BlackBerry", "9300", "9300", "OS6", "6.6.0.124", UserAgent.DeviceType.SMARTPHONE),
-				new ParseExeption()},
+				new ParseException()},
 				{"BlackBerry8520/Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/115,platform,unknown",
 					null,
-					new ParseExeption()}};
+					new ParseException()}};
 		return Arrays.asList(exeValues);
 	}
 	 
-	//ParseExeption testParseException = new ParseExeption();
+	//ParseException testParseException = new ParseException();
 	
 	//UserAgent result = new UserAgent("BlackBerry", "BlackBerry8520", "8520", "OS4", "4.6.1.314", UserAgent.DeviceType.SMARTPHONE);
 
@@ -75,7 +75,7 @@ public class UserAgentParserTest {
 		
 	}
 	
-	@Test(expected=ParseExeption.class)
+	@Test(expected=ParseException.class)
 	public void testUserAgentParserException() throws Exception{
 		testUserAgentParser.parse(userAgentString);
 	}
