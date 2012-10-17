@@ -6,20 +6,13 @@ import java.util.regex.Pattern;
 
 
 public class FileUserAgentParser extends UserAgentParser{
-
-	private File file;	
+	
 	public String regex = "(blackberry)+?(\\d{2,4}?.*)*?/(\\d+.\\d+.\\d*?.\\d*?)+?((profile/midp-)+?" +
 			"(\\d.\\d)+?)*?((configuration/)+?(\\w+?-\\d.\\d)+?)*?((vendorid/)+?\\d+?)*?.*?";
 
-	public FileUserAgentParser(File file){
-		this.file = file;
-	}
 	
-	public FileUserAgentParser(){
-		this(null);
-	}
 
-	public UserAgent findUserAgent() throws ParseExeption{
+	public UserAgent findUserAgent(File file) throws ParseException{
 		Scanner input = null;
 		UserAgent userAgent = null;
 		try {
@@ -36,7 +29,10 @@ public class FileUserAgentParser extends UserAgentParser{
 			}
 		} catch (FileNotFoundException e) {
 			System.out.println("There is not such file!!!");
-		} finally {
+		} catch (NullPointerException e) {
+			System.out.println("File is NULL!!!");			
+		}
+		finally {
 			if(input != null){
 				input.close();
 			}
