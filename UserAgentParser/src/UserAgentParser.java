@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public abstract class UserAgentParser {
 
-	public UserAgent parse(String userAgentString) throws ParseException {
+	public UserAgent parse(String userAgentString) throws UserAgentParseException {
 		UserAgent ua = new UserAgent();
 		String regexBB4i5 = "((?i:blackberry)+?)\\s?(\\d{2,4}?.?)/((\\d.\\d.\\d.\\d+)+)";
 		String regexBB6i7 = "((?i:blackberry)+?)\\s?(\\d{2,4}?);\\s?\\w+?.\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?(?i:version/)+((\\S+)+)\\s?";
@@ -42,7 +42,7 @@ public abstract class UserAgentParser {
 			ua.setSoftwareVersion(match.group(3));
 			return ua;
 		} else {
-			throw new ParseException("UA not found!");
+			throw new UserAgentParseException("UA not found!");
 		}
 
 	}

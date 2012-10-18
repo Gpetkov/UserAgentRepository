@@ -12,7 +12,7 @@ public class FileUserAgentParser extends UserAgentParser{
 
 	
 
-	public UserAgent findUserAgent(File file) throws ParseException{
+	public UserAgent findUserAgent(File file) throws UserAgentParseException{
 		Scanner input = null;
 		UserAgent userAgent = null;
 		try {
