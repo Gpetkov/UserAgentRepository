@@ -1,15 +1,19 @@
-/**
- * This exceptions is thrown in {@link}FileUserAgentParser.java and {@link}UserAgentParser.java classes
- * 
- *@author BitMix
- *
- */
+package uk.co.newsint.cip.utilities.ua;
 
+/**
+ * This exceptions is thrown in {@link FileUserAgentParser} and {@link
+ * UserAgentParser} classes
+ * 
+ * @author BitMix
+ * 
+ */
 public class UserAgentParseException extends Exception {
 
-	
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * create UserAgentParseExeption
+	 */
 	public UserAgentParseException() {
 	}
 

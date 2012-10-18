@@ -1,3 +1,4 @@
+package uk.co.newsint.cip.utilities.ua;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

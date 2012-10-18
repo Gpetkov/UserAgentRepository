@@ -10,6 +10,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import uk.co.newsint.cip.utilities.ua.UserAgent;
+import uk.co.newsint.cip.utilities.ua.UserAgentParseException;
+import uk.co.newsint.cip.utilities.ua.UserAgentParser;
+
 @RunWith(Parameterized.class)
 public class UserAgentParserTest {
 	//private static final String input = "BlackBerry8520/4.6.1.314 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/301,platform,unknown";

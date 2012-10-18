@@ -1,32 +1,31 @@
-
+package uk.co.newsint.cip.utilities.ua;
 /**
  * 
- * @author BitMix
- * This class contain info about user agent request
- *
+ * @author BitMix This class contain info about user agent request
+ * 
  */
 public class UserAgent {
 	// type of device
 	public enum DeviceType {
 		SMARTPHONE, TABLET, PC
-		
+
 	}
-	
+
 	DeviceType type;
 	// hardware model for example BlackBerry
 	private String hardware;
-	//device's model for example Bold
+	// device's model for example Bold
 	private String model;
 	// version's model for example 9900
 	private String modelVersion;
-	//software platform for example java
+	// software platform for example java
 	private String software;
 	// software's version for example 5.0
 	private String softwareVersion;
 
-	     //this constructor build UserAgent
+	// this constructor build UserAgent
 	public UserAgent(String hardware, String model, String modelVersion,
-			String software, String softwareVersion,DeviceType type) {
+			String software, String softwareVersion, DeviceType type) {
 		setHardware(hardware);
 		setModel(model);
 		setModelVersion(modelVersion);
@@ -36,10 +35,8 @@ public class UserAgent {
 	}
 
 	public UserAgent() {
-		
-}
 
-	
+	}
 
 	public String getHardware() {
 		return hardware;
@@ -144,8 +141,5 @@ public class UserAgent {
 			return false;
 		return true;
 	}
-	
-	
-	 
-}
 
+}

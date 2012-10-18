@@ -1,3 +1,4 @@
+package uk.co.newsint.cip.utilities.ua;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
