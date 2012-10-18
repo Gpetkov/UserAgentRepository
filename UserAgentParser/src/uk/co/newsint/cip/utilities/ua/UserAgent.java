@@ -12,7 +12,7 @@ public class UserAgent {
 	}
 
 	public static final String UNKNOWN = null;
-	
+
 	DeviceType type;
 	// hardware model for example BlackBerry
 	private String hardware;

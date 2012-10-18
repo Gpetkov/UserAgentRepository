@@ -25,7 +25,7 @@ public class UserAgentParserTest {
 	};
 
 	/**
-	 * Method which tests the different cases for user agent string
+	 * Methods which test the different cases for user agent string
 	 * 
 	 * @see UserAgentParser#parse(String)
 	 * 
@@ -62,7 +62,49 @@ public class UserAgentParserTest {
 
 	@Test
 	public void testAppleParse() throws Exception {
-		//
+		//Assertion for IPhone 
+		assertUserAgentEquals(
+				"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-JP)" +
+				" Times/1.0.2,platform,unknown",
+				new UserAgent("Apple", "iPhone", "iPhone", "iOS", "4.3.3",
+						UserAgent.DeviceType.SMARTPHONE));
+		//Assertion for IPhone 
+		assertUserAgentEquals(
+				"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_5 like Mac OS X; ca-es) " +
+				"AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8L1 " +
+				"Safari/6533.18.5,platform,unknown",
+				new UserAgent("Apple", "iPhone", "iPhone", "iOS", "4.3.5",
+						UserAgent.DeviceType.SMARTPHONE));
+		
+		//Assertion for iPad
+		assertUserAgentEquals(
+				"Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X; de-de) AppleWebKit/534.46.0 (KHTML, like Gecko) " +
+				"CriOS/21.0.1180.77 Mobile/9B206 Safari/7534.48.3,platform,unknown",
+				new UserAgent("Apple", "iPad", "iPad", "iOS", "5.1.1",
+						UserAgent.DeviceType.TABLET));
+		//Assertion for iPad
+		assertUserAgentEquals(
+				"Mozilla/5.0 (iPad; U; CPU OS 4_2_1 like Mac OS X; it-it) AppleWebKit/533.17.9 " +
+				"(KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5,platform,unknown",
+				new UserAgent("Apple", "iPad", "iPad", "iOS", "4.2.1",
+						UserAgent.DeviceType.TABLET));
+		//Assertion for iPod
+		assertUserAgentEquals(
+				"Mozilla/5.0 (iPod touch; U; CPU iPhone OS 5_1_1 like Mac OS X; zh-CN) " +
+				"Times/1.2.1,platform,unknown",
+				new UserAgent("Apple", "iPod touch", "iPod touch", "iOS", "5.1.1",
+						UserAgent.DeviceType.SMARTPHONE));
+		//Assertion for iPod
+		assertUserAgentEquals(
+				"Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) " +
+				"Version/5.1 Mobile/9A334 Safari/7534.48.3,platform,unknown",
+				new UserAgent("Apple", "iPod", "iPod", "iOS", "5.0",
+						UserAgent.DeviceType.SMARTPHONE));
+		// Expected Our custom ParseException
+		assertUserAgentException("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; ja-JP)" +
+				" Times/1.0.2,platform,unknown");
+		// Expected Our custom ParseException
+		//assertUserAgentException(null);
 		
 	}
 
