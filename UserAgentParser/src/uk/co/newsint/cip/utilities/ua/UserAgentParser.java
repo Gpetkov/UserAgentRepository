@@ -1,3 +1,5 @@
+package uk.co.newsint.cip.utilities.ua;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,7 +54,7 @@ public class UserAgentParser {
 	 *             When the userAgentString is not found as a User Agent String
 	 * @return UserAgent object
 	 */
-	public UserAgent parse(String userAgentString) throws ParseException {
+	public UserAgent parse(String userAgentString) throws UserAgentParseException {
 		UserAgent ua = new UserAgent();
 		Pattern pattern = Pattern.compile(REGEX_BB_4_AND_5);
 		Matcher match = pattern.matcher(userAgentString);
@@ -113,7 +115,8 @@ public class UserAgentParser {
 			ua.setSoftwareVersion(match.group(2).replaceAll("_", "."));
 			return ua;
 		} else {
-			throw new ParseException("UA not found!");
+			throw new UserAgentParseException("UA not found!");
+
 		}
 
 	}
