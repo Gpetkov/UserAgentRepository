@@ -61,9 +61,9 @@ public class UserAgentParserTest {
 	}
 
 	@Test
-	public void testIOSParse() throws Exception {
+	public void testAppleParse() throws Exception {
 		//
-
+		
 	}
 
 	@Test
@@ -74,6 +74,10 @@ public class UserAgentParserTest {
 	@Test
 	public void testPCParse() throws Exception {
 		// Equal for the PC
+		assertUserAgentEquals(
+				"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
+				new UserAgent(UserAgent.UNKNOWN, "MSIE", "9.0", "Windows NT", "6.1",
+						UserAgent.DeviceType.PC));
 		assertUserAgentEquals(
 				"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
 				new UserAgent(UserAgent.UNKNOWN, "MSIE", "9.0", "Windows NT", "6.1",
