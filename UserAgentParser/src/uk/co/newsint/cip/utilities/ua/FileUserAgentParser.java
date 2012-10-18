@@ -16,7 +16,7 @@ public class FileUserAgentParser {
 	}
  	   	
 	/**
-	* Searching trough InputStream and parse  	
+	* Searching trough text File and parse  	
 	* all lines that aren't Null or empty Strings	  	
 	*   	
 	* @param file	  	
