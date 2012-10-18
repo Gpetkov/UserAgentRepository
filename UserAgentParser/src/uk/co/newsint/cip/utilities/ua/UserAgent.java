@@ -1,46 +1,40 @@
+package uk.co.newsint.cip.utilities.ua;
 /**
  * 
- * @author BitMix
- * This class contain info about user agent request
- *
+ * @author BitMix This class contain info about user agent request
+ * 
  */
 public class UserAgent {
 	// type of device
 	public enum DeviceType {
 		SMARTPHONE, TABLET, PC
-		
+
 	}
-	
+
 	DeviceType type;
 	// hardware model for example BlackBerry
 	private String hardware;
-	//device's model for example Bold
+	// device's model for example Bold
 	private String model;
 	// version's model for example 9900
 	private String modelVersion;
-	//software platform for example java
+	// software platform for example java
 	private String software;
 	// software's version for example 5.0
 	private String softwareVersion;
 
-	public UserAgent(String mHardware, String mModel, String mModelVersion,
-			String mSoftware, String mSoftwareVersion,DeviceType mType) {
-		setHardware(mHardware);
-		setModel(mModel);
-		setModelVersion(mModelVersion);
-		setSoftware(mSoftware);
-		setSoftwareVersion(mSoftwareVersion);
-		setType(mType);
+	// this constructor build UserAgent
+	public UserAgent(String hardware, String model, String modelVersion,
+			String software, String softwareVersion, DeviceType type) {
+		setHardware(hardware);
+		setModel(model);
+		setModelVersion(modelVersion);
+		setSoftware(software);
+		setSoftwareVersion(softwareVersion);
+		setType(type);
 	}
 
 	public UserAgent() {
-		this(null, null, null, null, null,null);
-
-	}
-
-	public UserAgent(UserAgent uap) {
-		this(uap.getHardware(), uap.getModel(), uap.getModelVersion(), uap
-				.getSoftware(), uap.getSoftwareVersion(),uap.getType());
 
 	}
 
@@ -147,7 +141,5 @@ public class UserAgent {
 			return false;
 		return true;
 	}
-	
-	
-	 
+
 }

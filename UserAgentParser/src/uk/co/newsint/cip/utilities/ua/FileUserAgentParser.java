@@ -1,3 +1,4 @@
+package uk.co.newsint.cip.utilities.ua;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -15,6 +16,7 @@ public class FileUserAgentParser {
 	}
 	
 
+<<<<<<< HEAD:UserAgentParser/src/FileUserAgentParser.java
 	/**
 	 * Searching trough InputStream and parse 
 	 * all lines that aren't Null or empty Strings
@@ -22,6 +24,9 @@ public class FileUserAgentParser {
 	 * @param file
 	 */
 	public void parseAll(File file) {
+=======
+	public UserAgent findUserAgent(File file) throws UserAgentParseException{
+>>>>>>> 694f3658519977f129e547e7c1879d36058a6401:UserAgentParser/src/uk/co/newsint/cip/utilities/ua/FileUserAgentParser.java
 		Scanner input = null;
 		UserAgent userAgent = null;
 		UserAgentParser userAgentParser = new UserAgentParser();
