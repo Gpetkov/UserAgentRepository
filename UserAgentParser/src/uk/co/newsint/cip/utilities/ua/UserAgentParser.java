@@ -56,6 +56,9 @@ public class UserAgentParser {
 	 */
 	public UserAgent parse(String userAgentString) throws UserAgentParseException {
 		UserAgent ua = new UserAgent();
+		if(userAgentString==null){
+			throw new UserAgentParseException("UA not found!");
+		}
 		Pattern pattern = Pattern.compile(REGEX_BB_4_AND_5);
 		Matcher match = pattern.matcher(userAgentString);
 		if (match.find()) {
