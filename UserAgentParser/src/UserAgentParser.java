@@ -2,7 +2,7 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public abstract class UserAgentParser {
+public class UserAgentParser {
 
 	public UserAgent parse(String userAgentString) throws ParseException {
 		UserAgent ua = new UserAgent();
