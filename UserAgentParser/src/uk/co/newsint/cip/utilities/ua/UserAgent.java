@@ -11,6 +11,11 @@ public class UserAgent {
 
 	}
 
+<<<<<<< HEAD:UserAgentParser/src/uk/co/newsint/cip/utilities/ua/UserAgent.java
+=======
+	public static final String UNKNOWN = null;
+	
+>>>>>>> c9d116599114ddbe090422c97745f22e870acbe0:UserAgentParser/src/uk/co/newsint/cip/utilities/ua/UserAgent.java
 	DeviceType type;
 	// hardware model for example BlackBerry
 	private String hardware;
