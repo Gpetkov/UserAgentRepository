@@ -50,7 +50,7 @@ public class UserAgentParser {
 	 * 
 	 * @param userAgentString
 	 *            User Agent String to be parsed
-	 * @throws ParseException
+	 * @throws UserAgentParseException
 	 *             When the userAgentString is not found as a User Agent String
 	 * @return UserAgent object
 	 */
