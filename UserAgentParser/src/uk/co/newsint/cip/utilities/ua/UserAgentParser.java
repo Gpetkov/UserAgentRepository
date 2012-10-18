@@ -43,7 +43,7 @@ public class UserAgentParser {
 	 * Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; sv-se)
 	 * AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8C148a
 	 */
-	private static final String REGEX_iOS = "((?i:iphone|ipod|ipad)\\s?\\w*)+?;\\s?(?i)u?.?\\s?\\w*?\\s?\\w*\\s?\\w*\\s?((\\d.\\d.?\\d*)+?)\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\w*[-]?\\w*";
+	private static final String REGEX_iOS = "((?i:iphone|ipod|ipad)\\s?\\w*)+?;\\s?(?i)u?.?\\s?\\w*?\\s?\\w*\\s?\\w*\\s?((\\d_\\d_?\\d*)+?)\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\w*[-]?\\w*";
 
 	/**
 	 * Parses a String into an {@link UserAgent} object.
