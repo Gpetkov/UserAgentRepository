@@ -6,75 +6,79 @@ package uk.co.newsint.cip.utilities.ua;
  */
 public class UserAgent {
 	// Enum for Device Types
-	public enum DeviceType {
-		SMARTPHONE, TABLET, PC
-
-	}
+	//public enum DeviceType {
+	//	SMARTPHONE, TABLET, PC
+//
+	//}
 
 	public static final String UNKNOWN = null;
-
-	DeviceType deviceType;
+	public static final String SMARTPHONE = "SMARTPHONE";
+	public static final String TABLET = "TABLET";
+	public static final String PC = "PC";
+	
+	//device Type (example --> TABLET)
+	String deviceType = UNKNOWN;
 	// deviceMaker (example --> BlackBerry)
-	private String deviceMaker;
+	private String deviceMaker = UNKNOWN;
 	// device Model (example --> Bold)
-	private String deviceModel;
+	private String deviceModel = UNKNOWN;
 	// device Model Version (example --> 9900)
-	private String deviceModelVersion;
+	private String deviceModelVersion = UNKNOWN;
 	//Operation system (example --> Windows)
-	private String os;
+	private String os = UNKNOWN;
 	//Operation system version (example --> 5.0)
-	private String osVersion;
+	private String osVersion = UNKNOWN;
 	//Current browser MSIE,Safari,Chrome
-	private String browser;
+	private String browser = UNKNOWN;
 	//Current browser version example --> 534.57.2 (Safari)
-	private String browserVersion;
+	private String browserVersion = UNKNOWN;
 
 	
-	public DeviceType getDeviceType() {
+	public String getDeviceType() {
 		return deviceType;
 	}
 
-	public void setDeviceType(DeviceType type) {
-		this.deviceType = type;
+	public void setDeviceType(String deviceType) {
+		this.deviceType = deviceType;
 	}
 	public String getDeviceMaker() {
 		return deviceMaker;
 	}
 
-	public void setDeviceMaker(String hardware) {
-		this.deviceMaker = hardware;
+	public void setDeviceMaker(String deviceMaker) {
+		this.deviceMaker = deviceMaker;
 	}
 
 	public String getDeviceModel() {
 		return deviceModel;
 	}
 
-	public void setDeviceModel(String model) {
-		this.deviceModel = model;
+	public void setDeviceModel(String deviceModel) {
+		this.deviceModel = deviceModel;
 	}
 
 	public String getDeviceModelVersion() {
 		return deviceModelVersion;
 	}
 
-	public void setDeviceModelVersion(String modelVersion) {
-		this.deviceModelVersion = modelVersion;
+	public void setDeviceModelVersion(String deviceModelVersion) {
+		this.deviceModelVersion = deviceModelVersion;
 	}
 
 	public String getOS() {
 		return os;
 	}
 
-	public void setOS(String software) {
-		this.os = software;
+	public void setOS(String os) {
+		this.os = os;
 	}
 
 	public String getOSVersion() {
 		return osVersion;
 	}
 
-	public void setOSVersion(String softwareVersion) {
-		this.osVersion = softwareVersion;
+	public void setOSVersion(String osVersion) {
+		this.osVersion = osVersion;
 	}
 
 	public String getBrowser() {
@@ -97,14 +101,14 @@ public class UserAgent {
 	public UserAgent() {
 
 	}
-	public UserAgent(String hardware, String model, String modelVersion,
-			String software, String softwareVersion, DeviceType type) {
-		setDeviceMaker(hardware);
-		setDeviceModel(model);
-		setDeviceModelVersion(modelVersion);
-		setOS(software);
-		setOSVersion(softwareVersion);
-		setDeviceType(type);
+	public UserAgent(String deviceMaker, String deviceModel, String deviceModelVersion,
+			String os, String osVersion, String deviceType) {
+		setDeviceMaker(deviceMaker);
+		setDeviceModel(deviceModel);
+		setDeviceModelVersion(deviceModelVersion);
+		setOS(os);
+		setOSVersion(osVersion);
+		setDeviceType(deviceType);
 	}
 
 		
