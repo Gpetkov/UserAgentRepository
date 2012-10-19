@@ -22,7 +22,7 @@ public class UserAgentParser {
 	 * Mozilla/5.0 (BlackBerry; U; BlackBerry 9360; ar) AppleWebKit/534.11+
 	 * (KHTML, like Gecko) Version/7.0.0.353 Mobile Safari/534.11+
 	 */
-	private static final String REGEX_BB_6_AND_7 = "((?i:blackberry)+?)\\s?(\\d{2,4}?);\\s?\\w+?.\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?(?i:version/)+((\\S+)+)\\s?";
+	private static final String REGEX_BB_6_AND_7 = "((?i:blackberry)+?)\\s?(\\d{2,4}?);\\s?\\w+?.\\s?[\\S*\\s?]+?(?i:version/)+((\\S+)+)\\s?";
 
 	/**
 	 * regex for finding BlackBerry PlayBook User Agents example: Mozilla/5.0
@@ -36,14 +36,14 @@ public class UserAgentParser {
 	 * (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0;
 	 * HTC; HD7 T9292)
 	 */
-	private static final String REGEX_WIN_PHONE = "((?i:windows phone os)+?)\\s?(\\d.\\d)+.\\s?\\w*.?\\w*.?\\w*[;]?\\s?\\w*.?\\w*.?\\w*[;]?\\s?(\\w+).\\s?((\\w+\\s?\\w*[-]?\\s?\\w*)+?).";
+	private static final String REGEX_WIN_PHONE = "((?i:windows phone os)+?)\\s?(\\d.\\d)+.\\s?[\\w*.?]*?\\w*[;]?\\s?[\\w*.?]*?\\w*[;]?\\s?(\\w+).\\s?((\\w+\\s?\\w*[-]?\\s?\\w*)+?).";
 
 	/**
 	 * regex for finding iOS User Agents(doesn't catch iOS 1.X) example:
 	 * Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; sv-se)
 	 * AppleWebKit/533.17.9 (KHTML, like Gecko) Mobile/8C148a
 	 */
-	private static final String REGEX_iOS = "((?i:iphone|ipod|ipad)\\s?\\w*)+?;\\s?(?i)u?.?\\s?\\w*?\\s?\\w*\\s?\\w*\\s?((\\d_\\d_?\\d*)+?)\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\w*[-]?\\w*";
+	private static final String REGEX_iOS = "((?i:iphone|ipod|ipad)\\s?\\w*)+?;\\s?(?i)u?.?\\s?[\\w*?\\s?]*?((\\d_\\d_?\\d*)+?)\\s?[\\S*\\s?]*?\\w*[-]?\\w*";
 
 	/**
 	 * regex for finding PC Microsoft IE User Agents example: Mozilla/4.0
