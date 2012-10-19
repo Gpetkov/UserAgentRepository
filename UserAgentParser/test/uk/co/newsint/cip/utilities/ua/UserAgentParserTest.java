@@ -21,7 +21,7 @@ public class UserAgentParserTest {
 	 * Instance of type UserAgentParser which method "parse" we're using
 	 * 
 	 */
-	private static UserAgentParser testUserAgentParser = new UserAgentParser() {
+	protected static UserAgentParser testUserAgentParser = new UserAgentParser() {
 	};
 
 	/**
@@ -143,48 +143,41 @@ public class UserAgentParserTest {
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.4) Gecko/2008102920 Firefox/3.0.4,platform,unknown", 
 				new UserAgent(UserAgent.PC,UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","5.1","Firefox","3.0.4"));
-/*		// Assertion for Firefox browser
+		// Assertion for Firefox browser
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.19) Gecko/2010031422 YFF3 "
-						+ "Firefox/3.0.19,platform,unknown", new UserAgent(
-						UserAgent.UNKNOWN, "Firefox", "3.0.19", "Windows NT",
-						"5.1", UserAgent.PC));
+						+ "Firefox/3.0.19,platform,unknown", 
+						new UserAgent(UserAgent.PC,UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","5.1","Firefox","3.0.19"));
 		// Assertion for Firefox browser
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.13) Gecko/20100914 "
 						+ "update/105618 Firefox/3.5.13,platform,unknown",
-				new UserAgent(UserAgent.UNKNOWN, "Firefox", "3.5.13",
-						"Windows NT", "5.1", UserAgent.PC));
+						new UserAgent(UserAgent.PC,UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","5.1","Firefox","3.5.13"));
 		// Assertion for Firefox browser Bot
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.2.24) Gecko/20111103 AskTbFTB/3.14.1.20007 "
 						+ "Firefox/3.6.24 (.NET CLR 3.5.30729),platform,unknown",
-				new UserAgent(UserAgent.UNKNOWN, "Firefox", "3.6.24",
-						"Windows NT", "5.1", UserAgent.PC));
+						new UserAgent(UserAgent.PC,UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","5.1","Firefox","3.6.24"));
 		// Assertion for Firefox Bot
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 AskTbARS/3.15.1.22229 "
-						+ "Firefox/3.6,platform,unknown", new UserAgent(
-						UserAgent.UNKNOWN, "Firefox", "3.6", "Windows NT",
-						"5.1", UserAgent.PC));
+						+ "Firefox/3.6,platform,unknown", 
+						new UserAgent(UserAgent.PC,UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","5.1","Firefox","3.6"));
 		// Assertion for Iron browser
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Iron/12.0.750.0 "
 						+ "Chrome/12.0.750.0 Safari/534.30,platform,unknown",
-				new UserAgent(UserAgent.UNKNOWN, "Iron", "12.0.750.0",
-						"Windows NT", "5.1", UserAgent.PC));
+						new UserAgent(UserAgent.PC,UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","5.1","Iron","12.0.750.0"));
 		// Assertion for Comodo_Dragon browser
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Comodo_Dragon/12.1.0.0 "
 						+ "Chrome/12.0.742.91 Safari/534.30,platform,unknown",
-				new UserAgent(UserAgent.UNKNOWN, "Comodo_Dragon", "12.1.0.0",
-						"Windows NT", "5.1", UserAgent.PC));
-		// Assertion for Comodo_Dragon browser
+						new UserAgent(UserAgent.PC,UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","5.1","Comodo_Dragon","12.1.0.0"));
+	/*	// Assertion for Comodo_Dragon browser
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Comodo_Dragon/12.2.0.0 "
 						+ "Chrome/12.0.742.112 Safari/534.30,platform,unknown",
-				new UserAgent(UserAgent.UNKNOWN, "Comodo_Dragon", "12.2.0.0",
-						"Windows NT", "5.1", UserAgent.PC));
+						new UserAgent(UserAgent.PC,UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","5.1","Comodo_Dragon","12.1.0.0"));
 		// Assertion for Maxthon browser
 		assertUserAgentEquals(
 				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.0 Chrome/18.0.966.0 "
