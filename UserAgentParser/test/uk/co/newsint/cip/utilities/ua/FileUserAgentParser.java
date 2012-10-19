@@ -1,4 +1,5 @@
 package uk.co.newsint.cip.utilities.ua;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class FileUserAgentParser {
 	public void parseAll(File file) {
 		Scanner input = null;
 		UserAgent userAgent = null;
-		UserAgentParser userAgentParser = new UserAgentParser();
+		RegexpUserAgentParser userAgentParser = new RegexpUserAgentParser();
 
 		try {
 			input = new Scanner(file);	  	

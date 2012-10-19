@@ -1,10 +1,6 @@
 package uk.co.newsint.cip.utilities.ua;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
-
-import javax.management.RuntimeErrorException;
 
 import org.junit.Test;
 

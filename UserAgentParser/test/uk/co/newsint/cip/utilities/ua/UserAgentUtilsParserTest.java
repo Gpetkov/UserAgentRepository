@@ -1,19 +1,32 @@
 package uk.co.newsint.cip.utilities.ua;
 
+import org.junit.Test;
+
 
 /**
- *Test for UserAgentUtilsParser parsing capabilities
+ * Test for UserAgentUtilsParser parsing capabilities
  * 
  * @author Zhivko Kalev
  * @version 1.0
  * @see UserAgentUtilsParser#parse(String)
  */
-public class UserAgentUtilsParserTest {
+public class UserAgentUtilsParserTest extends UserAgentParserTest {
+
+	public UserAgentUtilsParserTest() {
+		testUserAgentParser = new UserAgentUtilsParser();
+	}
 
 	/**
-	 * Instance of type UserAgentUtilsParser which method "parse" we're using
+	 * Test method for PC
+	 * 
 	 */
-	private static UserAgentParser testUserAgentParser = new UserAgentUtilsParser();
+	@Test
+	public void testPCParse() throws Exception {
+		// Assertion for Internet Explorer browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
+				new UserAgent("Computer",UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","6.1","MSIE","9.0"));
+		
+	}
 
-	
 }

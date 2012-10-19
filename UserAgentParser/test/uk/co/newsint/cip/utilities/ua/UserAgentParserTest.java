@@ -13,7 +13,7 @@ import org.junit.Test;
  * @author Georgi Petkov
  * @version 1.0
  * @since 2012-10-12
- * @see UserAgentParser#parse(String)
+ * @see RegexpUserAgentParser#parse(String)
  */
 public class UserAgentParserTest {
 
@@ -21,7 +21,7 @@ public class UserAgentParserTest {
 	 * Instance of type UserAgentParser which method "parse" we're using
 	 * 
 	 */
-	protected UserAgentParser testUserAgentParser = new UserAgentParser();
+	protected UserAgentParser testUserAgentParser = new RegexpUserAgentParser();
 
 	/**
 	 * Methods which test the different cases for user agent string
@@ -283,7 +283,7 @@ public class UserAgentParserTest {
 	 * Method which makes asserts for for every of the UserAgent's properties
 	 * (equal for every of the properties)
 	 * 
-	 * @see UserAgentParser#parse(String)
+	 * @see RegexpUserAgentParser#parse(String)
 	 * 
 	 */
 

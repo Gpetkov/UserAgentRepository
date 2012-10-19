@@ -2,7 +2,7 @@ package uk.co.newsint.cip.utilities.ua;
 
 /**
  * This exceptions is thrown in {@link FileUserAgentParser} and {@link
- * UserAgentParser} classes
+ * RegexpUserAgentParser} classes
  * 
  * @author BitMix
  * 
