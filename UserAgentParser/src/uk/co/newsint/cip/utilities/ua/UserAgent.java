@@ -1,4 +1,7 @@
 package uk.co.newsint.cip.utilities.ua;
+
+import nl.bitwalker.useragentutils.DeviceType;
+
 /**
  * 
  * @author BitMix This class contain info about user agent request
@@ -11,13 +14,13 @@ public class UserAgent {
 //
 	//}
 
-	public static final String UNKNOWN = null;
-	public static final String SMARTPHONE = "SMARTPHONE";
-	public static final String TABLET = "TABLET";
-	public static final String PC = "PC";
+	public static final String UNKNOWN = DeviceType.UNKNOWN.getName();
+	public static final String MOBILE = DeviceType.MOBILE.getName();
+	public static final String TABLET = DeviceType.TABLET.getName();
+	public static final String COMPUTER = DeviceType.COMPUTER.getName();
 	
 	//device Type (example --> TABLET)
-	String deviceType = UNKNOWN;
+	private String deviceType = UNKNOWN;
 	// deviceMaker (example --> BlackBerry)
 	private String deviceMaker = UNKNOWN;
 	// device Model (example --> Bold)

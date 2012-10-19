@@ -29,21 +29,21 @@ public class CompositeUserAgentParser extends UserAgentParser {
 		
 		// 3. Fill Unkowns with regexp UA properties
 		// TODO (Zhivko): Consider using equals, not ==
-		if (userAgent.getDeviceType() == UserAgent.UNKNOWN)
+		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceType()))
 			userAgent.setDeviceType(regexpAgent.getDeviceType());
-		if (userAgent.getDeviceMaker() == UserAgent.UNKNOWN)
+		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceMaker()))
 			userAgent.setDeviceMaker(regexpAgent.getDeviceMaker());
-		if (userAgent.getDeviceModel() == UserAgent.UNKNOWN)
+		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceModel()))
 			userAgent.setDeviceModel(regexpAgent.getDeviceModel());
-		if (userAgent.getDeviceModelVersion() == UserAgent.UNKNOWN)
+		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceModelVersion()))
 			userAgent.setDeviceModelVersion(regexpAgent.getDeviceModelVersion());
-		if (userAgent.getOS() == UserAgent.UNKNOWN)
+		if (UserAgent.UNKNOWN.equals(userAgent.getOS()))
 			userAgent.setOS(regexpAgent.getOS());
-		if (userAgent.getOSVersion() == UserAgent.UNKNOWN)
+		if (UserAgent.UNKNOWN.equals(userAgent.getOSVersion()))
 			userAgent.setOSVersion(regexpAgent.getOSVersion());
-		if (userAgent.getBrowser() == UserAgent.UNKNOWN)
+		if (UserAgent.UNKNOWN.equals(userAgent.getBrowser()))
 			userAgent.setBrowser(regexpAgent.getBrowser());
-		if (userAgent.getBrowserVersion() == UserAgent.UNKNOWN)
+		if (UserAgent.UNKNOWN.equals(userAgent.getBrowserVersion()))
 			userAgent.setBrowserVersion(regexpAgent.getBrowserVersion());
 
 		return userAgent;

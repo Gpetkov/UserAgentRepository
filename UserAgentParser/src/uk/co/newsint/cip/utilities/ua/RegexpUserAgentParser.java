@@ -90,7 +90,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		Pattern pattern = Pattern.compile(REGEX_BB_4_AND_5);
 		Matcher match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.SMARTPHONE);
+			ua.setDeviceType(UserAgent.MOBILE);
 			ua.setDeviceMaker(match.group(1));
 			ua.setDeviceModel(match.group(2));
 			ua.setDeviceModelVersion(match.group(2));
@@ -101,7 +101,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		pattern = Pattern.compile(REGEX_BB_6_AND_7);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.SMARTPHONE);
+			ua.setDeviceType(UserAgent.MOBILE);
 			ua.setDeviceMaker(match.group(1));
 			ua.setDeviceModel(match.group(2));
 			ua.setDeviceModelVersion(match.group(2));
@@ -123,7 +123,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		pattern = Pattern.compile(REGEX_WIN_PHONE);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.SMARTPHONE);
+			ua.setDeviceType(UserAgent.MOBILE);
 			ua.setDeviceMaker(match.group(5));
 			ua.setDeviceModel(match.group(6));
 			ua.setDeviceModelVersion(match.group(6));
@@ -139,7 +139,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 			if (match.group(1).equalsIgnoreCase("ipad")) {
 				ua.setDeviceType(UserAgent.TABLET);
 			} else {
-				ua.setDeviceType(UserAgent.SMARTPHONE);
+				ua.setDeviceType(UserAgent.MOBILE);
 			}
 			ua.setDeviceMaker("Apple");
 			ua.setDeviceModel(match.group(1));
@@ -151,7 +151,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_WIN_IE);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.PC);
+			ua.setDeviceType(UserAgent.COMPUTER);
 			ua.setDeviceMaker(UserAgent.UNKNOWN);
 			ua.setBrowser(match.group(1));
 			ua.setBrowserVersion(match.group(2));
@@ -162,7 +162,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_WIN);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.PC);
+			ua.setDeviceType(UserAgent.COMPUTER);
 			ua.setDeviceMaker(UserAgent.UNKNOWN);
 			ua.setBrowser(match.group(3));
 			ua.setBrowserVersion(match.group(4));
@@ -173,7 +173,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_MAC);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.PC);
+			ua.setDeviceType(UserAgent.COMPUTER);
 			ua.setDeviceMaker("Apple");
 			ua.setBrowser(match.group(3));
 			ua.setBrowserVersion(match.group(4));
@@ -184,7 +184,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_MAC_OMNIWEB);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.PC);
+			ua.setDeviceType(UserAgent.COMPUTER);
 			ua.setDeviceMaker("Apple");
 			ua.setBrowser(match.group(3));
 			ua.setBrowserVersion(match.group(4));
@@ -195,7 +195,7 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_OPERA);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.PC);
+			ua.setDeviceType(UserAgent.COMPUTER);
 			ua.setDeviceMaker(UserAgent.UNKNOWN);
 			ua.setBrowser(match.group(1));
 			ua.setBrowserVersion(match.group(2));
