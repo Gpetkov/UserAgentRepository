@@ -60,6 +60,13 @@ public class UserAgentParser {
 	private static final String REGEX_PC_WIN = "((?i:windows)\\s?\\w*)+?\\s?(\\d.\\d)+?.[\\s?\\S*]+?((?i:chrome|firefox|iron|Comodo_Dragon|Maxthon|safari|RockMelt))\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+)";
 
 	/**
+	 * regex for finding PC MAC User Agents example: "Mozilla/5.0 (Macintosh; U;
+	 * Intel Mac OS X 10_6_8; hu_hu) AppleWebKit/534.46 (KHTML, like Gecko)
+	 * Version/5.0.5 Safari/534.46,platform,unknown
+	 */
+	private static final String REGEX_PC_MAC = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)+?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:firefox|safari|chrome|OmniWeb|NetNewsWire|iron|RockMelt|camino))\\s?/\\s?((\\d+[\\.]?\\d*[\\.]?\\d*)+?)[,;\\s]+";
+
+	/**
 	 * Parses a String into an {@link UserAgent} object.
 	 * 
 	 * @param userAgentString
@@ -149,6 +156,17 @@ public class UserAgentParser {
 		if (match.find()) {
 			ua.setType(UserAgent.DeviceType.PC);
 			ua.setHardware(UserAgent.UNKNOWN);
+			ua.setModel(match.group(3));
+			ua.setModelVersion(match.group(4));
+			ua.setSoftware(match.group(1));
+			ua.setSoftwareVersion(match.group(2));
+			return ua;
+		}
+		pattern = Pattern.compile(REGEX_PC_MAC);
+		match = pattern.matcher(userAgentString);
+		if (match.find()) {
+			ua.setType(UserAgent.DeviceType.PC);
+			ua.setHardware("Apple");
 			ua.setModel(match.group(3));
 			ua.setModelVersion(match.group(4));
 			ua.setSoftware(match.group(1));
