@@ -127,7 +127,7 @@ public class UserAgentParserTest {
 	}
 
 	/**
-	 * Method which make asserts for for every of the UserAgent's properties
+	 * Method which makes asserts for for every of the UserAgent's properties
 	 * (equal for every of the properties)
 	 * 
 	 * @see UserAgentParser#parse(String)
@@ -155,6 +155,13 @@ public class UserAgentParserTest {
 				actualUserAgent.getSoftwareVersion());
 	}
 
+	/**
+	 * Method which pass to the "parse" method null string or not userAgent string and expects 
+	 * instance of UserAgentParseException 
+	 * 
+	 * @see UserAgentParseException
+	 * 
+	 */
 	private void assertUserAgentException(String userAgentString) {
 		try {
 			testUserAgentParser.parse(userAgentString);

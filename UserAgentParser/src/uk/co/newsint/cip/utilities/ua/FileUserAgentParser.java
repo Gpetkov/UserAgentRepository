@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class FileUserAgentParser {
 
-	private int toParse;
-	private int errors;
-	private int parsed;
+	protected int toParse;
+	protected int errors;
+	protected int parsed;
 	  	
 	public FileUserAgentParser(){	
 		this.toParse = 0;
@@ -59,7 +59,8 @@ public class FileUserAgentParser {
 	protected String extractUserAgentString(String line) {	  	
 		if ((line == null) || line.trim().length() == 0) {	  	
 			return null;	  	
-		}	  	
+		}
+		
 		return line;	  	
 	}
 	  	
