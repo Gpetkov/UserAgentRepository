@@ -178,7 +178,7 @@ public class UserAgentParser {
 			ua.setModel(match.group(3));
 			ua.setModelVersion(match.group(4));
 			ua.setSoftware(match.group(1));
-			ua.setSoftwareVersion(match.group(2));
+			ua.setSoftwareVersion(match.group(2).replaceAll("_", "."));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_PC_MAC_OMNIWEB);
