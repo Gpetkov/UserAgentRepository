@@ -221,21 +221,28 @@ public class UserAgentParserTest {
 						"Windows NT", "5.2", UserAgent.DeviceType.PC));
 		// Assertion for Safari browser
 		assertUserAgentEquals(
-				"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.0.2 " +
-				"Safari/533.18.5,platform,unknown",
-				new UserAgent(UserAgent.UNKNOWN, "Safari", "533.18.5",
-						"Windows NT", "6.1", UserAgent.DeviceType.PC));
+				"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.0.2 "
+						+ "Safari/533.18.5,platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Safari", "533.18.5", "Windows NT",
+						"6.1", UserAgent.DeviceType.PC));
 		// Assertion for Safari browser
 		assertUserAgentEquals(
-				"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 " +
-				"Safari/534.57.2,platform,unknown",
-				new UserAgent(UserAgent.UNKNOWN, "Safari", "534.57.2",
-						"Windows NT", "6.1", UserAgent.DeviceType.PC));
+				"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 "
+						+ "Safari/534.57.2,platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Safari", "534.57.2", "Windows NT",
+						"6.1", UserAgent.DeviceType.PC));
 		// Assertion for Safari browser for Macintosh
-		 assertUserAgentEquals(
-		 "101653 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2",
-		 new UserAgent(UserAgent.UNKNOWN, "Safari", "8.0",
-		 "Windows NT", "5.2", UserAgent.DeviceType.PC));
+		assertUserAgentEquals(
+				"101653 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) "
+						+ "Version/5.1.7 Safari/534.57.2", new UserAgent(
+						"Apple", "Safari", "534.57.2", "Mac OS X", "10_7_4",
+						UserAgent.DeviceType.PC));
+		// Assertion for Firefox browser for Macintosh
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 " +
+				"Navigator/9.0.0.6,platform,unknown",
+				new UserAgent("Apple", "Firefox", "2.0.0.12", "OS X",
+						"", UserAgent.DeviceType.PC));
 
 	}
 
