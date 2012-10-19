@@ -21,8 +21,7 @@ public class UserAgentParserTest {
 	 * Instance of type UserAgentParser which method "parse" we're using
 	 * 
 	 */
-	protected static UserAgentParser testUserAgentParser = new UserAgentParser() {
-	};
+	protected UserAgentParser testUserAgentParser = new UserAgentParser();
 
 	/**
 	 * Methods which test the different cases for user agent string
