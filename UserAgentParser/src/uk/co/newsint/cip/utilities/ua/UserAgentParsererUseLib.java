@@ -19,8 +19,15 @@ public class UserAgentParsererUseLib {
 			while(input.hasNextLine()){
 				String line = input.nextLine();
 				nl.bitwalker.useragentutils.UserAgent ua=nl.bitwalker.useragentutils.UserAgent.parseUserAgentString(line);
+				String browser=""+ua.getBrowser();
 				
-				}
+				
+				
+				
+				userAgent.setBrowser(browser);
+				
+			
+			}
 			
 		} catch (FileNotFoundException e) {
 			System.out.println("There is not such file!!!");
