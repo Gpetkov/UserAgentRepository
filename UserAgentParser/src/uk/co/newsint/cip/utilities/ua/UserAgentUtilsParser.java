@@ -15,8 +15,7 @@ import nl.bitwalker.useragentutils.Version;
 public class UserAgentUtilsParser extends UserAgentParser {
 
 	@Override
-	public UserAgent parse(String userAgentString)
-			throws UserAgentParseException {
+	public UserAgent parse(String userAgentString){
 		// ask the library to parse the UA
 		nl.bitwalker.useragentutils.UserAgent ua = nl.bitwalker.useragentutils.UserAgent
 				.parseUserAgentString(userAgentString);

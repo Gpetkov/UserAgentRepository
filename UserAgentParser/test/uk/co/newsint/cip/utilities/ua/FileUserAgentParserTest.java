@@ -10,9 +10,11 @@ public class FileUserAgentParserTest {
 	public void testParseAll() {
 		
 		FileUserAgentParser parser = new FileUserAgentParser() {
-			private final int MAX_ERRORS = 158;
+			private final int MAX_ERRORS = 1;
 			private int currentError = 0;
+			private int lineNumber = 0;
 			protected String extractUserAgentString(String line) {
+				lineNumber++;
 				String userAgentString = super.extractUserAgentString(line);
 				if (userAgentString == null){
 					return null;
@@ -20,23 +22,27 @@ public class FileUserAgentParserTest {
 					int firstSpace = userAgentString.indexOf(" ");
 					userAgentString = userAgentString.substring(firstSpace+1, line.length());
 				}
-				
 				return userAgentString;
 				
 			};
 			
 			@Override
-			protected void onUserAgentParsed(String line, UserAgent userAgent,
-					UserAgentParseException exception) {
+			protected void onUserAgentParsed(String line, UserAgent userAgent,Exception exception) {
 				super.onUserAgentParsed(line, userAgent, exception);
 				if(exception != null){
 					currentError++;
 					System.out.printf("%d  %s\n",currentError,line);
 				}
+				//lineNumber++;
+				//System.out.printf("%d  %s\n",lineNumber,line );
 				if (errors == MAX_ERRORS){
 					System.out.println("\nStatistics:\n");
 					System.out.printf("Count of userAgent strings: %d\nCount of parsed userAgentString : %d\nCount of errors: %d\n", toParse, parsed,errors);
 					throw new RuntimeException("50 errors occured");
+				}
+				if(parsed >= 1000){
+					System.out.println("\nStatistics:\n");
+					System.out.printf("Count of userAgent strings: %d\nCount of parsed userAgentString : %d\nCount of errors: %d\n", toParse, parsed,errors);
 				}
 					
 			}

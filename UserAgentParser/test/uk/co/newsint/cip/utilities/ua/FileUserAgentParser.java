@@ -25,8 +25,9 @@ public class FileUserAgentParser {
 	public void parseAll(File file) {
 		Scanner input = null;
 		UserAgent userAgent = null;
-		RegexpUserAgentParser userAgentParser = new RegexpUserAgentParser();
-
+		//RegexpUserAgentParser userAgentParserRegex = new RegexpUserAgentParser();
+		//UserAgentUtilsParser userAgentParserUtils = new UserAgentUtilsParser();
+		CompositeUserAgentParser compositeUserAgent = new CompositeUserAgentParser();
 		try {
 			input = new Scanner(file);	  	
       		while (input.hasNextLine()) {	  	
@@ -35,10 +36,12 @@ public class FileUserAgentParser {
 					String userAgentString = extractUserAgentString(currentLine);	  	
 					if (userAgentString == null){	  	
 						continue;	  	
-					}	  	
-					userAgent = userAgentParser.parse(userAgentString);	  	
+					}	 
+					//userAgent = userAgentParserUtils.parse(userAgentString);
+					//userAgent = userAgentParserRegex.parse(userAgentString);
+					userAgent = compositeUserAgent.parse(userAgentString);
 					onUserAgentParsed(currentLine, userAgent, null);	  	
-				} catch (UserAgentParseException e) {	  	
+				} catch (Exception e) {	  	
           			onUserAgentParsed(currentLine, null, e);
 				}
 			}	
@@ -48,7 +51,8 @@ public class FileUserAgentParser {
 			System.out.println("File is NULL!!!");  	
     	} finally {  	
       		if (input != null);		
-		} 	 
+		} 	
+		
 	}
 
 	/**	  	
@@ -72,7 +76,7 @@ public class FileUserAgentParser {
 	* @param User Agent	  	
 	* @param ParseExeption	  	
 	*/	  	
-	protected void onUserAgentParsed(String line, UserAgent userAgent, UserAgentParseException exception) {  	
+	protected void onUserAgentParsed(String line, UserAgent userAgent, Exception exception) {  	
 		this.toParse++;	  	
 		if (exception == null){	  	
 			this.parsed++;	  	

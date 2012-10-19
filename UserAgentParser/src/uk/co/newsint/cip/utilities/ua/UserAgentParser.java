@@ -27,6 +27,6 @@ public abstract class UserAgentParser {
 	 *             When the userAgentString is not found as a User Agent String
 	 * @return UserAgent object
 	 */
-	public abstract UserAgent parse(String userAgentString)
-			throws UserAgentParseException;
+	public abstract UserAgent parse(String userAgentString);
+			//throws UserAgentParseException;
 }

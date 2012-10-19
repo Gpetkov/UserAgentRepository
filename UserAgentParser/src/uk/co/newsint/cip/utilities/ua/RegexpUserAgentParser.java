@@ -81,12 +81,13 @@ public class RegexpUserAgentParser extends UserAgentParser {
 	private static final String REGEX_PC_OPERA = "((?i:opera)+)/(\\d+.\\d+)+[\\s?\\S*]+?((?i:windows\\s?nt)|(?i:mac\\s?os\\s?x))+?\\s?((\\d+.?\\d*[_\\.]?\\d*)+?)";
 
 	@Override
-	public UserAgent parse(String userAgentString)
-			throws UserAgentParseException {
+	public UserAgent parse(String userAgentString){
+			//throws UserAgentParseException {
+	
 		UserAgent ua = new UserAgent();
-		if (userAgentString == null) {
-			throw new UserAgentParseException("UA not found!");
-		}
+		//if (userAgentString == null) {
+		//	throw new UserAgentParseException("UA not found!");
+		//}
 		Pattern pattern = Pattern.compile(REGEX_BB_4_AND_5);
 		Matcher match = pattern.matcher(userAgentString);
 		if (match.find()) {
@@ -209,10 +210,10 @@ public class RegexpUserAgentParser extends UserAgentParser {
 			ua.setOSVersion(match.group(4));
 			return ua;
 		} else {
-			throw new UserAgentParseException("UA not found!");
-
+			//throw new UserAgentParseException("UA not found!");
+			return new UserAgent();
 		}
-
+		
 	}
 
 }

@@ -1,32 +1,29 @@
 package uk.co.newsint.cip.utilities.ua;
 
 /**
- * Default User Agent parser will first ask {@link UserAgentUtilsParser} to fill {@link UserAgent} properties. For all
- * unknown values will use {@link RegexpUserAgentParser} to try make a guess.
+ * Default User Agent parser will first ask {@link UserAgentUtilsParser} to fill
+ * {@link UserAgent} properties. For all unknown values will use
+ * {@link RegexpUserAgentParser} to try make a guess.
  * 
  * @author Zhivko Kalev
  * @since 1.0
  */
 public class CompositeUserAgentParser extends UserAgentParser {
-	
+
 	protected UserAgentUtilsParser utilsParser = new UserAgentUtilsParser();
 	protected RegexpUserAgentParser regexpParser = new RegexpUserAgentParser();
 
 	@Override
-	public UserAgent parse(String userAgentString) throws UserAgentParseException {
+	public UserAgent parse(String userAgentString) {
 		UserAgent userAgent = null;
-		
+
 		// 1. Use UserAgentUtilsParser to try parse the UA string
-		try {
-			userAgent = utilsParser.parse(userAgentString);
-		} catch (UserAgentParseException e) {
-			// create new user agent with all unknown props.
-			userAgent = new UserAgent();
-		}
+
+		userAgent = utilsParser.parse(userAgentString);
 
 		// 2. Use UserAgentParser to try parse the UA string
 		UserAgent regexpAgent = regexpParser.parse(userAgentString);
-		
+
 		// 3. Fill Unkowns with regexp UA properties
 		// TODO (Zhivko): Consider using equals, not ==
 		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceType()))
@@ -50,4 +47,3 @@ public class CompositeUserAgentParser extends UserAgentParser {
 	}
 
 }
-	
