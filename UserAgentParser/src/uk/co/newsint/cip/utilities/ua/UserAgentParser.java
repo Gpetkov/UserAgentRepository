@@ -92,104 +92,104 @@ public class UserAgentParser {
 		Pattern pattern = Pattern.compile(REGEX_BB_4_AND_5);
 		Matcher match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setType(UserAgent.DeviceType.SMARTPHONE);
-			ua.setHardware(match.group(1));
-			ua.setModel(match.group(2));
-			ua.setModelVersion(match.group(2));
-			ua.setSoftware("OS" + match.group(3).charAt(0));
-			ua.setSoftwareVersion(match.group(3));
+			ua.setDeviceType(UserAgent.DeviceType.SMARTPHONE);
+			ua.setDeviceMaker(match.group(1));
+			ua.setDeviceModel(match.group(2));
+			ua.setDeviceModelVersion(match.group(2));
+			ua.setOS("OS" + match.group(3).charAt(0));
+			ua.setOSVersion(match.group(3));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_BB_6_AND_7);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setType(UserAgent.DeviceType.SMARTPHONE);
-			ua.setHardware(match.group(1));
-			ua.setModel(match.group(2));
-			ua.setModelVersion(match.group(2));
-			ua.setSoftware("OS" + match.group(3).charAt(0));
-			ua.setSoftwareVersion(match.group(3));
+			ua.setDeviceType(UserAgent.DeviceType.SMARTPHONE);
+			ua.setDeviceMaker(match.group(1));
+			ua.setDeviceModel(match.group(2));
+			ua.setDeviceModelVersion(match.group(2));
+			ua.setOS("OS" + match.group(3).charAt(0));
+			ua.setOSVersion(match.group(3));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_BB_PLAYBOOK);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setType(UserAgent.DeviceType.TABLET);
-			ua.setHardware("BlackBerry");
-			ua.setModel(match.group(1));
-			ua.setModelVersion(match.group(1));
-			ua.setSoftware(match.group(2));
-			ua.setSoftwareVersion(match.group(3));
+			ua.setDeviceType(UserAgent.DeviceType.TABLET);
+			ua.setDeviceMaker("BlackBerry");
+			ua.setDeviceModel(match.group(1));
+			ua.setDeviceModelVersion(match.group(1));
+			ua.setOS(match.group(2));
+			ua.setOSVersion(match.group(3));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_WIN_PHONE);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setType(UserAgent.DeviceType.SMARTPHONE);
-			ua.setHardware(match.group(3));
-			ua.setModel(match.group(4));
-			ua.setModelVersion(match.group(4));
-			ua.setSoftware(match.group(1));
-			ua.setSoftwareVersion(match.group(2));
+			ua.setDeviceType(UserAgent.DeviceType.SMARTPHONE);
+			ua.setDeviceMaker(match.group(3));
+			ua.setDeviceModel(match.group(4));
+			ua.setDeviceModelVersion(match.group(4));
+			ua.setOS(match.group(1));
+			ua.setOSVersion(match.group(2));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_iOS);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
 			if (match.group(1).equalsIgnoreCase("ipad")) {
-				ua.setType(UserAgent.DeviceType.TABLET);
+				ua.setDeviceType(UserAgent.DeviceType.TABLET);
 			} else {
-				ua.setType(UserAgent.DeviceType.SMARTPHONE);
+				ua.setDeviceType(UserAgent.DeviceType.SMARTPHONE);
 			}
-			ua.setHardware("Apple");
-			ua.setModel(match.group(1));
-			ua.setModelVersion(match.group(1));
-			ua.setSoftware("iOS");
-			ua.setSoftwareVersion(match.group(2).replaceAll("_", "."));
+			ua.setDeviceMaker("Apple");
+			ua.setDeviceModel(match.group(1));
+			ua.setDeviceModelVersion(match.group(1));
+			ua.setOS("iOS");
+			ua.setOSVersion(match.group(2).replaceAll("_", "."));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_PC_WIN_IE);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setType(UserAgent.DeviceType.PC);
-			ua.setHardware(UserAgent.UNKNOWN);
-			ua.setModel(match.group(1));
-			ua.setModelVersion(match.group(2));
-			ua.setSoftware(match.group(3));
-			ua.setSoftwareVersion(match.group(4));
+			ua.setDeviceType(UserAgent.DeviceType.PC);
+			ua.setDeviceMaker(UserAgent.UNKNOWN);
+			ua.setDeviceModel(match.group(1));
+			ua.setDeviceModelVersion(match.group(2));
+			ua.setOS(match.group(3));
+			ua.setOSVersion(match.group(4));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_PC_WIN);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setType(UserAgent.DeviceType.PC);
-			ua.setHardware(UserAgent.UNKNOWN);
-			ua.setModel(match.group(3));
-			ua.setModelVersion(match.group(4));
-			ua.setSoftware(match.group(1));
-			ua.setSoftwareVersion(match.group(2));
+			ua.setDeviceType(UserAgent.DeviceType.PC);
+			ua.setDeviceMaker(UserAgent.UNKNOWN);
+			ua.setDeviceModel(match.group(3));
+			ua.setDeviceModelVersion(match.group(4));
+			ua.setOS(match.group(1));
+			ua.setOSVersion(match.group(2));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_PC_MAC);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setType(UserAgent.DeviceType.PC);
-			ua.setHardware("Apple");
-			ua.setModel(match.group(3));
-			ua.setModelVersion(match.group(4));
-			ua.setSoftware(match.group(1));
-			ua.setSoftwareVersion(match.group(2).replaceAll("_", "."));
+			ua.setDeviceType(UserAgent.DeviceType.PC);
+			ua.setDeviceMaker("Apple");
+			ua.setDeviceModel(match.group(3));
+			ua.setDeviceModelVersion(match.group(4));
+			ua.setOS(match.group(1));
+			ua.setOSVersion(match.group(2).replaceAll("_", "."));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_PC_MAC_OMNIWEB);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setType(UserAgent.DeviceType.PC);
-			ua.setHardware("Apple");
-			ua.setModel(match.group(3));
-			ua.setModelVersion(match.group(4));
-			ua.setSoftware(match.group(1));
-			ua.setSoftwareVersion(match.group(2));
+			ua.setDeviceType(UserAgent.DeviceType.PC);
+			ua.setDeviceMaker("Apple");
+			ua.setDeviceModel(match.group(3));
+			ua.setDeviceModelVersion(match.group(4));
+			ua.setOS(match.group(1));
+			ua.setOSVersion(match.group(2));
 			return ua;
 		} else {
 			throw new UserAgentParseException("UA not found!");

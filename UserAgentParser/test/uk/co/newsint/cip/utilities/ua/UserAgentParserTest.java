@@ -260,19 +260,19 @@ public class UserAgentParserTest {
 				actualUserAgent);
 		String templateFail = userAgentString + " >>> ";
 		assertEquals(templateFail + "type property",
-				expectedUserAgent.getType(), actualUserAgent.getType());
+				expectedUserAgent.getDeviceType(), actualUserAgent.getDeviceType());
 		assertEquals(templateFail + "hardware property",
-				expectedUserAgent.getHardware(), actualUserAgent.getHardware());
+				expectedUserAgent.getDeviceMaker(), actualUserAgent.getDeviceMaker());
 		assertEquals(templateFail + "model property",
-				expectedUserAgent.getModel(), actualUserAgent.getModel());
+				expectedUserAgent.getDeviceModel(), actualUserAgent.getDeviceModel());
 		assertEquals(templateFail + "model version property",
-				expectedUserAgent.getModelVersion(),
-				actualUserAgent.getModelVersion());
+				expectedUserAgent.getDeviceModelVersion(),
+				actualUserAgent.getDeviceModelVersion());
 		assertEquals(templateFail + "software property",
-				expectedUserAgent.getSoftware(), actualUserAgent.getSoftware());
+				expectedUserAgent.getOS(), actualUserAgent.getOS());
 		assertEquals(templateFail + "software version property",
-				expectedUserAgent.getSoftwareVersion(),
-				actualUserAgent.getSoftwareVersion());
+				expectedUserAgent.getOSVersion(),
+				actualUserAgent.getOSVersion());
 	}
 
 	/**
