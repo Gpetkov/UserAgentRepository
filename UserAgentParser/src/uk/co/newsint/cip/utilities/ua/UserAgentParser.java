@@ -64,7 +64,15 @@ public class UserAgentParser {
 	 * Intel Mac OS X 10_6_8; hu_hu) AppleWebKit/534.46 (KHTML, like Gecko)
 	 * Version/5.0.5 Safari/534.46,platform,unknown
 	 */
-	private static final String REGEX_PC_MAC = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)+?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:firefox|safari|chrome|OmniWeb|NetNewsWire|iron|RockMelt|camino))\\s?/\\s?((\\d+[\\.]?\\d*[\\.]?\\d*)+?)[,;\\s]+";
+	private static final String REGEX_PC_MAC = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)+?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:firefox|safari|chrome|OmniWeb|NetNewsWire|iron|RockMelt|camino))\\s?/\\s?((\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
+
+	/**
+	 * regex for finding PC MAC OmniWeb browser User Agents example: Mozilla/5.0
+	 * (Macintosh; U; Intel Mac OS X 10_4_11; en-US)
+	 * AppleWebKit/533.21.1+(KHTML, like Gecko, Safari/533.19.4) Version/5.11.1
+	 * OmniWeb/622.18.0,platform,unknown
+	 */
+	private static final String REGEX_PC_MAC_OMNIWEB = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)+?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:OmniWeb))\\s?/\\s?((\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
 
 	/**
 	 * Parses a String into an {@link UserAgent} object.
@@ -163,6 +171,17 @@ public class UserAgentParser {
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_PC_MAC);
+		match = pattern.matcher(userAgentString);
+		if (match.find()) {
+			ua.setType(UserAgent.DeviceType.PC);
+			ua.setHardware("Apple");
+			ua.setModel(match.group(3));
+			ua.setModelVersion(match.group(4));
+			ua.setSoftware(match.group(1));
+			ua.setSoftwareVersion(match.group(2));
+			return ua;
+		}
+		pattern = Pattern.compile(REGEX_PC_MAC_OMNIWEB);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
 			ua.setType(UserAgent.DeviceType.PC);
