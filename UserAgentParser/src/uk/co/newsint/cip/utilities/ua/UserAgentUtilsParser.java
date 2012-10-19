@@ -34,8 +34,11 @@ public class UserAgentUtilsParser extends UserAgentParser {
 				// TODO (Zhivko): Add device model, model version and maker
 			}
 
-			// TODO (Zhivko): to split OS and OS version
-			result.setOS(os.getName());
+			result.setOS(os.getGroup().getName());
+			// this include operating system and operating system's Version for
+			// example Windows_XP
+			if (os.getGroup() == os)
+				result.setOSVersion(os.getName());
 		}
 
 		Browser browser = ua.getBrowser();
