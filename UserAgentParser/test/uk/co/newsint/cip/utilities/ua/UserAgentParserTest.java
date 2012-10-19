@@ -124,6 +124,10 @@ public class UserAgentParserTest {
 				"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
 				new UserAgent(UserAgent.UNKNOWN, "MSIE", "9.0", "Windows NT", "6.1",
 						UserAgent.DeviceType.PC));
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.100",
+				new UserAgent(UserAgent.UNKNOWN, "Chrome", "12.0.742.100", "Windows NT", "5.1",
+						UserAgent.DeviceType.PC));
 	}
 
 	/**

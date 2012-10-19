@@ -54,6 +54,12 @@ public class UserAgentParser {
 	private static final String REGEX_PC_WIN_IE = "((?i:msie)+?)\\s?(\\d.\\d)+?;?\\s?(\\w+\\s?\\w+)+?\\s?((\\d.\\d)+?);?";
 
 	/**
+	 * regex for finding PC Windows User Agents example: Mozilla/5.0 (Windows NT
+	 * 6.0; WOW64; rv:11.0) Gecko/20100101 Firefox/11.0,platform,unknown
+	 */
+	private static final String REGEX_PC_WIN = "((?i:windows)\\s?\\w*)+?\\s?(\\d.\\d)+?.[\\s?\\S*]+?((?i:chrome|firefox|iron|Comodo_Dragon|Maxthon|safari|RockMelt))\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+)";
+
+	/**
 	 * Parses a String into an {@link UserAgent} object.
 	 * 
 	 * @param userAgentString
@@ -136,6 +142,17 @@ public class UserAgentParser {
 			ua.setModelVersion(match.group(2));
 			ua.setSoftware(match.group(3));
 			ua.setSoftwareVersion(match.group(4));
+			return ua;
+		}
+		pattern = Pattern.compile(REGEX_PC_WIN);
+		match = pattern.matcher(userAgentString);
+		if (match.find()) {
+			ua.setType(UserAgent.DeviceType.PC);
+			ua.setHardware(UserAgent.UNKNOWN);
+			ua.setModel(match.group(3));
+			ua.setModelVersion(match.group(4));
+			ua.setSoftware(match.group(1));
+			ua.setSoftwareVersion(match.group(2));
 			return ua;
 		} else {
 			throw new UserAgentParseException("UA not found!");
