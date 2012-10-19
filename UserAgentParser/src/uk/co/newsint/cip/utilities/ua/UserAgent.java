@@ -8,12 +8,6 @@ import nl.bitwalker.useragentutils.DeviceType;
  * 
  */
 public class UserAgent {
-	// Enum for Device Types
-	//public enum DeviceType {
-	//	SMARTPHONE, TABLET, PC
-//
-	//}
-
 	public static final String UNKNOWN = DeviceType.UNKNOWN.getName();
 	public static final String MOBILE = DeviceType.MOBILE.getName();
 	public static final String TABLET = DeviceType.TABLET.getName();
@@ -36,7 +30,6 @@ public class UserAgent {
 	//Current browser version example --> 534.57.2 (Safari)
 	private String browserVersion = UNKNOWN;
 
-	
 	public String getDeviceType() {
 		return deviceType;
 	}
@@ -99,8 +92,6 @@ public class UserAgent {
 		this.browserVersion = browserVersion;
 	}
 
-	
-	
 	public UserAgent() {
 
 	}

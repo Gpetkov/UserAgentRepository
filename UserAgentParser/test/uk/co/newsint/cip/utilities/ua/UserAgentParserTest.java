@@ -260,7 +260,7 @@ public class UserAgentParserTest {
 		// Assertion for Opera browser for Macintosh
 				assertUserAgentEquals(
 						"Opera/9.80 (Macintosh; Intel Mac OS X 10.8.1; U; nl) Presto/2.10.289 Version/12.02,platform,unknown",
-						new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN,
+						new UserAgent(UserAgent.COMPUTER, "Apple",
 								UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Mac OS X",
 								"10.8.1", "Opera", "9.80"));
 		// Assertion for Safari browser for Macintosh

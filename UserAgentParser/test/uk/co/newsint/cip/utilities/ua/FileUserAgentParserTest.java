@@ -10,7 +10,7 @@ public class FileUserAgentParserTest {
 	public void testParseAll() {
 		
 		FileUserAgentParser parser = new FileUserAgentParser() {
-			private final int MAX_ERRORS = 162;
+			private final int MAX_ERRORS = 158;
 			private int currentError = 0;
 			protected String extractUserAgentString(String line) {
 				String userAgentString = super.extractUserAgentString(line);
