@@ -36,8 +36,8 @@ public class UserAgentUtilsParser extends UserAgentParser {
 			result.setOS(os.getGroup().getName());
 			// this include operating system and operating system's Version for
 			// example Windows_XP
-			if (os.getGroup() == os)
-				result.setOSVersion(os.getName());
+		//	if (os.getGroup() == os)
+		//		result.setOSVersion(os.getName());
 		}
 
 		Browser browser = ua.getBrowser();
