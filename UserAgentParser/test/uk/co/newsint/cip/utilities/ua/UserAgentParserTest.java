@@ -30,6 +30,10 @@ public class UserAgentParserTest {
 	 * @see UserAgentParser#parse(String)
 	 * 
 	 */
+	/**
+	 * Test method for BlackBerry
+	 * 
+	 */
 	@Test
 	public void testBlackBerryParse() throws Exception {
 
@@ -60,74 +64,190 @@ public class UserAgentParserTest {
 		assertUserAgentException("BlackBerri9320/9.49.0.31 Profile");
 	}
 
+	/**
+	 * Test method for Apple
+	 * 
+	 */
 	@Test
 	public void testAppleParse() throws Exception {
-		//Assertion for IPhone 
+		// Assertion for IPhone
 		assertUserAgentEquals(
-				"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-JP)" +
-				" Times/1.0.2,platform,unknown",
-				new UserAgent("Apple", "iPhone", "iPhone", "iOS", "4.3.3",
+				"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-JP)"
+						+ " Times/1.0.2,platform,unknown", new UserAgent(
+						"Apple", "iPhone", "iPhone", "iOS", "4.3.3",
 						UserAgent.DeviceType.SMARTPHONE));
-		//Assertion for IPhone 
+		// Assertion for IPhone
 		assertUserAgentEquals(
-				"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_5 like Mac OS X; ca-es) " +
-				"AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8L1 " +
-				"Safari/6533.18.5,platform,unknown",
-				new UserAgent("Apple", "iPhone", "iPhone", "iOS", "4.3.5",
+				"Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_5 like Mac OS X; ca-es) "
+						+ "AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8L1 "
+						+ "Safari/6533.18.5,platform,unknown", new UserAgent(
+						"Apple", "iPhone", "iPhone", "iOS", "4.3.5",
 						UserAgent.DeviceType.SMARTPHONE));
-		
-		//Assertion for iPad
+
+		// Assertion for iPad
 		assertUserAgentEquals(
-				"Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X; de-de) AppleWebKit/534.46.0 (KHTML, like Gecko) " +
-				"CriOS/21.0.1180.77 Mobile/9B206 Safari/7534.48.3,platform,unknown",
+				"Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X; de-de) AppleWebKit/534.46.0 (KHTML, like Gecko) "
+						+ "CriOS/21.0.1180.77 Mobile/9B206 Safari/7534.48.3,platform,unknown",
 				new UserAgent("Apple", "iPad", "iPad", "iOS", "5.1.1",
 						UserAgent.DeviceType.TABLET));
-		//Assertion for iPad
+		// Assertion for iPad
 		assertUserAgentEquals(
-				"Mozilla/5.0 (iPad; U; CPU OS 4_2_1 like Mac OS X; it-it) AppleWebKit/533.17.9 " +
-				"(KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5,platform,unknown",
+				"Mozilla/5.0 (iPad; U; CPU OS 4_2_1 like Mac OS X; it-it) AppleWebKit/533.17.9 "
+						+ "(KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5,platform,unknown",
 				new UserAgent("Apple", "iPad", "iPad", "iOS", "4.2.1",
 						UserAgent.DeviceType.TABLET));
-		//Assertion for iPod
+		// Assertion for iPod
 		assertUserAgentEquals(
-				"Mozilla/5.0 (iPod touch; U; CPU iPhone OS 5_1_1 like Mac OS X; zh-CN) " +
-				"Times/1.2.1,platform,unknown",
-				new UserAgent("Apple", "iPod touch", "iPod touch", "iOS", "5.1.1",
+				"Mozilla/5.0 (iPod touch; U; CPU iPhone OS 5_1_1 like Mac OS X; zh-CN) "
+						+ "Times/1.2.1,platform,unknown", new UserAgent(
+						"Apple", "iPod touch", "iPod touch", "iOS", "5.1.1",
 						UserAgent.DeviceType.SMARTPHONE));
-		//Assertion for iPod
+		// Assertion for iPod
 		assertUserAgentEquals(
-				"Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) " +
-				"Version/5.1 Mobile/9A334 Safari/7534.48.3,platform,unknown",
+				"Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) "
+						+ "Version/5.1 Mobile/9A334 Safari/7534.48.3,platform,unknown",
 				new UserAgent("Apple", "iPod", "iPod", "iOS", "5.0",
 						UserAgent.DeviceType.SMARTPHONE));
 		// Expected Our custom ParseException
-		assertUserAgentException("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; ja-JP)" +
-				" Times/1.0.2,platform,unknown");
+		assertUserAgentException("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; ja-JP)"
+				+ " Times/1.0.2,platform,unknown");
 		// Expected Our custom ParseException
-		//assertUserAgentException(null);
-		
+		// assertUserAgentException(null);
+
 	}
 
+	/**
+	 * Test method for Android
+	 * 
+	 */
 	@Test
 	public void testAndroidParse() throws Exception {
 
 	}
 
+	/**
+	 * Test method for PC
+	 * 
+	 */
 	@Test
 	public void testPCParse() throws Exception {
-		// Equal for the PC
+		// Assertion for Internet Explorer browser
 		assertUserAgentEquals(
 				"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
-				new UserAgent(UserAgent.UNKNOWN, "MSIE", "9.0", "Windows NT", "6.1",
-						UserAgent.DeviceType.PC));
+				new UserAgent(UserAgent.UNKNOWN, "MSIE", "9.0", "Windows NT",
+						"6.1", UserAgent.DeviceType.PC));
+		// Assertion for Internet Explorer
 		assertUserAgentEquals(
 				"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
-				new UserAgent(UserAgent.UNKNOWN, "MSIE", "9.0", "Windows NT", "6.1",
+				new UserAgent(UserAgent.UNKNOWN, "MSIE", "9.0", "Windows NT",
+						"6.1", UserAgent.DeviceType.PC));
+		// Assertion for Chrome browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 4.0) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.5 "
+						+ "Safari/534.30,platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Chrome", "12.0.742.5",
+						"Windows NT", "4.0", UserAgent.DeviceType.PC));
+		// Assertion for Chrome browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 5.0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.77 Safari/537.1,"
+						+ "platform,unknown", new UserAgent(UserAgent.UNKNOWN,
+						"Chrome", "21.0.1180.77", "Windows NT", "5.0",
 						UserAgent.DeviceType.PC));
+		// Assertion for Firefox browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.4) Gecko/2008102920 Firefox/3.0.4,"
+						+ "platform,unknown", new UserAgent(UserAgent.UNKNOWN,
+						"Firefox", "3.0.4", "Windows NT", "5.1",
+						UserAgent.DeviceType.PC));
+		// Assertion for Firefox browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.19) Gecko/2010031422 YFF3 "
+						+ "Firefox/3.0.19,platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Firefox", "3.0.19", "Windows NT",
+						"5.1", UserAgent.DeviceType.PC));
+		// Assertion for Firefox browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.13) Gecko/20100914 "
+						+ "update/105618 Firefox/3.5.13,platform,unknown",
+				new UserAgent(UserAgent.UNKNOWN, "Firefox", "3.5.13",
+						"Windows NT", "5.1", UserAgent.DeviceType.PC));
+		// Assertion for Firefox browser Bot
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.2.24) Gecko/20111103 AskTbFTB/3.14.1.20007 "
+						+ "Firefox/3.6.24 (.NET CLR 3.5.30729),platform,unknown",
+				new UserAgent(UserAgent.UNKNOWN, "Firefox", "3.6.24",
+						"Windows NT", "5.1", UserAgent.DeviceType.PC));
+		// Assertion for Firefox Bot
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 AskTbARS/3.15.1.22229 "
+						+ "Firefox/3.6,platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Firefox", "3.6", "Windows NT",
+						"5.1", UserAgent.DeviceType.PC));
+		// Assertion for Iron browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Iron/12.0.750.0 "
+						+ "Chrome/12.0.750.0 Safari/534.30,platform,unknown",
+				new UserAgent(UserAgent.UNKNOWN, "Iron", "12.0.750.0",
+						"Windows NT", "5.1", UserAgent.DeviceType.PC));
+		// Assertion for Comodo_Dragon browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Comodo_Dragon/12.1.0.0 "
+						+ "Chrome/12.0.742.91 Safari/534.30,platform,unknown",
+				new UserAgent(UserAgent.UNKNOWN, "Comodo_Dragon", "12.1.0.0",
+						"Windows NT", "5.1", UserAgent.DeviceType.PC));
+		// Assertion for Comodo_Dragon browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Comodo_Dragon/12.2.0.0 "
+						+ "Chrome/12.0.742.112 Safari/534.30,platform,unknown",
+				new UserAgent(UserAgent.UNKNOWN, "Comodo_Dragon", "12.2.0.0",
+						"Windows NT", "5.1", UserAgent.DeviceType.PC));
+		// Assertion for Maxthon browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.0 Chrome/18.0.966.0 "
+						+ "Safari/535.122,platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Maxthon", "3.0", "Windows NT",
+						"5.1", UserAgent.DeviceType.PC));
+		// Assertion for Maxthon browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.3.6.2000 "
+						+ "Chrome/18.0.966.0 Safari/535.12 AppEngine-Google; (+http://code.google.com/appengine; "
+						+ "appid: s~popi0391),platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Maxthon", "3.3.6.2000",
+						"Windows NT", "5.1", UserAgent.DeviceType.PC));
+		// Assertion for RockMelt browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 5.2; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) RockMelt/0.16.91.483 Chrome/16.0.912.77 Safari/535.7,platform,unknown",
+				new UserAgent(UserAgent.UNKNOWN, "RockMelt", "0.16.91.483",
+						"Windows NT", "5.2", UserAgent.DeviceType.PC));
+		// Assertion for Safari browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.0.2 "
+						+ "Safari/533.18.5,platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Safari", "533.18.5", "Windows NT",
+						"6.1", UserAgent.DeviceType.PC));
+		// Assertion for Safari browser
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 "
+						+ "Safari/534.57.2,platform,unknown", new UserAgent(
+						UserAgent.UNKNOWN, "Safari", "534.57.2", "Windows NT",
+						"6.1", UserAgent.DeviceType.PC));
+		// Assertion for Safari browser for Macintosh
+		assertUserAgentEquals(
+				"101653 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) "
+						+ "Version/5.1.7 Safari/534.57.2", new UserAgent(
+						"Apple", "Safari", "534.57.2", "Mac OS X", "10_7_4",
+						UserAgent.DeviceType.PC));
+		// Assertion for Firefox browser for Macintosh
+		assertUserAgentEquals(
+				"Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 " +
+				"Navigator/9.0.0.6,platform,unknown",
+				new UserAgent("Apple", "Firefox", "2.0.0.12", "OS X",
+						"", UserAgent.DeviceType.PC));
+
 	}
 
 	/**
-	 * Method which make asserts for for every of the UserAgent's properties
+	 * Method which makes asserts for for every of the UserAgent's properties
 	 * (equal for every of the properties)
 	 * 
 	 * @see UserAgentParser#parse(String)
@@ -140,21 +260,28 @@ public class UserAgentParserTest {
 				actualUserAgent);
 		String templateFail = userAgentString + " >>> ";
 		assertEquals(templateFail + "type property",
-				expectedUserAgent.getType(), actualUserAgent.getType());
+				expectedUserAgent.getDeviceType(), actualUserAgent.getDeviceType());
 		assertEquals(templateFail + "hardware property",
-				expectedUserAgent.getHardware(), actualUserAgent.getHardware());
+				expectedUserAgent.getDeviceMaker(), actualUserAgent.getDeviceMaker());
 		assertEquals(templateFail + "model property",
-				expectedUserAgent.getModel(), actualUserAgent.getModel());
+				expectedUserAgent.getDeviceModel(), actualUserAgent.getDeviceModel());
 		assertEquals(templateFail + "model version property",
-				expectedUserAgent.getModelVersion(),
-				actualUserAgent.getModelVersion());
+				expectedUserAgent.getDeviceModelVersion(),
+				actualUserAgent.getDeviceModelVersion());
 		assertEquals(templateFail + "software property",
-				expectedUserAgent.getSoftware(), actualUserAgent.getSoftware());
+				expectedUserAgent.getOS(), actualUserAgent.getOS());
 		assertEquals(templateFail + "software version property",
-				expectedUserAgent.getSoftwareVersion(),
-				actualUserAgent.getSoftwareVersion());
+				expectedUserAgent.getOSVersion(),
+				actualUserAgent.getOSVersion());
 	}
 
+	/**
+	 * Method which pass to the "parse" method null string or not userAgent
+	 * string and expects instance of UserAgentParseException
+	 * 
+	 * @see UserAgentParseException
+	 * 
+	 */
 	private void assertUserAgentException(String userAgentString) {
 		try {
 			testUserAgentParser.parse(userAgentString);

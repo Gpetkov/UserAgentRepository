@@ -5,103 +5,127 @@ package uk.co.newsint.cip.utilities.ua;
  * 
  */
 public class UserAgent {
-	// type of device
-	public enum DeviceType {
-		SMARTPHONE, TABLET, PC
-
-	}
+	// Enum for Device Types
+	//public enum DeviceType {
+	//	SMARTPHONE, TABLET, PC
+//
+	//}
 
 	public static final String UNKNOWN = null;
+	public static final String SMARTPHONE = "SMARTPHONE";
+	public static final String TABLET = "TABLET";
+	public static final String PC = "PC";
+	
+	//device Type (example --> TABLET)
+	String deviceType = UNKNOWN;
+	// deviceMaker (example --> BlackBerry)
+	private String deviceMaker = UNKNOWN;
+	// device Model (example --> Bold)
+	private String deviceModel = UNKNOWN;
+	// device Model Version (example --> 9900)
+	private String deviceModelVersion = UNKNOWN;
+	//Operation system (example --> Windows)
+	private String os = UNKNOWN;
+	//Operation system version (example --> 5.0)
+	private String osVersion = UNKNOWN;
+	//Current browser MSIE,Safari,Chrome
+	private String browser = UNKNOWN;
+	//Current browser version example --> 534.57.2 (Safari)
+	private String browserVersion = UNKNOWN;
 
-	DeviceType type;
-	// hardware model for example BlackBerry
-	private String hardware;
-	// device's model for example Bold
-	private String model;
-	// version's model for example 9900
-	private String modelVersion;
-	// software platform for example java
-	private String software;
-	// software's version for example 5.0
-	private String softwareVersion;
-
-	// this constructor build UserAgent
-	public UserAgent(String hardware, String model, String modelVersion,
-			String software, String softwareVersion, DeviceType type) {
-		setHardware(hardware);
-		setModel(model);
-		setModelVersion(modelVersion);
-		setSoftware(software);
-		setSoftwareVersion(softwareVersion);
-		setType(type);
+	
+	public String getDeviceType() {
+		return deviceType;
 	}
 
+	public void setDeviceType(String deviceType) {
+		this.deviceType = deviceType;
+	}
+	public String getDeviceMaker() {
+		return deviceMaker;
+	}
+
+	public void setDeviceMaker(String deviceMaker) {
+		this.deviceMaker = deviceMaker;
+	}
+
+	public String getDeviceModel() {
+		return deviceModel;
+	}
+
+	public void setDeviceModel(String deviceModel) {
+		this.deviceModel = deviceModel;
+	}
+
+	public String getDeviceModelVersion() {
+		return deviceModelVersion;
+	}
+
+	public void setDeviceModelVersion(String deviceModelVersion) {
+		this.deviceModelVersion = deviceModelVersion;
+	}
+
+	public String getOS() {
+		return os;
+	}
+
+	public void setOS(String os) {
+		this.os = os;
+	}
+
+	public String getOSVersion() {
+		return osVersion;
+	}
+
+	public void setOSVersion(String osVersion) {
+		this.osVersion = osVersion;
+	}
+
+	public String getBrowser() {
+		return browser;
+	}
+
+	public void setBrowser(String browser) {
+		this.browser = browser;
+	}
+	public String getBrowserVersion() {
+		return browserVersion;
+	}
+
+	public void setBrowserVersion(String browserVersion) {
+		this.browserVersion = browserVersion;
+	}
+
+	
+	
 	public UserAgent() {
 
 	}
-
-	public String getHardware() {
-		return hardware;
+	public UserAgent(String deviceMaker, String deviceModel, String deviceModelVersion,
+			String os, String osVersion, String deviceType) {
+		setDeviceMaker(deviceMaker);
+		setDeviceModel(deviceModel);
+		setDeviceModelVersion(deviceModelVersion);
+		setOS(os);
+		setOSVersion(osVersion);
+		setDeviceType(deviceType);
 	}
 
-	public void setHardware(String hardware) {
-		this.hardware = hardware;
-	}
-
-	public String getModel() {
-		return model;
-	}
-
-	public void setModel(String model) {
-		this.model = model;
-	}
-
-	public String getModelVersion() {
-		return modelVersion;
-	}
-
-	public void setModelVersion(String modelVersion) {
-		this.modelVersion = modelVersion;
-	}
-
-	public String getSoftware() {
-		return software;
-	}
-
-	public void setSoftware(String software) {
-		this.software = software;
-	}
-
-	public String getSoftwareVersion() {
-		return softwareVersion;
-	}
-
-	public void setSoftwareVersion(String softwareVersion) {
-		this.softwareVersion = softwareVersion;
-	}
-
-	public DeviceType getType() {
-		return type;
-	}
-
-	public void setType(DeviceType type) {
-		this.type = type;
-	}
-
+		
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((hardware == null) ? 0 : hardware.hashCode());
-		result = prime * result + ((model == null) ? 0 : model.hashCode());
+				+ ((deviceMaker == null) ? 0 : deviceMaker.hashCode());
+		result = prime * result + ((deviceModel == null) ? 0 : deviceModel.hashCode());
 		result = prime * result
-				+ ((modelVersion == null) ? 0 : modelVersion.hashCode());
+				+ ((deviceModelVersion == null) ? 0 : deviceModelVersion.hashCode());
 		result = prime * result
-				+ ((software == null) ? 0 : software.hashCode());
+				+ ((os == null) ? 0 : os.hashCode());
 		result = prime * result
-				+ ((softwareVersion == null) ? 0 : softwareVersion.hashCode());
-		result = prime * result + ((type == null) ? 0 : type.hashCode());
+				+ ((osVersion == null) ? 0 : osVersion.hashCode());
+		result = prime * result + ((deviceType == null) ? 0 : deviceType.hashCode());
 		return result;
 	}
 
@@ -114,34 +138,38 @@ public class UserAgent {
 		if (getClass() != obj.getClass())
 			return false;
 		UserAgent other = (UserAgent) obj;
-		if (hardware == null) {
-			if (other.hardware != null)
+		if (deviceMaker == null) {
+			if (other.deviceMaker != null)
 				return false;
-		} else if (!hardware.equals(other.hardware))
+		} else if (!deviceMaker.equals(other.deviceMaker))
 			return false;
-		if (model == null) {
-			if (other.model != null)
+		if (deviceModel == null) {
+			if (other.deviceModel != null)
 				return false;
-		} else if (!model.equals(other.model))
+		} else if (!deviceModel.equals(other.deviceModel))
 			return false;
-		if (modelVersion == null) {
-			if (other.modelVersion != null)
+		if (deviceModelVersion == null) {
+			if (other.deviceModelVersion != null)
 				return false;
-		} else if (!modelVersion.equals(other.modelVersion))
+		} else if (!deviceModelVersion.equals(other.deviceModelVersion))
 			return false;
-		if (software == null) {
-			if (other.software != null)
+		if (os == null) {
+			if (other.os != null)
 				return false;
-		} else if (!software.equals(other.software))
+		} else if (!os.equals(other.os))
 			return false;
-		if (softwareVersion == null) {
-			if (other.softwareVersion != null)
+		if (osVersion == null) {
+			if (other.osVersion != null)
 				return false;
-		} else if (!softwareVersion.equals(other.softwareVersion))
+		} else if (!osVersion.equals(other.osVersion))
 			return false;
-		if (type != other.type)
+		if (deviceType != other.deviceType)
 			return false;
 		return true;
 	}
+
+	
+
+	
 
 }
