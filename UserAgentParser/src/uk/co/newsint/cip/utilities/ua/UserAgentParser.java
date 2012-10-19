@@ -36,7 +36,7 @@ public class UserAgentParser {
 	 * (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0; IEMobile/9.0;
 	 * HTC; HD7 T9292)
 	 */
-	private static final String REGEX_WIN_PHONE = "((?i:windows phone os)+?)\\s?(\\d.\\d)+.\\s?[\\w*.?]*?\\w*[;]?\\s?[\\w*.?]*?\\w*[;]?\\s?(\\w+).\\s?((\\w+\\s?\\w*[-]?\\s?\\w*)+?).";
+	private static final String REGEX_WIN_PHONE = "((?i:msie)\\s?)?(\\d+.\\d+)?.\\s?((?i:windows phone os)+?)\\s?(\\d.\\d)+.\\s?\\w*.?\\w*.?\\w*[;]?\\s?\\w*.?\\w*.?\\w*[;]?\\s?(\\w+).\\s?((\\w+\\s?\\w*[-]?\\s?\\w*)+?).";
 
 	/**
 	 * regex for finding iOS User Agents(doesn't catch iOS 1.X) example:
@@ -75,6 +75,12 @@ public class UserAgentParser {
 	private static final String REGEX_PC_MAC_OMNIWEB = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)+?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:OmniWeb))\\s?/\\s?((\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
 
 	/**
+	 * regex for finding PCOpera browser User Agents example:Opera/9.80
+	 * (Windows NT 6.1; WOW64; U; fi) Presto/2.10.289 Version/12.02
+	 */
+	private static final String REGEX_PC_OPERA = "((?i:opera)+)/(\\d+.\\d+)+[\\s?\\S*]+?((?i:windows\\s?nt)|(?i:mac\\s?os\\s?x))+?\\s?((\\d+.?\\d*[_\\.]?\\d*)+?)";
+
+	/**
 	 * Parses a String into an {@link UserAgent} object.
 	 * 
 	 * @param userAgentString
@@ -92,7 +98,7 @@ public class UserAgentParser {
 		Pattern pattern = Pattern.compile(REGEX_BB_4_AND_5);
 		Matcher match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.DeviceType.SMARTPHONE);
+			ua.setDeviceType(UserAgent.SMARTPHONE);
 			ua.setDeviceMaker(match.group(1));
 			ua.setDeviceModel(match.group(2));
 			ua.setDeviceModelVersion(match.group(2));
@@ -103,7 +109,7 @@ public class UserAgentParser {
 		pattern = Pattern.compile(REGEX_BB_6_AND_7);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.DeviceType.SMARTPHONE);
+			ua.setDeviceType(UserAgent.SMARTPHONE);
 			ua.setDeviceMaker(match.group(1));
 			ua.setDeviceModel(match.group(2));
 			ua.setDeviceModelVersion(match.group(2));
@@ -114,7 +120,7 @@ public class UserAgentParser {
 		pattern = Pattern.compile(REGEX_BB_PLAYBOOK);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.DeviceType.TABLET);
+			ua.setDeviceType(UserAgent.TABLET);
 			ua.setDeviceMaker("BlackBerry");
 			ua.setDeviceModel(match.group(1));
 			ua.setDeviceModelVersion(match.group(1));
@@ -125,21 +131,23 @@ public class UserAgentParser {
 		pattern = Pattern.compile(REGEX_WIN_PHONE);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.DeviceType.SMARTPHONE);
-			ua.setDeviceMaker(match.group(3));
-			ua.setDeviceModel(match.group(4));
-			ua.setDeviceModelVersion(match.group(4));
-			ua.setOS(match.group(1));
-			ua.setOSVersion(match.group(2));
+			ua.setDeviceType(UserAgent.SMARTPHONE);
+			ua.setDeviceMaker(match.group(5));
+			ua.setDeviceModel(match.group(6));
+			ua.setDeviceModelVersion(match.group(6));
+			ua.setOS(match.group(3));
+			ua.setOSVersion(match.group(4));
+			ua.setBrowser(match.group(1));
+			ua.setBrowserVersion(match.group(2));
 			return ua;
 		}
 		pattern = Pattern.compile(REGEX_iOS);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
 			if (match.group(1).equalsIgnoreCase("ipad")) {
-				ua.setDeviceType(UserAgent.DeviceType.TABLET);
+				ua.setDeviceType(UserAgent.TABLET);
 			} else {
-				ua.setDeviceType(UserAgent.DeviceType.SMARTPHONE);
+				ua.setDeviceType(UserAgent.SMARTPHONE);
 			}
 			ua.setDeviceMaker("Apple");
 			ua.setDeviceModel(match.group(1));
@@ -151,10 +159,10 @@ public class UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_WIN_IE);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.DeviceType.PC);
+			ua.setDeviceType(UserAgent.PC);
 			ua.setDeviceMaker(UserAgent.UNKNOWN);
-			ua.setDeviceModel(match.group(1));
-			ua.setDeviceModelVersion(match.group(2));
+			ua.setBrowser(match.group(1));
+			ua.setBrowserVersion(match.group(2));
 			ua.setOS(match.group(3));
 			ua.setOSVersion(match.group(4));
 			return ua;
@@ -162,10 +170,10 @@ public class UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_WIN);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.DeviceType.PC);
+			ua.setDeviceType(UserAgent.PC);
 			ua.setDeviceMaker(UserAgent.UNKNOWN);
-			ua.setDeviceModel(match.group(3));
-			ua.setDeviceModelVersion(match.group(4));
+			ua.setBrowser(match.group(3));
+			ua.setBrowserVersion(match.group(4));
 			ua.setOS(match.group(1));
 			ua.setOSVersion(match.group(2));
 			return ua;
@@ -173,10 +181,10 @@ public class UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_MAC);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.DeviceType.PC);
+			ua.setDeviceType(UserAgent.PC);
 			ua.setDeviceMaker("Apple");
-			ua.setDeviceModel(match.group(3));
-			ua.setDeviceModelVersion(match.group(4));
+			ua.setBrowser(match.group(3));
+			ua.setBrowserVersion(match.group(4));
 			ua.setOS(match.group(1));
 			ua.setOSVersion(match.group(2).replaceAll("_", "."));
 			return ua;
@@ -184,12 +192,23 @@ public class UserAgentParser {
 		pattern = Pattern.compile(REGEX_PC_MAC_OMNIWEB);
 		match = pattern.matcher(userAgentString);
 		if (match.find()) {
-			ua.setDeviceType(UserAgent.DeviceType.PC);
+			ua.setDeviceType(UserAgent.PC);
 			ua.setDeviceMaker("Apple");
-			ua.setDeviceModel(match.group(3));
-			ua.setDeviceModelVersion(match.group(4));
+			ua.setBrowser(match.group(3));
+			ua.setBrowserVersion(match.group(4));
 			ua.setOS(match.group(1));
-			ua.setOSVersion(match.group(2));
+			ua.setOSVersion(match.group(2).replaceAll("_", "."));
+			return ua;
+		}
+		pattern = Pattern.compile(REGEX_PC_OPERA);
+		match = pattern.matcher(userAgentString);
+		if (match.find()) {
+			ua.setDeviceType(UserAgent.PC);
+			ua.setDeviceMaker(UserAgent.UNKNOWN);
+			ua.setBrowser(match.group(1));
+			ua.setBrowserVersion(match.group(2));
+			ua.setOS(match.group(3));
+			ua.setOSVersion(match.group(4));
 			return ua;
 		} else {
 			throw new UserAgentParseException("UA not found!");
