@@ -197,6 +197,12 @@ public class RegexpUserAgentParser extends UserAgentParser {
 		if (match.find()) {
 			ua.setDeviceType(UserAgent.COMPUTER);
 			ua.setDeviceMaker(UserAgent.UNKNOWN);
+
+			if(match.group(3).equalsIgnoreCase("mac os x")){
+				ua.setDeviceMaker("Apple");
+			} else {
+				ua.setDeviceMaker(UserAgent.UNKNOWN);
+			}			
 			ua.setBrowser(match.group(1));
 			ua.setBrowserVersion(match.group(2));
 			ua.setOS(match.group(3));
