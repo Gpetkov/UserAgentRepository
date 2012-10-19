@@ -46,6 +46,14 @@ public class UserAgentParser {
 	private static final String REGEX_iOS = "((?i:iphone|ipod|ipad)\\s?\\w*)+?;\\s?(?i)u?.?\\s?\\w*?\\s?\\w*\\s?\\w*\\s?((\\d_\\d_?\\d*)+?)\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\S*\\s?\\w*[-]?\\w*";
 
 	/**
+	 * regex for finding PC Microsoft IE User Agents example: Mozilla/4.0
+	 * (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64; Trident/4.0; .NET CLR
+	 * 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC
+	 * 6.0; HPDTDF; Tablet PC 2.0; .NET4.0C)
+	 */
+	private static final String REGEX_PC_WIN_IE = "((?i:msie)+?)\\s?(\\d.\\d)+?;?\\s?(\\w+\\s?\\w+)+?\\s?((\\d.\\d)+?);?";
+
+	/**
 	 * Parses a String into an {@link UserAgent} object.
 	 * 
 	 * @param userAgentString
@@ -54,9 +62,10 @@ public class UserAgentParser {
 	 *             When the userAgentString is not found as a User Agent String
 	 * @return UserAgent object
 	 */
-	public UserAgent parse(String userAgentString) throws UserAgentParseException {
+	public UserAgent parse(String userAgentString)
+			throws UserAgentParseException {
 		UserAgent ua = new UserAgent();
-		if(userAgentString==null){
+		if (userAgentString == null) {
 			throw new UserAgentParseException("UA not found!");
 		}
 		Pattern pattern = Pattern.compile(REGEX_BB_4_AND_5);
@@ -116,6 +125,17 @@ public class UserAgentParser {
 			ua.setModelVersion(match.group(1));
 			ua.setSoftware("iOS");
 			ua.setSoftwareVersion(match.group(2).replaceAll("_", "."));
+			return ua;
+		}
+		pattern = Pattern.compile(REGEX_PC_WIN_IE);
+		match = pattern.matcher(userAgentString);
+		if (match.find()) {
+			ua.setType(UserAgent.DeviceType.PC);
+			ua.setHardware(UserAgent.UNKNOWN);
+			ua.setModel(match.group(1));
+			ua.setModelVersion(match.group(2));
+			ua.setSoftware(match.group(3));
+			ua.setSoftwareVersion(match.group(4));
 			return ua;
 		} else {
 			throw new UserAgentParseException("UA not found!");
