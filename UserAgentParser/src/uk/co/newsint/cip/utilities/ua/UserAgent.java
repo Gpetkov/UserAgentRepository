@@ -101,16 +101,20 @@ public class UserAgent {
 	public UserAgent() {
 
 	}
-	public UserAgent(String deviceMaker, String deviceModel, String deviceModelVersion,
-			String os, String osVersion, String deviceType) {
-		setDeviceMaker(deviceMaker);
-		setDeviceModel(deviceModel);
-		setDeviceModelVersion(deviceModelVersion);
-		setOS(os);
-		setOSVersion(osVersion);
-		setDeviceType(deviceType);
+	
+	public UserAgent(String deviceType, String deviceMaker, String deviceModel,
+			String deviceModelVersion, String os, String osVersion,
+			String browser, String browserVersion) {
+		super();
+		this.deviceType = deviceType;
+		this.deviceMaker = deviceMaker;
+		this.deviceModel = deviceModel;
+		this.deviceModelVersion = deviceModelVersion;
+		this.os = os;
+		this.osVersion = osVersion;
+		this.browser = browser;
+		this.browserVersion = browserVersion;
 	}
-
 		
 	@Override
 	public int hashCode() {
