@@ -25,7 +25,7 @@ public class UserAgentUtilsParserTest extends UserAgentParserTest {
 		// Assertion for Internet Explorer browser
 		assertUserAgentEquals(
 				"Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)",
-				new UserAgent("Computer",UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows NT","6.1","MSIE","9.0"));
+				new UserAgent("Computer",UserAgent.UNKNOWN,UserAgent.UNKNOWN,UserAgent.UNKNOWN,"Windows","7","MSIE","9.0"));
 		
 	}
 
