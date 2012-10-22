@@ -23,8 +23,8 @@ public class UserAgentUtilsParser extends UserAgentParser
     private static final String REGEX_WIN_GOOGLE_MAC = "((?i:windows|google|mac_os))\\_?\\s?((.)+)?";
     /**
      * regex for finding versions of
-     * android,bada,blackberry,ios,kindle,linux,maemo,palm,psp,roku,symbian,webos,wii,sun_os,sony_ericsson,series40 for example
-     * (5-->ios5)
+     * android,bada,blackberry,ios,kindle,linux,maemo,palm,psp,roku,symbian,webos,wii,sun_os,sony_ericsson,series40 
+     * Example iOS5 --> operation system (iOS) operation system version (5)
      */
     private static final String REGEX_ALL_OTHERS = "((?i:android|bada|blackberry|ios|kindle|linux|maemo|palm|psp|roku|symbian|"
             + "webos|wii|sun_os|sony_ericsson|series40))((\\d\\w*))?";
