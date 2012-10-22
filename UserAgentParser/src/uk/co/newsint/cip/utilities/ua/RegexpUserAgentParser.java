@@ -108,6 +108,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      */
     private static final String REGEX_ANDROID = "((?i:android)+?)\\s?(\\d+[\\._]?\\d*[\\._]?\\d*)+?-?\\S*;\\s?(\\w+-\\w+;)?\\s?((?i:htc|lg|samsung|sonyericsson|sony|asus|onda|woxter|huawei|dell|archos))?[\\s_/-]?(\\w+(-\\w+)?(\\s\\w+)*)+?[\\s/-]?[\\s?\\S*]+(?i:build)+";
 
+   
     @Override
     public UserAgent parse(String userAgentString)
     {
@@ -127,6 +128,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(2));
             ua.setOS("OS" + match.group(3).charAt(0));
             ua.setOSVersion(match.group(3));
+            ua.setBrowser("BlackBerry");//TODO Check for official BlackBerry browser name
             return ua;
         }
         pattern = Pattern.compile(REGEX_BB_6_AND_7);
@@ -139,6 +141,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(2));
             ua.setOS("OS" + match.group(3).charAt(0));
             ua.setOSVersion(match.group(3));
+            ua.setBrowser("BlackBerry");//TODO Check for official BlackBerry browser name
             return ua;
         }
         pattern = Pattern.compile(REGEX_BB_PLAYBOOK);
@@ -151,6 +154,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(1));
             ua.setOS(match.group(2));
             ua.setOSVersion(match.group(3));
+            ua.setBrowser("BlackBerry");//TODO Check for official BlackBerry browser name
             return ua;
         }
         pattern = Pattern.compile(REGEX_WIN_PHONE);

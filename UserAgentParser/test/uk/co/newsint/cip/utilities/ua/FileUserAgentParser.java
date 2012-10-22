@@ -1,8 +1,11 @@
 package uk.co.newsint.cip.utilities.ua;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class FileUserAgentParser
 {
@@ -22,20 +25,19 @@ public class FileUserAgentParser
      * Searching trough text File and parse all lines that aren't Null or empty Strings
      * 
      * @param file
+     * @throws IOException
      */
-    public void parseAll(File file)
+    public void parseAll(File file) throws IOException
     {
-        Scanner input = null;
         UserAgent userAgent = null;
-        // RegexpUserAgentParser userAgentParserRegex = new RegexpUserAgentParser();
-        // UserAgentUtilsParser userAgentParserUtils = new UserAgentUtilsParser();
         CompositeUserAgentParser compositeUserAgent = new CompositeUserAgentParser();
+        BufferedReader reader = null;
         try
         {
-            input = new Scanner(file);
-            while (input.hasNextLine())
+            reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
+            String currentLine;
+            while ((currentLine = reader.readLine()) != null)
             {
-                String currentLine = input.nextLine();
                 try
                 {
                     String userAgentString = extractUserAgentString(currentLine);
@@ -43,8 +45,6 @@ public class FileUserAgentParser
                     {
                         continue;
                     }
-                    // userAgent = userAgentParserUtils.parse(userAgentString);
-                    // userAgent = userAgentParserRegex.parse(userAgentString);
                     userAgent = compositeUserAgent.parse(userAgentString);
                     onUserAgentParsed(currentLine, userAgent);
                 }
@@ -64,8 +64,15 @@ public class FileUserAgentParser
         }
         finally
         {
-            if (input != null)
-                input.close();
+            if (reader != null)
+                try
+                {
+                    reader.close();
+                }
+                catch (IOException e)
+                {
+                    // do nothing
+                }
         }
 
     }
@@ -104,22 +111,22 @@ public class FileUserAgentParser
             this.errors++;
         }
     }
-    
+
     /**
-     * Method which verifies whether the Composite's parse method is reliable 
+     * Method which verifies whether the Composite's parse method is reliable
      * 
      * @param UserAgent
      * @return true/false
-     * @see CompositeUserAgentParser#parse(String)
-     * {@link CompositeUserAgentParser}
+     * @see CompositeUserAgentParser#parse(String) {@link CompositeUserAgentParser}
      */
-    protected boolean isReliable(UserAgent currentUserAgent){
-        if( ( UserAgent.UNKNOWN.equals( currentUserAgent.getDeviceType() ) ||  
-                UserAgent.UNKNOWN.equals( currentUserAgent.getBrowser() ) ) && 
-                ( ( UserAgent.UNKNOWN.equals( currentUserAgent.getOS() ) ) ) ){
-           return false;
+    protected boolean isReliable(UserAgent currentUserAgent)
+    {
+        if ((UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceType()) || UserAgent.UNKNOWN.equals(currentUserAgent.getBrowser()))
+                && ((UserAgent.UNKNOWN.equals(currentUserAgent.getOS()))))
+        {
+            return false;
         }
-        
+
         return true;
     }
 }
