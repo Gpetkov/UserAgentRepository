@@ -17,6 +17,17 @@ import nl.bitwalker.useragentutils.Version;
 
 public class UserAgentUtilsParser extends UserAgentParser
 {
+    /**
+     * regex for finding versions of windows,google and mac_os for example(7-->windows7)
+     */
+    private static final String REGEX_WIN_GOOGLE_MAC = "((?i:windows|google|mac_os))\\_?\\s?((.)+)?";
+    /**
+     * regex for finding versions of
+     * android,bada,blackberry,ios,kindle,linux,maemo,palm,psp,roku,symbian,webos,wii,sun_os,sony_ericsson,series40 for example
+     * (5-->ios5)
+     */
+    private static final String REGEX_ALL_OTHERS = "((?i:android|bada|blackberry|ios|kindle|linux|maemo|palm|psp|roku|symbian|"
+            + "webos|wii|sun_os|sony_ericsson|series40))((\\d\\w*))?";
 
     @Override
     public UserAgent parse(String userAgentString)
@@ -76,11 +87,8 @@ public class UserAgentUtilsParser extends UserAgentParser
      */
     private String[] splitOperationSystem(String operationSystem)
     {
-        String REGEXPRWINDOWSGOOGLEMAC = "((?i:windows|google|mac_os))\\_?((.)+)?";
-        String REGEXPRALLOTHER = "((?i:android|bada|blackberry|ios|kindle|linux|maemo|palm|psp|roku|symbian|"
-                + "webos|wii|sun_os|sony_ericsson|series40))((\\d\\w*))?";
         String[] splitedOS = new String[2];
-        Pattern pattern = Pattern.compile(REGEXPRWINDOWSGOOGLEMAC);
+        Pattern pattern = Pattern.compile(REGEX_WIN_GOOGLE_MAC);
         Matcher match = pattern.matcher(operationSystem);
         if (match.find())
         {
@@ -95,7 +103,7 @@ public class UserAgentUtilsParser extends UserAgentParser
         }
         else
         {
-            pattern = Pattern.compile(REGEXPRALLOTHER);
+            pattern = Pattern.compile(REGEX_ALL_OTHERS);
             match = pattern.matcher(operationSystem);
             if (match.find())
             {
