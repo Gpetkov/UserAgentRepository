@@ -88,7 +88,7 @@ public class UserAgentUtilsParser extends UserAgentParser
             String osVersion = match.group(2);
             if (osVersion == null)
             {
-                osVersion = "Unknown";
+                osVersion = null;
             }
             splitedOS[0] = osName;
             splitedOS[1] = osVersion;
