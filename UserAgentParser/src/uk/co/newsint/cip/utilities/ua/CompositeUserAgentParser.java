@@ -25,7 +25,7 @@ public class CompositeUserAgentParser extends UserAgentParser {
 		UserAgent regexpAgent = regexpParser.parse(userAgentString);
 
 		// 3. Fill Unkowns with regexp UA properties
-		// TODO (Zhivko): Consider using equals, not ==
+
 		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceType()))
 			userAgent.setDeviceType(regexpAgent.getDeviceType());
 		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceMaker()))

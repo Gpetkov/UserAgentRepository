@@ -15,12 +15,10 @@ import nl.bitwalker.useragentutils.Version;
 public class UserAgentUtilsParser extends UserAgentParser {
 
 	@Override
-	public UserAgent parse(String userAgentString){
+	public UserAgent parse(String userAgentString) {
 		// ask the library to parse the UA
 		nl.bitwalker.useragentutils.UserAgent ua = nl.bitwalker.useragentutils.UserAgent
 				.parseUserAgentString(userAgentString);
-
-		// TODO (Zhivko): check when ua is unparsed, throw exception
 
 		// construct UserAgent result
 		UserAgent result = new UserAgent();
@@ -30,20 +28,16 @@ public class UserAgentUtilsParser extends UserAgentParser {
 			if (deviceType != null) {
 				result.setDeviceType(deviceType.getName());
 
-				// TODO (Zhivko): Add device model, model version and maker
 			}
 
-			result.setOS(os.getGroup().getName());
-			// this include operating system and operating system's Version for
-			// example Windows_XP
-		//	if (os.getGroup() == os)
-		//		result.setOSVersion(os.getName());
+			result.setOS(os.getName());
+
 		}
 
 		Browser browser = ua.getBrowser();
 		if (browser != null) {
 
-			result.setBrowser(browser.getName());
+			result.setBrowser(browser.getGroup().getName());
 		}
 
 		Version version = ua.getBrowserVersion();
