@@ -1,12 +1,16 @@
 package uk.co.newsint.cip.utilities.ua;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.DeviceType;
 import nl.bitwalker.useragentutils.OperatingSystem;
 import nl.bitwalker.useragentutils.Version;
 
 /**
- * This is User Agent parser implementation that utilizes User Agent Java library hosted at http://user-agent-utils.java.net/.
+ * This is User Agent parser implementation that utilizes User Agent Java
+ * library hosted at http://user-agent-utils.java.net/.
  * 
  * @author Zhivko Kalev
  * @since 1.0
@@ -30,7 +34,16 @@ public class UserAgentUtilsParser extends UserAgentParser {
 
 			}
 
-			result.setOS(os.getName());
+			//result.setOS(os.getName());
+			String[] splitedOs = splitOperationSystem(os.getName());
+			if(splitedOs != null){
+				if(splitedOs[0] != null){
+					result.setOS(splitedOs[0]);
+				}
+				if(splitedOs[1] != null){
+					result.setOSVersion(splitedOs[1]);
+				}
+			}
 
 		}
 
@@ -48,5 +61,43 @@ public class UserAgentUtilsParser extends UserAgentParser {
 		return result;
 	}
 
+	private String[] splitOperationSystem(String operationSystem) {
+		String REGEXPRWINDOWSGOOGLEMAC = "((?i:windows|google|mac_os))\\_?((.)+)?";
+		String REGEXPRALLOTHER = "((?i:android|bada|blackberry|ios|kindle|linux|maemo|palm|psp|roku|symbian|" +
+				"webos|wii|sun_os|sony_ericsson|series40))((\\d\\w*))?";
+		String[] splitedOS = new String[2];
+		Pattern pattern = Pattern.compile(REGEXPRWINDOWSGOOGLEMAC);
+		Matcher match = pattern.matcher(operationSystem);
+		if (match.find()) {
+			String osName = match.group(1);
+			String osVersion = match.group(2);
+			if(osVersion == null){
+				osVersion = "Unknown";
+			}
+			splitedOS[0] = osName;
+			splitedOS[1] = osVersion;
+		}else{
+			pattern = Pattern.compile(REGEXPRALLOTHER);
+			match = pattern.matcher(operationSystem);
+			if (match.find()) {
+				String osName = match.group(1);
+				String osVersion = match.group(2);
+				if(osVersion == null){
+					osVersion = "Unknown";
+				}
+				if(osName.toString().equalsIgnoreCase("SERIES40")){
+					osName = "NOKIA_OS";
+					osVersion = "SERIES40";
+				}
+				splitedOS[0] = osName;
+				splitedOS[1] = osVersion;
+			}else{
+				splitedOS[0] = null;
+				splitedOS[1] = null;
+			}
+		}
+		
+		return splitedOS;
+	}
 
 }
