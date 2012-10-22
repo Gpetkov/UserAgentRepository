@@ -30,27 +30,27 @@ public class CompositeUserAgentParserTest {
 		assertUserAgentEquals(
 				"BlackBerry8520/4.6.1.314 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/301",
 				new UserAgent(UserAgent.MOBILE, "BlackBerry", "8520", "8520",
-						"BlackBerryOS", "4.6.1.314", UserAgent.UNKNOWN,
+						"BlackBerry", "4.6.1.314", UserAgent.UNKNOWN,
 						UserAgent.UNKNOWN));
 
 		// Assert for version 5.
 		assertUserAgentEquals(
 				"BlackBerry9105/5.0.0.748 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/125",
 				new UserAgent(UserAgent.MOBILE, "BlackBerry", "9105", "9105",
-						"BlackBerryOS", "5.0.0.748", UserAgent.UNKNOWN,
+						"BlackBerry", "5.0.0.748", UserAgent.UNKNOWN,
 						UserAgent.UNKNOWN));
 		// Assert for version 6.
 		assertUserAgentEquals(
 				"BlackBerry9300/6.6.0.124 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/310 The Times/1.0",
 				new UserAgent(UserAgent.MOBILE, "BlackBerry", "9300", "9300",
-						"BlackBerryOS", "6.6.0.124", UserAgent.UNKNOWN,
+						"BlackBerry", "6.6.0.124", UserAgent.UNKNOWN,
 						UserAgent.UNKNOWN));
 
 		// Assert for version 9.
 		assertUserAgentEquals(
 				"BlackBerry9320/9.49.0.31 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/118 The Times/1.0",
 				new UserAgent(UserAgent.MOBILE, "BlackBerry", "9320", "9320",
-						"BlackBerryOS", "9.49.0.31", UserAgent.UNKNOWN,
+						"BlackBerry", "9.49.0.31", UserAgent.UNKNOWN,
 						UserAgent.UNKNOWN));
 
 		// Expected Our custom ParseException
