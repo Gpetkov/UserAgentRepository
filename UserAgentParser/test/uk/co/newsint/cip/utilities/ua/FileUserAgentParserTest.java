@@ -13,13 +13,13 @@ public class FileUserAgentParserTest
 
         FileUserAgentParser parser = new FileUserAgentParser()
         {
-            private final int MAX_ERRORS = 1;
+            private final int MAX_ERRORS = 5;
             private int currentError = 0;
-            private int lineNumber = 0;
+            private final int SUM_OCCURRED = 506181634;
+            private int currentStringOccurred = 0;
 
             protected String extractUserAgentString(String line)
             {
-                lineNumber++;
                 String userAgentString = super.extractUserAgentString(line);
                 if (userAgentString == null)
                 {
@@ -28,6 +28,7 @@ public class FileUserAgentParserTest
                 else
                 {
                     int firstSpace = userAgentString.indexOf(" ");
+                    currentStringOccurred = Integer.valueOf(userAgentString.substring(0, firstSpace));
                     userAgentString = userAgentString.substring(firstSpace + 1, line.length());
                 }
                 return userAgentString;
@@ -35,13 +36,13 @@ public class FileUserAgentParserTest
             };
 
             @Override
-            protected void onUserAgentParsed(String line, UserAgent userAgent, Exception exception)
+            protected void onUserAgentParsed(String line, UserAgent userAgent)
             {
-                super.onUserAgentParsed(line, userAgent, exception);
-                if (exception != null)
+                super.onUserAgentParsed(line, userAgent);
+                if (!isReliable(userAgent))
                 {
                     currentError++;
-                    System.out.printf("%d  %s\n", currentError, line);
+                    System.out.printf("%d  %s userAgentString can't be parsed \n--->This is %.3f%% of all strings.\n", currentError, line,(double)currentStringOccurred/SUM_OCCURRED * 100);
                 }
                 // lineNumber++;
                 // System.out.printf("%d  %s\n",lineNumber,line );
@@ -53,7 +54,7 @@ public class FileUserAgentParserTest
                             parsed, errors);
                     throw new RuntimeException("50 errors occured");
                 }
-                if (parsed >= 1000)
+                if (parsed >= 998)
                 {
                     System.out.println("\nStatistics:\n");
                     System.out.printf(

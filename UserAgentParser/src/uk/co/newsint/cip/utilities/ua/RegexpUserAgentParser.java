@@ -106,7 +106,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding Android User Agents example: Mozilla/5.0 (Linux; U; Android 1.6; en-ie; SonyEricssonE15i Build/1.3.A.0.50)
      * AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1,platform,unknown
      */
-    private static final String REGEX_ANDROID = "((?i:android)+?)\\s?(\\d+[\\._]?\\d*[\\._]?\\d*)+?-?\\S*\\s?\\w*-?\\w*;?\\s?((?i:htc|lg|samsung|sonyericsson|sony|asus|onda|woxter|huawei|dell))?+[\\s_/-]+(\\w+(-\\w+)?(\\s\\w+)?(\\s\\w+)?(\\s\\w+)?)+?[\\s/-]?[\\s?\\S*]+(?i:build)+";
+    private static final String REGEX_ANDROID = "((?i:android)+?)\\s?(\\d+[\\._]?\\d*[\\._]?\\d*)+?-?\\S*;\\s?(\\w+-\\w+;)?\\s?((?i:htc|lg|samsung|sonyericsson|sony|asus|onda|woxter|huawei|dell|archos))?[\\s_/-]?(\\w+(-\\w+)?(\\s\\w+)*)+?[\\s/-]?[\\s?\\S*]+(?i:build)+";
 
     @Override
     public UserAgent parse(String userAgentString)
@@ -317,15 +317,15 @@ public class RegexpUserAgentParser extends UserAgentParser
         if (match.find())
         {
             ua.setDeviceType(UserAgent.UNKNOWN);
-            if (match.group(3) == null)
+            if (match.group(4) == null)
             {
                 ua.setDeviceMaker(UserAgent.UNKNOWN);
             }
             else
             {
-                ua.setDeviceMaker(match.group(3));
+                ua.setDeviceMaker(match.group(4));
             }
-            ua.setDeviceModel(match.group(4));
+            ua.setDeviceModel(match.group(5).replaceAll("_", " ").replaceAll("/", " "));
             ua.setOS(match.group(1));
             ua.setOSVersion(match.group(2));
             return ua;
