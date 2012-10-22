@@ -115,9 +115,17 @@ public class CompositeUserAgentParserTest {
 	 */
 
 	@Test
-	public void testAndroidParse() throws Exception {
+    public void testAndroidParse() throws Exception
+    {
+        assertUserAgentEquals("Mozilla/5.0 (Linux; U; Android 2.2; de-de; HTC Legend Build/FRF91) "
+                + "AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1,platform,unknown", new UserAgent(
+                UserAgent.MOBILE, "HTC", "Legend", UserAgent.UNKNOWN, "Android", "2.2", "Safari", "4.0"));
 
-	}
+        assertUserAgentEquals(
+                "Mozilla/5.0 (Linux; U; Android 2.2; de-de; TSB_CLOUD_COMPANION;FOLIO_AND_A) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Safari/533.1",
+                new UserAgent(UserAgent.MOBILE, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Android", "2.2",
+                        "Safari", "4.0"));
+    }
 
 	/**
 	 * Test method for PC
