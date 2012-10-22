@@ -240,12 +240,8 @@ public class CompositeUserAgentParserTest {
 						UserAgent.COMPUTER, UserAgent.UNKNOWN,
 						UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows",  "7",
 						"Safari", "5.1.7"));
-		// Assertion for Opera browser
-		assertUserAgentEquals(
-				"Opera/9.80 (Windows NT 6.2; U; Edition IBIS; zh-cn) Presto/2.10.289 Version/12.00,platform,unknown",
-				new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN,
-						UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "6.2",
-						"Opera", "12.00"));
+		
+		
 		// Assertion for Opera browser for Macintosh
 		assertUserAgentEquals(
 				"Opera/9.80 (Macintosh; Intel Mac OS X 10.8.1; U; nl) Presto/2.10.289 Version/12.02,platform,unknown",
@@ -269,10 +265,16 @@ public class CompositeUserAgentParserTest {
 	}
 	/**
 	 * Test method for PC with fixed issue
+	 * @throws Exception 
 	 */
-	public void testPCParseFixedIssue(){
-	    
-	    
+	@Test
+	public void testPCParseFixedIssue() throws Exception{
+	    // the expected os version is Windows 6.2 but  user-agent-utils 1.6 library extracts Windows Vista
+	    assertUserAgentEquals(
+                "Opera/9.80 (Windows NT 6.2; U; Edition IBIS; zh-cn) Presto/2.10.289 Version/12.00,platform,unknown",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "6.2",
+                        "Opera", "12.00"));
 	    
 	    
 	    
