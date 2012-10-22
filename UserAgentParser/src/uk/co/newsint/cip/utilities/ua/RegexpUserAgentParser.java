@@ -67,7 +67,8 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static final String REGEX_PC_MAC_OMNIWEB = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)+?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:OmniWeb))\\s?/\\s?((\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
 
     /**
-     * regex for finding PCOpera browser User Agents example:Opera/9.80 (Windows NT 6.1; WOW64; U; fi) Presto/2.10.289 Version/12.02
+     * regex for finding PC Opera browser User Agents example: Opera/9.80 (Windows NT 6.1; WOW64; U; fi) Presto/2.10.289
+     * Version/12.02
      */
     private static final String REGEX_PC_OPERA = "((?i:opera)+)/[\\s?\\S*]+?((?i:windows\\s?nt)|(?i:mac\\s?os\\s?x))+?\\s?(\\d+.?\\d*[_\\.]?\\d*)+?[\\s?\\S*]+?(?i:version)+?\\s?/\\s?((\\d+.\\d+)+?)";
 
@@ -87,19 +88,25 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding PC Linux User Agents example: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/536.11 (KHTML, like Gecko)
      * Sabayon Chrome/20.0.1132.57 Safari/536.11,platform,unknown
      */
-    String REGEX_PC_LINUX = "((?i:linux|freebsd|SunOS)+?)\\s+[\\S*\\s?]+?((?i:chrome|firefox|QupZilla|Iron|Iceweasel|SeaMonkey)+)\\s?/\\s?((\\d+.?\\d*[\\._]?\\d*[\\._]?\\d*)+?)";
+    private static final String REGEX_PC_LINUX = "((?i:linux|freebsd|SunOS)+?)\\s+[\\S*\\s?]+?((?i:chrome|firefox|QupZilla|Iron|Iceweasel|SeaMonkey)+)\\s?/\\s?((\\d+.?\\d*[\\._]?\\d*[\\._]?\\d*)+?)";
 
     /**
      * regex for finding PC Linux Safari User Agents example: Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.7 (KHTML, like Gecko)
      * Version/5.0 Safari/534.7,platform,unknown
      */
-    String REGEX_PC_LINUX_SAFARI = "((?i:linux|freebsd|SunOS)+?)\\s+[\\S*\\s?]+?(?i:version)+\\s?/\\s?(\\d+.?\\d*[\\._]?\\d*[\\._]?\\d*)+?[\\S*\\s?]+?((?i:safari)+)";
+    private static final String REGEX_PC_LINUX_SAFARI = "((?i:linux|freebsd|SunOS)+?)\\s+[\\S*\\s?]+?(?i:version)+\\s?/\\s?(\\d+.?\\d*[\\._]?\\d*[\\._]?\\d*)+?[\\S*\\s?]+?((?i:safari)+)";
 
     /**
      * regex for finding PC ChromeOS User Agents example: Mozilla/5.0 (X11; CrOS i686 2465.142.0) AppleWebKit/537.1 (KHTML, like
      * Gecko) Chrome/21.0.1180.89 Safari/537.1,platform,unknown
      */
-    String REGEX_PC_CHROME_OS = "((?i:cros)+?)\\s?\\S*\\s?(\\d+.?\\d*.?\\d*)+?[\\s?\\S*]+?((?i:chrome)+?)\\s?/\\s?((\\d+.?\\d*[\\._]?\\d*[\\._]?\\d*)+?)";
+    private static final String REGEX_PC_CHROME_OS = "((?i:cros)+?)\\s?\\S*\\s?(\\d+.?\\d*.?\\d*)+?[\\s?\\S*]+?((?i:chrome)+?)\\s?/\\s?((\\d+.?\\d*[\\._]?\\d*[\\._]?\\d*)+?)";
+
+    /**
+     * regex for finding Android User Agents example: Mozilla/5.0 (Linux; U; Android 1.6; en-ie; SonyEricssonE15i Build/1.3.A.0.50)
+     * AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1,platform,unknown
+     */
+    private static final String REGEX_ANDROID = "((?i:android)+?)\\s?(\\d+[\\._]?\\d*[\\._]?\\d*)+?-?\\S*\\s?\\w*-?\\w*;?\\s?((?i:htc|lg|samsung|sonyericsson|sony|asus|onda|woxter|huawei|dell))?+[\\s_/-]+(\\w+(-\\w+)?(\\s\\w+)?(\\s\\w+)?(\\s\\w+)?)+?[\\s/-]?[\\s?\\S*]+(?i:build)+";
 
     @Override
     public UserAgent parse(String userAgentString)
@@ -302,6 +309,24 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setBrowser(match.group(3));
             ua.setBrowserVersion(match.group(4));
             ua.setOS("ChromeOS");
+            ua.setOSVersion(match.group(2));
+            return ua;
+        }
+        pattern = Pattern.compile(REGEX_ANDROID);
+        match = pattern.matcher(userAgentString);
+        if (match.find())
+        {
+            ua.setDeviceType(UserAgent.UNKNOWN);
+            if (match.group(3) == null)
+            {
+                ua.setDeviceMaker(UserAgent.UNKNOWN);
+            }
+            else
+            {
+                ua.setDeviceMaker(match.group(3));
+            }
+            ua.setDeviceModel(match.group(4));
+            ua.setOS(match.group(1));
             ua.setOSVersion(match.group(2));
             return ua;
         }
