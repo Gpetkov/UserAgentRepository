@@ -140,6 +140,18 @@ public class UserAgentParserTest
                 "Mozilla/5.0 (Linux; U; Android 4.1.1; zh-cn; GT-I9300 Build/JRO03C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 qingshui,platform,unknown",
                 new UserAgent(UserAgent.UNKNOWN, UserAgent.UNKNOWN, "GT-I9300", UserAgent.UNKNOWN, "Android", "4.1.1", UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
+        
+     // Assertion for Android
+        assertUserAgentEquals(
+                "Mozilla/5.0 (Linux; Android 4.1.1; GT-I9100 Build/JRO03L) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19,platform,unknown",
+                new UserAgent(UserAgent.UNKNOWN, UserAgent.UNKNOWN, "GT-I9100", UserAgent.UNKNOWN, "Android", "4.1.1", UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN));
+        
+     // Assertion for Android
+        assertUserAgentEquals(
+                "Mozilla/5.0 (Linux; Android 4.0.4; SAMSUNG-SGH-I727 Build/IMM76I) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19,platform,unknown",
+                new UserAgent(UserAgent.UNKNOWN, "SAMSUNG", "SGH-I727", UserAgent.UNKNOWN, "Android", "4.0.4", UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN));
 
     }
 
