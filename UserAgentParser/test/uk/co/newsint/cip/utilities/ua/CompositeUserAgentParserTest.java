@@ -56,7 +56,6 @@ public class CompositeUserAgentParserTest {
 		// Expected Our custom ParseException
 		//assertUserAgentException("BlackBerri9320/9.49.0.31 Profile");
 	}
-
 	/**
 	 * Test method for Apple
 	 * 
@@ -75,7 +74,7 @@ public class CompositeUserAgentParserTest {
 						+ "AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8L1 "
 						+ "Safari/6533.18.5,platform,unknown", new UserAgent(
 						UserAgent.MOBILE, "Apple", "iPhone", "iPhone",
-						"iOS", "4.3.5", "Mobile Safari", "Safari"));
+						"iOS", "4.3.5", "Mobile Safari", "5.0.2"));
 
 		// Assertion for iPad
 		assertUserAgentEquals(
