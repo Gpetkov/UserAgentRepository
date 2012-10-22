@@ -7,44 +7,43 @@ package uk.co.newsint.cip.utilities.ua;
  * @author Zhivko Kalev
  * @since 1.0
  */
-public class CompositeUserAgentParser extends UserAgentParser
-{
 
-    protected UserAgentUtilsParser utilsParser = new UserAgentUtilsParser();
-    protected RegexpUserAgentParser regexpParser = new RegexpUserAgentParser();
+public class CompositeUserAgentParser extends UserAgentParser {
 
-    @Override
-    public UserAgent parse(String userAgentString)
-    {
-        UserAgent userAgent = null;
+	protected UserAgentUtilsParser utilsParser = new UserAgentUtilsParser();
+	protected RegexpUserAgentParser regexpParser = new RegexpUserAgentParser();
 
-        // 1. Use UserAgentUtilsParser to try parse the UA string
+	@Override
+	public UserAgent parse(String userAgentString) {
+		UserAgent userAgent = null;
 
-        userAgent = utilsParser.parse(userAgentString);
+		// 1. Use UserAgentUtilsParser to try parse the UA string
 
-        // 2. Use UserAgentParser to try parse the UA string
-        UserAgent regexpAgent = regexpParser.parse(userAgentString);
+		userAgent = utilsParser.parse(userAgentString);
 
-        // 3. Fill Unkowns with regexp UA properties
-        // TODO (Zhivko): Consider using equals, not ==
-        if (UserAgent.UNKNOWN.equals(userAgent.getDeviceType()))
-            userAgent.setDeviceType(regexpAgent.getDeviceType());
-        if (UserAgent.UNKNOWN.equals(userAgent.getDeviceMaker()))
-            userAgent.setDeviceMaker(regexpAgent.getDeviceMaker());
-        if (UserAgent.UNKNOWN.equals(userAgent.getDeviceModel()))
-            userAgent.setDeviceModel(regexpAgent.getDeviceModel());
-        if (UserAgent.UNKNOWN.equals(userAgent.getDeviceModelVersion()))
-            userAgent.setDeviceModelVersion(regexpAgent.getDeviceModelVersion());
-        if (UserAgent.UNKNOWN.equals(userAgent.getOS()))
-            userAgent.setOS(regexpAgent.getOS());
-        if (UserAgent.UNKNOWN.equals(userAgent.getOSVersion()))
-            userAgent.setOSVersion(regexpAgent.getOSVersion());
-        if (UserAgent.UNKNOWN.equals(userAgent.getBrowser()))
-            userAgent.setBrowser(regexpAgent.getBrowser());
-        if (UserAgent.UNKNOWN.equals(userAgent.getBrowserVersion()))
-            userAgent.setBrowserVersion(regexpAgent.getBrowserVersion());
+		// 2. Use UserAgentParser to try parse the UA string
+		UserAgent regexpAgent = regexpParser.parse(userAgentString);
 
-        return userAgent;
-    }
+		// 3. Fill Unkowns with regexp UA properties
+
+		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceType()))
+			userAgent.setDeviceType(regexpAgent.getDeviceType());
+		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceMaker()))
+			userAgent.setDeviceMaker(regexpAgent.getDeviceMaker());
+		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceModel()))
+			userAgent.setDeviceModel(regexpAgent.getDeviceModel());
+		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceModelVersion()))
+			userAgent.setDeviceModelVersion(regexpAgent.getDeviceModelVersion());
+		if (UserAgent.UNKNOWN.equals(userAgent.getOS()))
+			userAgent.setOS(regexpAgent.getOS());
+		if (UserAgent.UNKNOWN.equals(userAgent.getOSVersion()))
+			userAgent.setOSVersion(regexpAgent.getOSVersion());
+		if (UserAgent.UNKNOWN.equals(userAgent.getBrowser()))
+			userAgent.setBrowser(regexpAgent.getBrowser());
+		if (UserAgent.UNKNOWN.equals(userAgent.getBrowserVersion()))
+			userAgent.setBrowserVersion(regexpAgent.getBrowserVersion());
+
+		return userAgent;
+	}
 
 }

@@ -1,5 +1,8 @@
 package uk.co.newsint.cip.utilities.ua;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.DeviceType;
 import nl.bitwalker.useragentutils.OperatingSystem;
@@ -11,6 +14,7 @@ import nl.bitwalker.useragentutils.Version;
  * @author Zhivko Kalev
  * @since 1.0
  */
+
 public class UserAgentUtilsParser extends UserAgentParser
 {
 
@@ -19,8 +23,6 @@ public class UserAgentUtilsParser extends UserAgentParser
     {
         // ask the library to parse the UA
         nl.bitwalker.useragentutils.UserAgent ua = nl.bitwalker.useragentutils.UserAgent.parseUserAgentString(userAgentString);
-
-        // TODO (Zhivko): check when ua is unparsed, throw exception
 
         // construct UserAgent result
         UserAgent result = new UserAgent();
@@ -32,20 +34,29 @@ public class UserAgentUtilsParser extends UserAgentParser
             {
                 result.setDeviceType(deviceType.getName());
 
-                // TODO (Zhivko): Add device model, model version and maker
             }
 
-            result.setOS(os.getGroup().getName());
-            // this include operating system and operating system's Version for
-            // example Windows_XP
-            // if (os.getGroup() == os)
-            // result.setOSVersion(os.getName());
+            // result.setOS(os.getName());
+            String[] splitedOs = splitOperationSystem(os.getName());
+            if (splitedOs != null)
+            {
+                if (splitedOs[0] != null)
+                {
+                    result.setOS(splitedOs[0]);
+                }
+                if (splitedOs[1] != null)
+                {
+                    result.setOSVersion(splitedOs[1]);
+                }
+            }
+
         }
 
         Browser browser = ua.getBrowser();
         if (browser != null)
         {
-            result.setBrowser(browser.getName());
+
+            result.setBrowser(browser.getGroup().getName());
         }
 
         Version version = ua.getBrowserVersion();
@@ -55,6 +66,61 @@ public class UserAgentUtilsParser extends UserAgentParser
         }
 
         return result;
+    }
+
+    /**
+     * Method which splits current OS(extract name and version from current operation system)
+     * 
+     * @return splitedOs[2](splitedOs[0] --> osName, splitedOs[1] --> osVersion)
+     * 
+     */
+    private String[] splitOperationSystem(String operationSystem)
+    {
+        String REGEXPRWINDOWSGOOGLEMAC = "((?i:windows|google|mac_os))\\_?((.)+)?";
+        String REGEXPRALLOTHER = "((?i:android|bada|blackberry|ios|kindle|linux|maemo|palm|psp|roku|symbian|"
+                + "webos|wii|sun_os|sony_ericsson|series40))((\\d\\w*))?";
+        String[] splitedOS = new String[2];
+        Pattern pattern = Pattern.compile(REGEXPRWINDOWSGOOGLEMAC);
+        Matcher match = pattern.matcher(operationSystem);
+        if (match.find())
+        {
+            String osName = match.group(1);
+            String osVersion = match.group(2);
+            if (osVersion == null)
+            {
+                osVersion = "Unknown";
+            }
+            splitedOS[0] = osName;
+            splitedOS[1] = osVersion;
+        }
+        else
+        {
+            pattern = Pattern.compile(REGEXPRALLOTHER);
+            match = pattern.matcher(operationSystem);
+            if (match.find())
+            {
+                String osName = match.group(1);
+                String osVersion = match.group(2);
+                if (osVersion == null)
+                {
+                    osVersion = "Unknown";
+                }
+                if (osName.toString().equalsIgnoreCase("SERIES40"))
+                {
+                    osName = "NOKIA_OS";
+                    osVersion = "SERIES40";
+                }
+                splitedOS[0] = osName;
+                splitedOS[1] = osVersion;
+            }
+            else
+            {
+                splitedOS[0] = null;
+                splitedOS[1] = null;
+            }
+        }
+
+        return splitedOS;
     }
 
 }
