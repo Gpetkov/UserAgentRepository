@@ -46,11 +46,11 @@ public class FileUserAgentParser
                     // userAgent = userAgentParserUtils.parse(userAgentString);
                     // userAgent = userAgentParserRegex.parse(userAgentString);
                     userAgent = compositeUserAgent.parse(userAgentString);
-                    onUserAgentParsed(currentLine, userAgent, null);
+                    onUserAgentParsed(currentLine, userAgent);
                 }
                 catch (Exception e)
                 {
-                    onUserAgentParsed(currentLine, null, e);
+                    onUserAgentParsed(currentLine, null);
                 }
             }
         }
@@ -65,7 +65,7 @@ public class FileUserAgentParser
         finally
         {
             if (input != null)
-                ;
+                input.close();
         }
 
     }
@@ -91,12 +91,11 @@ public class FileUserAgentParser
      * 
      * @param line
      * @param User Agent
-     * @param ParseExeption
      */
-    protected void onUserAgentParsed(String line, UserAgent userAgent, Exception exception)
+    protected void onUserAgentParsed(String line, UserAgent userAgent)
     {
         this.toParse++;
-        if (exception == null)
+        if (isReliable(userAgent))
         {
             this.parsed++;
         }
@@ -104,5 +103,23 @@ public class FileUserAgentParser
         {
             this.errors++;
         }
+    }
+    
+    /**
+     * Method which verifies whether the Composite's parse method is reliable 
+     * 
+     * @param UserAgent
+     * @return true/false
+     * @see CompositeUserAgentParser#parse(String)
+     * {@link CompositeUserAgentParser}
+     */
+    protected boolean isReliable(UserAgent currentUserAgent){
+        if( ( UserAgent.UNKNOWN.equals( currentUserAgent.getDeviceType() ) ||  
+                UserAgent.UNKNOWN.equals( currentUserAgent.getBrowser() ) ) && 
+                ( ( UserAgent.UNKNOWN.equals( currentUserAgent.getOS() ) ) ) ){
+           return false;
+        }
+        
+        return true;
     }
 }
