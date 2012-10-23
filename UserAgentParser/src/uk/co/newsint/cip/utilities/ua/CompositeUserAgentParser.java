@@ -21,10 +21,10 @@ public class CompositeUserAgentParser extends UserAgentParser {
 
 		userAgent = utilsParser.parse(userAgentString);
 
-		// 2. Use UserAgentParser to try parse the UA string
+		// 2. Use RegexpUserAgentParser to try parse the UA string
 		UserAgent regexpAgent = regexpParser.parse(userAgentString);
 
-		// 3. Fill Unkowns with regexp UA properties
+		// 3. Fill Unknowns with regexp UA properties
 
 		if (UserAgent.UNKNOWN.equals(userAgent.getDeviceType()))
 			userAgent.setDeviceType(regexpAgent.getDeviceType());
