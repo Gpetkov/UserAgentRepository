@@ -143,39 +143,51 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static Pattern PATTERN_ANDROID_BROWSER = Pattern.compile(ADDON_REGEX_ANDROID_BROWSER);
 
     /**
-     * Method for finding the Windows version according to it's NT signiture.
+     * Method for finding the Windows version according to it's NT signature.
      */
     private String getWindowsVersion(String uaWindows)
     {
         String result = "";
-        switch (uaWindows)
+        if (uaWindows.equals("4.0"))
         {
-            case "4.0":
-                result = "95";
-                break;
-            case "5.0":
-                result = "2000";
-                break;
-            case "5.1":
-                result = "XP";
-                break;
-            case "5.2":
-                result = "XP 64-bit";
-                break;
-            case "6.0":
-                result = "Vista";
-                break;
-            case "6.1":
-                result = "7";
-                break;
-            case "6.2":
-                result = "8";
-                break;
-            default:
-                result = uaWindows;
+            result = "95";
+            return result;
         }
-        return result;
-
+        if (uaWindows.equals("5.0"))
+        {
+            result = "2000";
+            return result;
+        }
+        if (uaWindows.equals("5.1"))
+        {
+            result = "XP";
+            return result;
+        }
+        if (uaWindows.equals("5.2"))
+        {
+            result = "XP 64-bit";
+            return result;
+        }
+        if (uaWindows.equals("6.0"))
+        {
+            result = "Vista";
+            return result;
+        }
+        if (uaWindows.equals("6.1"))
+        {
+            result = "7";
+            return result;
+        }
+        if (uaWindows.equals("6.2"))
+        {
+            result = "8";
+            return result;
+        }
+        else
+        {
+            result = uaWindows;
+            return result;
+        }
     }
 
     @Override
@@ -318,7 +330,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             }
             ua.setBrowser(match.group(1));
             ua.setBrowserVersion(match.group(4));
-                       
+
             return ua;
         }
         match = PATTERN_PC_WIN_SAFARI.matcher(userAgentString);
