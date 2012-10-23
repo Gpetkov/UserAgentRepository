@@ -23,8 +23,8 @@ public class UserAgentUtilsParser extends UserAgentParser
     private static final String REGEX_WIN_GOOGLE_MAC = "((?i:windows|google|mac_os))\\_?\\s?((.)+)?";
     /**
      * regex for finding versions of
-     * android,bada,blackberry,ios,kindle,linux,maemo,palm,psp,roku,symbian,webos,wii,sun_os,sony_ericsson,series40 
-     * Example iOS5 --> operation system (iOS) operation system version (5)
+     * android,bada,blackberry,ios,kindle,linux,maemo,palm,psp,roku,symbian,webos,wii,sun_os,sony_ericsson,series40 Example iOS5 -->
+     * operation system (iOS) operation system version (5)
      */
     private static final String REGEX_ALL_OTHERS = "((?i:android|bada|blackberry|ios|kindle|linux|maemo|palm|psp|roku|symbian|"
             + "webos|wii|sun_os|sony_ericsson|series40))((\\d\\w*))?";
@@ -80,6 +80,7 @@ public class UserAgentUtilsParser extends UserAgentParser
 
     /**
      * Method which splits current OS(extract name and version from current operation system)
+     * 
      * @param operationSystem
      * @return splitedOs[2](splitedOs[0] --> osName, splitedOs[1] --> osVersion)
      * 
@@ -93,12 +94,16 @@ public class UserAgentUtilsParser extends UserAgentParser
         {
             String osName = match.group(1);
             String osVersion = match.group(2);
-            if (osVersion == null)
-            {
-                osVersion = null;
-            }
             splitedOS[0] = osName;
-            splitedOS[1] = osVersion;
+            if ( (osVersion != null) && (osVersion.trim().equals("Vista")))
+            {
+                splitedOS[1] = null;
+            }
+            else
+            {
+                splitedOS[1] = osVersion;
+            }
+            
         }
         else
         {
@@ -108,10 +113,7 @@ public class UserAgentUtilsParser extends UserAgentParser
             {
                 String osName = match.group(1);
                 String osVersion = match.group(2);
-                if (osVersion == null)
-                {
-                    osVersion = "Unknown";
-                }
+
                 if (osName.toString().equalsIgnoreCase("SERIES40"))
                 {
                     osName = "NOKIA_OS";
