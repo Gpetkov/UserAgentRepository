@@ -109,7 +109,7 @@ public class CompositeUserAgentParserTest
         // Assertion for Chrome browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 4.0) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.5 "
                 + "Safari/534.30,platform,unknown", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
-                UserAgent.UNKNOWN, "Windows", "4.0", "Chrome", "12.0.742.5"));
+                UserAgent.UNKNOWN, "Windows", "95", "Chrome", "12.0.742.5"));
         // Assertion for Chrome browser
         assertUserAgentEquals(
                 "Mozilla/5.0 (Windows NT 5.0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.77 Safari/537.1,platform,unknown",
@@ -183,6 +183,7 @@ public class CompositeUserAgentParserTest
         assertUserAgentEquals("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) "
                 + "Version/5.1.7 Safari/534.57.2", new UserAgent(UserAgent.COMPUTER, "Apple", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                 "Mac OS X", "10.7.4", "Safari", "5.1.7"));
+        
 
     }
 
@@ -195,9 +196,9 @@ public class CompositeUserAgentParserTest
     public void testPCParseFixedIssue() throws Exception
     {
         // // the expected os version is Windows 6.2 but user-agent-utils 1.6 library extracts Windows Vista
-         assertUserAgentEquals("Opera/9.80 (Windows NT 6.2; U; Edition IBIS; zh-cn) Presto/2.10.289 Version/12.00,platform,unknown",
-         new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "8",
-         "Opera", "12.00"));
+        assertUserAgentEquals("Opera/9.80 (Windows NT 6.2; U; Edition IBIS; zh-cn) Presto/2.10.289 Version/12.00,platform,unknown",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "8", "Opera",
+                        "12.00"));
 
     }
 

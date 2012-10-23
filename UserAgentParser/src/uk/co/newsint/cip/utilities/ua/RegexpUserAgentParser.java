@@ -65,7 +65,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding PC MAC User Agents example: "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; hu_hu) AppleWebKit/534.46
      * (KHTML, like Gecko) Version/5.0.5 Safari/534.46,platform,unknown
      */
-    private static final String REGEX_PC_MAC = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)+?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:firefox|chrome|NetNewsWire|iron|RockMelt|camino))\\s?/\\s?((\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
+    private static final String REGEX_PC_MAC = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:firefox|chrome|NetNewsWire|iron|RockMelt|camino|Thunderbird))\\s?/\\s?((\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
     private static Pattern PATTERN_PC_MAC = Pattern.compile(REGEX_PC_MAC);
 
     /**
@@ -93,7 +93,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding PC MAC Safari User Agents example: Mozilla/5.0 (Macintosh; PPC Mac OS X 10_5_8) AppleWebKit/534.50.2
      * (KHTML, like Gecko) Version/4.0.1 Safari/530.18,platform,unknown
      */
-    private static final String REGEX_PC_MAC_SAFARI = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)+?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?(?i:version)+?\\s?/\\s?(\\d+[\\.]?\\d*[\\.]?\\d*)+?[\\s?\\S*]*?((?i:safari)+)";
+    private static final String REGEX_PC_MAC_SAFARI = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?(?i:version)?\\s?/\\s?(\\d+[\\.]?\\d*[\\.]?\\d*)?[\\s?\\S*]*?((?i:safari)+)";
     private static Pattern PATTERN_PC_MAC_SAFARI = Pattern.compile(REGEX_PC_MAC_SAFARI);
 
     /**
@@ -303,7 +303,10 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setBrowser(match.group(3));
             ua.setBrowserVersion(match.group(4));
             ua.setOS(match.group(1));
-            ua.setOSVersion(match.group(2).replaceAll("_", "."));
+            if (match.group(2) != null)
+            {
+                ua.setOSVersion(match.group(2).replaceAll("_", "."));
+            }
             return ua;
         }
         match = PATTERN_PC_MAC_OMNIWEB.matcher(userAgentString);
@@ -358,7 +361,10 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setBrowser("Safari");
             ua.setBrowserVersion(match.group(3));
             ua.setOS(match.group(1));
-            ua.setOSVersion(match.group(2).replaceAll("_", "."));
+            if (match.group(2) != null)
+            {
+                ua.setOSVersion(match.group(2).replaceAll("_", "."));
+            }
             return ua;
         }
         match = PATTERN_PC_LINUX.matcher(userAgentString);
