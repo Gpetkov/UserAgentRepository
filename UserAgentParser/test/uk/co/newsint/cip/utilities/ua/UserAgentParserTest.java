@@ -17,11 +17,14 @@ public class UserAgentParserTest
 {
 
     /**
-     * Instance of type UserAgentParser which method "parse" we're using
+     * Instance of UserAgentParser.class 
+     * We're testing the instance's method "parse"
+     * {@link RegexpUserAgentParser#parse(String)}
      * 
      */
     protected UserAgentParser testUserAgentParser = new RegexpUserAgentParser();
 
+    
     /**
      * Methods which test the different cases for user agent string
      * 
@@ -52,9 +55,6 @@ public class UserAgentParserTest
         assertUserAgentEquals("BlackBerry9320/9.49.0.31 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/118 The Times/1.0",
                 new UserAgent(UserAgent.MOBILE, "BlackBerry", "9320", "9320", "OS9", "9.49.0.31", UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
-
-        // Expected Our custom ParseException
-        // assertUserAgentException("BlackBerri9320/9.49.0.31 Profile");
     }
 
     /**
@@ -89,12 +89,6 @@ public class UserAgentParserTest
         assertUserAgentEquals("Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) "
                 + "Version/5.1 Mobile/9A334 Safari/7534.48.3,platform,unknown", new UserAgent(UserAgent.MOBILE, "Apple", "iPod",
                 "iPod", "iOS", "5.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN));
-        // Expected Our custom ParseException
-        // assertUserAgentException("Mozilla/5.0 (iPhone; U; CPU like Mac OS X; ja-JP)"
-        // + " Times/1.0.2,platform,unknown");
-        // Expected Our custom ParseException
-        // assertUserAgentException(null);
-
     }
 
     /**
@@ -105,49 +99,49 @@ public class UserAgentParserTest
     @Test
     public void testAndroidParse() throws Exception
     {
-     // Assertion for Android
+        // Assertion for Android
         assertUserAgentEquals(
                 "Mozilla/5.0 (Linux; U; Android 3.2.1; en-gb; ARCHOS 101G9 Build/HTK75D) AppleWebKit/534.13 (KHTML, like Gecko) Version/4.0 Safari/534.13,platform,unknown",
                 new UserAgent(UserAgent.UNKNOWN, "ARCHOS", "101G9", UserAgent.UNKNOWN, "Android", "3.2.1", UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
-        
-     // Assertion for Android
+
+        // Assertion for Android
         assertUserAgentEquals(
                 "Mozilla/5.0 (Linux; U; Android 4.0.3; de-de; HTC_One_S/1.53.161.3 Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30,platform,unknown",
                 new UserAgent(UserAgent.UNKNOWN, "HTC", "One S", UserAgent.UNKNOWN, "Android", "4.0.3", UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
-        
-     // Assertion for Android
+
+        // Assertion for Android
         assertUserAgentEquals(
                 "Mozilla/5.0 (Linux; U; Android 4.0.3; en-au; ASUS Transformer Pad TF700T Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Safari/534.30,platform,unknown",
-                new UserAgent(UserAgent.UNKNOWN, "ASUS", "Transformer Pad TF700T", UserAgent.UNKNOWN, "Android", "4.0.3", UserAgent.UNKNOWN,
-                        UserAgent.UNKNOWN));
-        
-     // Assertion for Android
+                new UserAgent(UserAgent.UNKNOWN, "ASUS", "Transformer Pad TF700T", UserAgent.UNKNOWN, "Android", "4.0.3",
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+
+        // Assertion for Android
         assertUserAgentEquals(
                 "Mozilla/5.0 (Linux; U; Android 4.0.3; en-gb; HTC/Sensation/1.45.161.1 Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30,platform,unknown",
                 new UserAgent(UserAgent.UNKNOWN, "HTC", "Sensation", UserAgent.UNKNOWN, "Android", "4.0.3", UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
-        
-     // Assertion for Android
+
+        // Assertion for Android
         assertUserAgentEquals(
                 "Mozilla/5.0 (Linux; U; Android 4.0.3; en-gb; SAMSUNG-GT-I9100/I9100BULPC Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30,platform,unknown",
                 new UserAgent(UserAgent.UNKNOWN, "SAMSUNG", "GT-I9100", UserAgent.UNKNOWN, "Android", "4.0.3", UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
-        
-     // Assertion for Android
+
+        // Assertion for Android
         assertUserAgentEquals(
                 "Mozilla/5.0 (Linux; U; Android 4.1.1; zh-cn; GT-I9300 Build/JRO03C) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30 qingshui,platform,unknown",
-                new UserAgent(UserAgent.UNKNOWN, UserAgent.UNKNOWN, "GT-I9300", UserAgent.UNKNOWN, "Android", "4.1.1", UserAgent.UNKNOWN,
-                        UserAgent.UNKNOWN));
-        
-     // Assertion for Android
+                new UserAgent(UserAgent.UNKNOWN, UserAgent.UNKNOWN, "GT-I9300", UserAgent.UNKNOWN, "Android", "4.1.1",
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+
+        // Assertion for Android
         assertUserAgentEquals(
                 "Mozilla/5.0 (Linux; Android 4.1.1; GT-I9100 Build/JRO03L) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19,platform,unknown",
-                new UserAgent(UserAgent.UNKNOWN, UserAgent.UNKNOWN, "GT-I9100", UserAgent.UNKNOWN, "Android", "4.1.1", UserAgent.UNKNOWN,
-                        UserAgent.UNKNOWN));
-        
-     // Assertion for Android
+                new UserAgent(UserAgent.UNKNOWN, UserAgent.UNKNOWN, "GT-I9100", UserAgent.UNKNOWN, "Android", "4.1.1",
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+
+        // Assertion for Android
         assertUserAgentEquals(
                 "Mozilla/5.0 (Linux; Android 4.0.4; SAMSUNG-SGH-I727 Build/IMM76I) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19,platform,unknown",
                 new UserAgent(UserAgent.UNKNOWN, "SAMSUNG", "SGH-I727", UserAgent.UNKNOWN, "Android", "4.0.4", UserAgent.UNKNOWN,
@@ -247,71 +241,62 @@ public class UserAgentParserTest
                 "Mac OS X", "10.7.4", "Safari", "5.1.7"));
 
         // Assertion for Safari browser for Linux
-        assertUserAgentEquals("Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.7 (KHTML, like Gecko)" +
-        		" Version/5.0 Safari/534.7,platform,unknown" , 
-        		new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
-                "Linux", UserAgent.UNKNOWN, "Safari", "5.0"));
-        
+        assertUserAgentEquals("Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.7 (KHTML, like Gecko)"
+                + " Version/5.0 Safari/534.7,platform,unknown", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN,
+                UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN, "Safari", "5.0"));
+
         // Assertion for Chrome browser for Linux
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34 Safari/534.24,platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN, "Chrome",
-                        "11.0.696.34"));
-        
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
+                        UserAgent.UNKNOWN, "Chrome", "11.0.696.34"));
+
         // Assertion for Iron browser for Linux
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Iron/18.0.1050.0 Chrome/18.0.1050.0 Safari/535.19,platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN, "Iron",
-                        "18.0.1050.0"));
-        
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
+                        UserAgent.UNKNOWN, "Iron", "18.0.1050.0"));
+
         // Assertion for FireFox browser for Linux
-        assertUserAgentEquals(
-                "Mozilla/5.0 (X11; Linux x86_64; rv:10.0.3) Gecko/20120314 Firefox/10.0.3,platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN, "Firefox",
-                        "10.0.3"));
-        
+        assertUserAgentEquals("Mozilla/5.0 (X11; Linux x86_64; rv:10.0.3) Gecko/20120314 Firefox/10.0.3,platform,unknown",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
+                        UserAgent.UNKNOWN, "Firefox", "10.0.3"));
+
         // Assertion for Iceweasel browser for Linux
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.0.7) Gecko/2009032803 Iceweasel/3.0.6 (Debian-3.0.6-1),platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN, "Iceweasel",
-                        "3.0.6"));
-        
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
+                        UserAgent.UNKNOWN, "Iceweasel", "3.0.6"));
+
         // Assertion for SeaMonkey browser for Linux
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.22) Gecko/20090610 SeaMonkey/1.1.17,platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN, "SeaMonkey",
-                        "1.1.17"));
-        
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
+                        UserAgent.UNKNOWN, "SeaMonkey", "1.1.17"));
+
         // Assertion for QupZilla browser for Linux
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) QupZilla/1.3.1 Safari/534.34,platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN, "QupZilla",
-                        "1.3.1"));
-        
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
+                        UserAgent.UNKNOWN, "QupZilla", "1.3.1"));
+
         // Assertion for Firefox browser for SunOS
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; U; SunOS i86pc; en-US; rv:1.9.0.11) Gecko/2009060311 Firefox/3.0.6,platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "SunOS", UserAgent.UNKNOWN, "Firefox",
-                        "3.0.6"));
-        
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "SunOS",
+                        UserAgent.UNKNOWN, "Firefox", "3.0.6"));
+
         // Assertion for Chrome browser for FreeBSD
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; FreeBSD amd64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1,platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "FreeBSD", UserAgent.UNKNOWN, "Chrome",
-                        "21.0.1180.89"));
-        
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "FreeBSD",
+                        UserAgent.UNKNOWN, "Chrome", "21.0.1180.89"));
+
         // Assertion for Chrome browser for ChromeOS
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; CrOS i686 2465.142.0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1,platform,unknown",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "ChromeOS", "2465.142.0", "Chrome",
-                        "21.0.1180.89"));
-                
-        // Expected Our custom ParseException
-        // assertUserAgentException("Mozilla/5.0 (Macintosh; U; Intel Mac OS X; en-US; rv:1.8.1.12) Gecko/20080219 Firefox/2.0.0.12 ");
-
-        // Expected Our custom ParseException
-        // assertUserAgentException(null);
-
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "ChromeOS",
+                        "2465.142.0", "Chrome", "21.0.1180.89"));
     }
 
     /**
@@ -337,16 +322,4 @@ public class UserAgentParserTest
         assertEquals(templateFail + "BrowserVersion property", expectedUserAgent.getBrowserVersion(),
                 actualUserAgent.getBrowserVersion());
     }
-
-    /**
-     * Method which pass to the "parse" method null string or not userAgent string and expects instance of UserAgentParseException
-     * 
-     * @see UserAgentParseException
-     * 
-     */
-    /*
-     * protected void assertUserAgentException(String userAgentString) { try { testUserAgentParser.parse(userAgentString);
-     * fail("The method didn't throw ParseException when we use not userAgent string"); } catch (UserAgentParseException e) { // I
-     * expect this exception --> do nothing } }
-     */
 }

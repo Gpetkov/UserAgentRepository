@@ -47,7 +47,6 @@ public class UserAgentUtilsParser extends UserAgentParser
 
             }
 
-            // result.setOS(os.getName());
             String[] splitedOs = splitOperationSystem(os.getName());
             if (splitedOs != null)
             {
