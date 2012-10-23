@@ -143,6 +143,12 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static Pattern PATTERN_ANDROID_BROWSER = Pattern.compile(ADDON_REGEX_ANDROID_BROWSER);
 
     /**
+     * regex for finding bot User Agents
+     */
+    private static final String BOT = "((?i:bot)+?)";
+    private static Pattern PATTERN_BOT = Pattern.compile(BOT);
+
+    /**
      * Method for finding the Windows version according to it's NT signature.
      */
     private String getWindowsVersion(String uaWindows)
@@ -421,6 +427,12 @@ public class RegexpUserAgentParser extends UserAgentParser
                 }
                 ua.setBrowserVersion(inMatch.group(2));
             }
+            return ua;
+        }
+        match = PATTERN_BOT.matcher(userAgentString);
+        if (match.find())
+        {
+            ua.setDeviceMaker("BOT");
             return ua;
         }
         else
