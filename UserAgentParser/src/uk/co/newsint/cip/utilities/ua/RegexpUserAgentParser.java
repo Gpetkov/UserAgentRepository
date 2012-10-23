@@ -93,7 +93,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding PC MAC Safari User Agents example: Mozilla/5.0 (Macintosh; PPC Mac OS X 10_5_8) AppleWebKit/534.50.2
      * (KHTML, like Gecko) Version/4.0.1 Safari/530.18,platform,unknown
      */
-    private static final String REGEX_PC_MAC_SAFARI = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?(?i:version)?\\s?/\\s?(\\d+[\\.]?\\d*[\\.]?\\d*)?[\\s?\\S*]*?((?i:safari)+)";
+    private static final String REGEX_PC_MAC_SAFARI = "((?i:mac os)\\s?(?i:x)?)+?\\s?(\\d+.?\\d*[\\._]?\\d*)?.?\\s?\\w*[-]?\\w*[\\s?\\S*]*?((?i:version)\\s?/\\s?(\\d+[\\.]?\\d*[\\.]?\\d*)[\\s?\\S*]*)?((?i:safari)+)";
     private static Pattern PATTERN_PC_MAC_SAFARI = Pattern.compile(REGEX_PC_MAC_SAFARI);
 
     /**
@@ -359,7 +359,10 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceMaker("Apple");
             ua.setBrowser("Safari");
-            ua.setBrowserVersion(match.group(3));
+            if (match.group(4) != null)
+            {
+                ua.setBrowserVersion(match.group(4));
+            }
             ua.setOS(match.group(1));
             if (match.group(2) != null)
             {
