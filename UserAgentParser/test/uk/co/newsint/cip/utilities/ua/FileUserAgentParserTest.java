@@ -13,7 +13,45 @@ public class FileUserAgentParserTest
 
         FileUserAgentParser parser = new FileUserAgentParser()
         {
-            private final int MAX_ERRORS = 79;
+            private final int MAX_ERRORS = 222;
+            private int currentError = 0;
+
+            @Override
+            protected void onUserAgentParsed(String line, UserAgent userAgent)
+            {
+                super.onUserAgentParsed(line, userAgent);
+                if (!isReliable(userAgent))
+                {
+                    currentError++;
+                    if (currentError == 1)
+                    {
+                        System.out.println("Starting list of strings which we can't parse:");
+                        System.out.println("-----------------------------------");
+                    }
+                    System.out.printf("Error/%d:  %s userAgentString can't be parsed \n", currentError, line);
+                }
+                if (errors == MAX_ERRORS)
+                {
+                    System.out.println("-----------------------------------");
+                    System.out.println("\nStatistics for all userAgent strings:\n");
+                    System.out.printf(
+                            "Count of userAgent strings: %d\nCount of parsed userAgentString : %d\nCount of errors: %d\n\n",
+                            toParse, parsed, errors);
+                    System.out.println("-----------------------------------");
+                }
+            }
+        };
+
+        parser.parseAll(new File(getClass().getClassLoader().getResource("user_agents.txt").toURI()));
+
+    }
+
+    @Test
+    public void testParseTopUserAgents() throws Exception
+    {
+
+        FileUserAgentParser parser = new FileUserAgentParser()
+        {
             private int currentError = 0;
             private final int SUM_OCCURRED = 506181634;
             private int currentStringOccurred = 0;
@@ -21,15 +59,11 @@ public class FileUserAgentParserTest
             protected String extractUserAgentString(String line)
             {
                 String userAgentString = super.extractUserAgentString(line);
-                if (userAgentString == null)
+                if (userAgentString != null)
                 {
-                    return null;
-                }
-                else
-                {
-                    // int firstSpace = userAgentString.indexOf(" ");
-                    // currentStringOccurred = Integer.valueOf(userAgentString.substring(0, firstSpace));
-                    // userAgentString = userAgentString.substring(firstSpace + 1, line.length());
+                    int firstSpace = userAgentString.indexOf(" ");
+                    currentStringOccurred = Integer.valueOf(userAgentString.substring(0, firstSpace));
+                    userAgentString = userAgentString.substring(firstSpace + 1, line.length());
                 }
                 return userAgentString;
 
@@ -42,36 +76,28 @@ public class FileUserAgentParserTest
                 if (!isReliable(userAgent))
                 {
                     currentError++;
-                    // System.out.printf("%d  %s userAgentString can't be parsed \n--->This is %.3f%% of all strings.\n",
-                    // currentError, line,(double)currentStringOccurred/SUM_OCCURRED * 100);
-                    System.out.printf("%d  %s userAgentString can't be parsed \n", currentError, line);
+                    if (currentError == 1)
+                    {
+                        System.out.printf("\n\nTEST FOR TOP 1000 USER AGENTS\nStarting list of strings which we can't parse:\n");
+                        System.out.println("-----------------------------------");
+                    }
+                    System.out.printf("line/%d  %s userAgentString can't be parsed \n--->This is %.3f%% of all strings.\n",
+                            currentError, line, (double) currentStringOccurred / SUM_OCCURRED * 100);
                 }
-                // else
-                // {
-                // System.out.printf("%s\n", line);
-                // }
-                // lineNumber++;
-                // System.out.printf("%d  %s\n",lineNumber,line );
-                if (errors == MAX_ERRORS)
+                if (parsed >= 999)
                 {
-                    System.out.println("\nStatistics:\n");
+                    System.out.println("-----------------------------------");
+                    System.out.println("\nStatistics for top 1000 userAgent strings:\n");
                     System.out.printf(
-                            "Count of userAgent strings: %d\nCount of parsed userAgentString : %d\nCount of errors: %d\n", toParse,
-                            parsed, errors);
-                    throw new RuntimeException("50 errors occured");
-                }
-                if (parsed >= 88449)
-                {
-                    // System.out.println("\nStatistics:\n");
-                    // System.out.printf(
-                    // "Count of userAgent strings: %d\nCount of parsed userAgentString : %d\nCount of errors: %d\n", toParse,
-                    // parsed, errors);
+                            "Count of userAgent strings: %d\nCount of parsed userAgentString : %d\nCount of errors: %d\n\n",
+                            toParse, parsed, errors);
+                    System.out.println("-----------------------------------");
                 }
 
             }
         };
 
-        parser.parseAll(new File(getClass().getClassLoader().getResource("user_agents.txt").toURI()));
+        parser.parseAll(new File(getClass().getClassLoader().getResource("top_1000_user-agents.txt").toURI()));
 
     }
 
