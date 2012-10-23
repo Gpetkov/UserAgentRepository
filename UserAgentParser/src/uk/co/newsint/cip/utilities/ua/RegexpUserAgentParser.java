@@ -142,6 +142,42 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static final String ADDON_REGEX_ANDROID_BROWSER = "((?i:chrome|version)+?)\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+)";
     private static Pattern PATTERN_ANDROID_BROWSER = Pattern.compile(ADDON_REGEX_ANDROID_BROWSER);
 
+    /**
+     * Method for finding the Windows version according to it's NT signiture.
+     */
+    private String getWindowsVersion(String uaWindows)
+    {
+        String result = "";
+        switch (uaWindows)
+        {
+            case "4.0":
+                result = "95";
+                break;
+            case "5.0":
+                result = "2000";
+                break;
+            case "5.1":
+                result = "XP";
+                break;
+            case "5.2":
+                result = "XP 64-bit";
+                break;
+            case "6.0":
+                result = "Vista";
+                break;
+            case "6.1":
+                result = "7";
+                break;
+            case "6.2":
+                result = "8";
+                break;
+            default:
+                result = uaWindows;
+        }
+        return result;
+
+    }
+
     @Override
     public UserAgent parse(String userAgentString)
     {
@@ -226,8 +262,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceMaker(UserAgent.UNKNOWN);
             ua.setBrowser(match.group(1));
             ua.setBrowserVersion(match.group(2));
-            ua.setOS(match.group(3));
-            ua.setOSVersion(match.group(4));
+            ua.setOS(match.group(3).replaceAll("\\s?NT", ""));
+            ua.setOSVersion(getWindowsVersion(match.group(4)));
             return ua;
         }
         match = PATTERN_PC_WIN.matcher(userAgentString);
@@ -237,8 +273,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceMaker(UserAgent.UNKNOWN);
             ua.setBrowser(match.group(3));
             ua.setBrowserVersion(match.group(4));
-            ua.setOS(match.group(1));
-            ua.setOSVersion(match.group(2));
+            ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
+            ua.setOSVersion(getWindowsVersion(match.group(2)));
             return ua;
         }
         match = PATTERN_PC_MAC.matcher(userAgentString);
@@ -271,15 +307,18 @@ public class RegexpUserAgentParser extends UserAgentParser
             if (match.group(2).equalsIgnoreCase("mac os x"))
             {
                 ua.setDeviceMaker("Apple");
+                ua.setOSVersion(match.group(3));
+                ua.setOS(match.group(2));
             }
             else
             {
                 ua.setDeviceMaker(UserAgent.UNKNOWN);
+                ua.setOSVersion(getWindowsVersion(match.group(3)));
+                ua.setOS(match.group(2).replaceAll("\\s?NT", ""));
             }
             ua.setBrowser(match.group(1));
             ua.setBrowserVersion(match.group(4));
-            ua.setOS(match.group(2));
-            ua.setOSVersion(match.group(3));
+                       
             return ua;
         }
         match = PATTERN_PC_WIN_SAFARI.matcher(userAgentString);
@@ -289,8 +328,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceMaker(UserAgent.UNKNOWN);
             ua.setBrowser("Safari");
             ua.setBrowserVersion(match.group(3));
-            ua.setOS(match.group(1));
-            ua.setOSVersion(match.group(2));
+            ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
+            ua.setOSVersion(getWindowsVersion(match.group(2)));
             return ua;
         }
         match = PATTERN_PC_MAC_SAFARI.matcher(userAgentString);
