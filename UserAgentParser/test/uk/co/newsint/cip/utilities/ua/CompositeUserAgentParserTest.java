@@ -195,9 +195,9 @@ public class CompositeUserAgentParserTest
     public void testPCParseFixedIssue() throws Exception
     {
         // // the expected os version is Windows 6.2 but user-agent-utils 1.6 library extracts Windows Vista
-        // assertUserAgentEquals("Opera/9.80 (Windows NT 6.2; U; Edition IBIS; zh-cn) Presto/2.10.289 Version/12.00,platform,unknown",
-        // new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "6.2",
-        // "Opera", "12.00"));
+         assertUserAgentEquals("Opera/9.80 (Windows NT 6.2; U; Edition IBIS; zh-cn) Presto/2.10.289 Version/12.00,platform,unknown",
+         new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "8",
+         "Opera", "12.00"));
 
     }
 
