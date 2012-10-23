@@ -432,7 +432,9 @@ public class RegexpUserAgentParser extends UserAgentParser
         match = PATTERN_BOT.matcher(userAgentString);
         if (match.find())
         {
-            ua.setDeviceMaker("BOT");
+            ua.setBrowser("Safari");
+            ua.setDeviceType(UserAgent.COMPUTER);
+            ua.setOS("BOT");
             return ua;
         }
         else
