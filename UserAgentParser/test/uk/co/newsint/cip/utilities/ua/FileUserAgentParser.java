@@ -121,12 +121,7 @@ public class FileUserAgentParser
      */
     protected boolean isReliable(UserAgent currentUserAgent)
     {
-        if ((UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceType()) || UserAgent.UNKNOWN.equals(currentUserAgent.getBrowser()))
-                && ((UserAgent.UNKNOWN.equals(currentUserAgent.getOS()))))
-        {
-            return false;
-        }
-
-        return true;
+        return !((UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceType()) || UserAgent.UNKNOWN.equals(currentUserAgent
+                .getBrowser())) && ((UserAgent.UNKNOWN.equals(currentUserAgent.getOS()))));
     }
 }
