@@ -79,7 +79,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding PC Opera browser User Agents example: Opera/9.80 (Windows NT 6.1; WOW64; U; fi) Presto/2.10.289
      * Version/12.02
      */
-    private static final String REGEX_PC_OPERA = "((?i:opera)+)/[\\s?\\S*]+?((?i:windows\\s?nt)|(?i:mac\\s?os\\s?x))+?\\s?(\\d+.?\\d*[_\\.]?\\d*)+?[\\s?\\S*]+?(?i:version)+?\\s?/\\s?((\\d+.\\d+)+?)";
+    private static final String REGEX_PC_OPERA = "((?i:opera)+)/[\\s?\\S*]+?((?i:windows\\s?nt)|(?i:mac\\s?os\\s?x)|(?i:freebsd|sunos))+?\\s?(\\d+.?\\d*[_\\.]?\\d*)?([\\s?\\S*]+?(?i:version)+?\\s?/\\s?((\\d+.\\d+)+?))?";
     private static Pattern PATTERN_PC_OPERA = Pattern.compile(REGEX_PC_OPERA);
 
     /**
@@ -328,17 +328,27 @@ public class RegexpUserAgentParser extends UserAgentParser
             if (match.group(2).equalsIgnoreCase("mac os x"))
             {
                 ua.setDeviceMaker("Apple");
-                ua.setOSVersion(match.group(3));
+                if (match.group(3) != null)
+                {
+                    ua.setOSVersion(match.group(3));
+                }
                 ua.setOS(match.group(2));
             }
             else
             {
                 ua.setDeviceMaker(UserAgent.UNKNOWN);
-                ua.setOSVersion(getWindowsVersion(match.group(3)));
+                if (match.group(3) != null)
+                {
+                    ua.setOSVersion(getWindowsVersion(match.group(3)));
+                }
+
                 ua.setOS(match.group(2).replaceAll("\\s?NT", ""));
             }
             ua.setBrowser(match.group(1));
-            ua.setBrowserVersion(match.group(4));
+            if (match.group(5) != null)
+            {
+                ua.setBrowserVersion(match.group(5));
+            }
 
             return ua;
         }
