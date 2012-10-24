@@ -242,6 +242,9 @@ public class RegexpUserAgentParser extends UserAgentParser
             }
             return ua;
         }
+
+        // PATTERN_PC_OPERA must be before patterns who use PATTERN_BROWSER because
+        // PATTERN_BROWSER will override the browser attribute
         match = PATTERN_PC_OPERA.matcher(userAgentString);
         if (match.find())
         {
@@ -285,6 +288,9 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOSVersion(getWindowsVersion(match.group(4)));
             return ua;
         }
+
+        // PATTERN_ANDROID must be before PATTERN_PC_LINUX, because PATTERN_PC_LINUX catches
+        // Android UserAgents due to similarities and initializes them incorrectly.
         match = PATTERN_ANDROID.matcher(userAgentString);
         if (match.find())
         {
@@ -370,6 +376,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             return ua;
         }
 
+        // PATTERN_PC_LINUX must be after PATTERN_ANDROID, because it catches
+        // Android UserAgents due to similarities and initializes them incorrectly.
         match = PATTERN_PC_LINUX.matcher(userAgentString);
         if (match.find())
         {
