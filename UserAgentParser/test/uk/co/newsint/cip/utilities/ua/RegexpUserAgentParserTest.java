@@ -296,7 +296,7 @@ public class RegexpUserAgentParserTest
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; CrOS i686 2465.142.0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "ChromeOS",
-                        "2465.142.0", "Chrome", "21.0.1180.89"));
+                        UserAgent.UNKNOWN, "Chrome", "21.0.1180.89"));
     }
 
     /**
