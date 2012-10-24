@@ -25,6 +25,10 @@ public class CompositeUserAgentParser extends UserAgentParser
 
         // 2. Use RegexpUserAgentParser to try parse the UA string
         UserAgent regexpAgent = regexpParser.parse(userAgentString);
+<<<<<<< HEAD
+=======
+
+>>>>>>> cd750f72a065d28edd0205beb537c288bb9009b3
         // 3. Fill Unknowns with regexp UA properties
 
         if (UserAgent.UNKNOWN.equals(userAgent.getDeviceType()))
