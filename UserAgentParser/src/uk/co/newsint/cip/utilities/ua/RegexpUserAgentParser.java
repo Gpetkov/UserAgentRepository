@@ -106,13 +106,13 @@ public class RegexpUserAgentParser extends UserAgentParser
      */
     private static final String ADDON_REGEX_BROWSER = "((?i:chrome|version|firefox|iron|Comodo_Dragon|Maxthon|RockMelt|OmniWeb|NetNewsWire|camino|QupZilla|Iceweasel|SeaMonkey|thunderbird)+?)\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
     private static Pattern PATTERN_BROWSER = Pattern.compile(ADDON_REGEX_BROWSER);
+    private static Matcher browserMatch;
 
     /**
      * regex for finding bot User Agents
      */
     private static final String BOT = "((?i:bot)+?)";
     private static Pattern PATTERN_BOT = Pattern.compile(BOT);
-    private static Matcher browserMatch;
 
     /**
      * Method for finding the Windows version according to it's NT signature.

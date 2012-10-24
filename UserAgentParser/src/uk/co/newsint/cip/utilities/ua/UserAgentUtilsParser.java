@@ -95,7 +95,7 @@ public class UserAgentUtilsParser extends UserAgentParser
             String osName = match.group(1);
             String osVersion = match.group(2);
             splitedOS[0] = osName;
-            
+
             if ((osVersion != null) && (osVersion.trim().equals("Vista")))
             {
                 splitedOS[1] = null;
