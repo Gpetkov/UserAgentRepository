@@ -29,6 +29,24 @@ public class RegexpUserAgentParserTest
      * 
      */
     /**
+     * Test method for WindowsPhone
+     * 
+     */
+    @Test
+    public void testWindowsPhoneParse() throws Exception
+    {
+
+        // Assert for Windows Phone OS.
+        assertUserAgentEquals("Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; Acer; Allegro)",
+                new UserAgent(UserAgent.MOBILE, "Acer", "Allegro", "Allegro", "Windows Phone OS", "7.0", "MSIE", "7.0"));
+
+        // Assert for Windows Phone OS.
+        assertUserAgentEquals(
+                "Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.5; Trident/3.1; IEMobile/7.0; HTC; 7 Mozart T8698)",
+                new UserAgent(UserAgent.MOBILE, "HTC", "7 Mozart T8698", "7 Mozart T8698", "Windows Phone OS", "7.5", "MSIE", "7.0"));
+    }
+
+    /**
      * Test method for BlackBerry
      * 
      */
