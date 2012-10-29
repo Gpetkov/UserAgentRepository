@@ -36,7 +36,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding Windows Phone OS User Agents example: Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0;
      * IEMobile/9.0; HTC; HD7 T9292)
      */
-    private static final String REGEX_WIN_PHONE = "((?i:msie)\\s?)?(\\d+.\\d+)?.\\s?((?i:windows phone os)+?)\\s?(\\d.\\d)+.\\s?\\w*.?\\w*.?\\w*[;]?\\s?\\w*.?\\w*.?\\w*[;]?\\s?(\\w+).\\s?((\\w+\\s?\\w*[-]?\\s?\\w*)+?).";
+    private static final String REGEX_WIN_PHONE = "(?<browser>(?i:msie)\\s?)?(?<browserVersion>\\d+.\\d+)?.\\s?(?<os>(?i:windows phone os)+?)\\s?(?<osVersion>\\d.\\d)+.\\s?\\w*.?\\w*.?\\w*[;]?\\s?\\w*.?\\w*.?\\w*[;]?\\s?(?<deviceMaker>\\w+).\\s?(?<deviceModel>(\\w+\\s?\\w*[-]?\\s?\\w*)+?).";
     private static Pattern PATTERN_WIN_PHONE = Pattern.compile(REGEX_WIN_PHONE);
 
     /**
@@ -212,13 +212,13 @@ public class RegexpUserAgentParser extends UserAgentParser
         if (match.find())
         {
             ua.setDeviceType(UserAgent.MOBILE);
-            ua.setDeviceMaker(match.group(5));
-            ua.setDeviceModel(match.group(6));
-            ua.setDeviceModelVersion(match.group(6));
-            ua.setOS(match.group(3));
-            ua.setOSVersion(match.group(4));
-            ua.setBrowser(match.group(1));
-            ua.setBrowserVersion(match.group(2));
+            ua.setDeviceMaker(match.group("deviceMaker"));
+            ua.setDeviceModel(match.group("deviceModel"));
+            ua.setDeviceModelVersion(match.group("deviceModel"));
+            ua.setOS(match.group("os"));
+            ua.setOSVersion(match.group("osVersion"));
+            ua.setBrowser(match.group("browser").trim());
+            ua.setBrowserVersion(match.group("browserVersion"));
             return ua;
         }
         match = PATTERN_iOS.matcher(userAgentString);
