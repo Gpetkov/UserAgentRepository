@@ -212,13 +212,13 @@ public class RegexpUserAgentParser extends UserAgentParser
         if (match.find())
         {
             ua.setDeviceType(UserAgent.MOBILE);
-            ua.setDeviceMaker(match.group("deviceMaker"));
-            ua.setDeviceModel(match.group("deviceModel"));
-            ua.setDeviceModelVersion(match.group("deviceModel"));
-            ua.setOS(match.group("os"));
-            ua.setOSVersion(match.group("osVersion"));
-            ua.setBrowser(match.group("browser").trim());
-            ua.setBrowserVersion(match.group("browserVersion"));
+            ua.setDeviceMaker(match.group(5));
+            ua.setDeviceModel(match.group(6));
+            ua.setDeviceModelVersion(match.group(6));
+            ua.setOS(match.group(3));
+            ua.setOSVersion(match.group(4));
+            ua.setBrowser(match.group(1).trim());
+            ua.setBrowserVersion(match.group(2));
             return ua;
         }
         match = PATTERN_iOS.matcher(userAgentString);
@@ -252,7 +252,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 ua.setDeviceMaker("Apple");
                 if (match.group(3) != null)
                 {
-                    ua.setOSVersion(match.group("osVersion"));
+                    ua.setOSVersion(match.group(3));
                 }
                 ua.setOS(match.group(2));
             }
@@ -261,7 +261,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 ua.setDeviceMaker(UserAgent.UNKNOWN);
                 if (match.group(3) != null)
                 {
-                    ua.setOSVersion(getWindowsVersion(match.group("osVersion")));
+                    ua.setOSVersion(getWindowsVersion(match.group(3)));
                 }
 
                 ua.setOS(match.group(2).replaceAll("\\s?NT", ""));
@@ -269,8 +269,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                ua.setBrowser(match.group("browser"));
-                ua.setBrowserVersion(browserMatch.group("browserVersion"));
+                ua.setBrowser(match.group(1));
+                ua.setBrowserVersion(browserMatch.group(2));
             }
             return ua;
         }
@@ -310,15 +310,15 @@ public class RegexpUserAgentParser extends UserAgentParser
             inMatch = PATTERN_BROWSER.matcher(match.group(2));
             if (inMatch.find())
             {
-                if (inMatch.group("browser").equalsIgnoreCase("version"))
+                if (inMatch.group(1).equalsIgnoreCase("version"))
                 {
                     ua.setBrowser("Safari");
                 }
                 else
                 {
-                    ua.setBrowser(inMatch.group("browser"));
+                    ua.setBrowser(inMatch.group(1));
                 }
-                ua.setBrowserVersion(inMatch.group("browserVersion"));
+                ua.setBrowserVersion(inMatch.group(2));
             }
             return ua;
         }
@@ -330,15 +330,15 @@ public class RegexpUserAgentParser extends UserAgentParser
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                if (!browserMatch.group("browser").equalsIgnoreCase("version"))
+                if (!browserMatch.group(1).equalsIgnoreCase("version"))
                 {
-                    ua.setBrowser(browserMatch.group("browser"));
+                    ua.setBrowser(browserMatch.group(1));
                 }
                 else
                 {
                     ua.setBrowser("Safari");
                 }
-                ua.setBrowserVersion(browserMatch.group("browserVersion"));
+                ua.setBrowserVersion(browserMatch.group(2));
             }
             ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(2)));
@@ -352,15 +352,15 @@ public class RegexpUserAgentParser extends UserAgentParser
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                if (!browserMatch.group("browser").equalsIgnoreCase("version"))
+                if (!browserMatch.group(1).equalsIgnoreCase("version"))
                 {
-                    ua.setBrowser(browserMatch.group("browser"));
+                    ua.setBrowser(browserMatch.group(1));
                 }
                 else
                 {
                     ua.setBrowser("Safari");
                 }
-                ua.setBrowserVersion(browserMatch.group("browserVersion"));
+                ua.setBrowserVersion(browserMatch.group(2));
             }
             ua.setOS(match.group(1));
             if (match.group(2) != null)
@@ -378,15 +378,15 @@ public class RegexpUserAgentParser extends UserAgentParser
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                if (!browserMatch.group("browser").equalsIgnoreCase("version"))
+                if (!browserMatch.group(1).equalsIgnoreCase("version"))
                 {
-                    ua.setBrowser(browserMatch.group("browser"));
+                    ua.setBrowser(browserMatch.group(1));
                 }
                 else
                 {
                     ua.setBrowser("Safari");
                 }
-                ua.setBrowserVersion(browserMatch.group("browserVersion"));
+                ua.setBrowserVersion(browserMatch.group(2));
             }
             if (match.group(1).equalsIgnoreCase("cros"))
             {
