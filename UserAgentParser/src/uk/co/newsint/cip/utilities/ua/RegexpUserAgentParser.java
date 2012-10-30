@@ -151,13 +151,7 @@ public class RegexpUserAgentParser extends UserAgentParser
     @Override
     public UserAgent parse(String userAgentString)
     {
-        // throws UserAgentParseException {
-
         UserAgent ua = new UserAgent();
-        // if (userAgentString == null) {
-        // throw new UserAgentParseException("UA not found!");
-        // }
-
         Matcher match = PATTERN_BB_4_5.matcher(userAgentString);
         if (match.find())
         {
@@ -394,7 +388,6 @@ public class RegexpUserAgentParser extends UserAgentParser
         }
         else
         {
-            // throw new UserAgentParseException("UA not found!");
             return new UserAgent();
         }
 
