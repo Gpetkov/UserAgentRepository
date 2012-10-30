@@ -56,6 +56,7 @@ public class FileUserAgentParserTest
             private final int SUM_OCCURRED = 506181634;
             private int currentStringOccurred = 0;
 
+            @Override
             protected String extractUserAgentString(String line)
             {
                 String userAgentString = super.extractUserAgentString(line);
