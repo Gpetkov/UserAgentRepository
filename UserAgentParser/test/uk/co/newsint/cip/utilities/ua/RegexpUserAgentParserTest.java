@@ -15,6 +15,7 @@ import org.junit.Test;
  */
 public class RegexpUserAgentParserTest
 {
+    
     /**
      * Instance of UserAgentParser.class We're testing the instance's method "parse" {@link RegexpUserAgentParser#parse(String)}
      * 
