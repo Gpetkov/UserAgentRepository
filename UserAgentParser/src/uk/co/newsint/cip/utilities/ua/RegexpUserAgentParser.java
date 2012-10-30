@@ -116,11 +116,16 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static Pattern PATTERN_BOT = Pattern.compile(BOT);
 
     /**
-     * Method for finding the Windows version according to it's NT signature.
+     * Windows version converter HashMap
      */
-    private String getWindowsVersion(String uaWindows)
+    private HashMap<String, String> winVer;
+
+    /**
+     * Constructor for the class
+     */
+    public RegexpUserAgentParser()
     {
-        HashMap<String, String> winVer = new HashMap<String, String>();
+        winVer = new HashMap<String, String>();
         winVer.put("4.0", "95");
         winVer.put("5.0", "2000");
         winVer.put("5.1", "XP");
@@ -128,24 +133,20 @@ public class RegexpUserAgentParser extends UserAgentParser
         winVer.put("6.0", "Vista");
         winVer.put("6.1", "7");
         winVer.put("6.2", "8");
-        String result = "";
-        for (String s : winVer.keySet())
-        {
-            if (s.equalsIgnoreCase(uaWindows))
-            {
-                result = winVer.get(s);
-                break;
-            }
-        }
-        if (!result.equals(""))
-        {
-            return result;
-        }
-        else
+    }
+
+    /**
+     * Method for finding the Windows version according to it's NT signature.
+     */
+    private String getWindowsVersion(String uaWindows)
+    {
+        String result = winVer.get(uaWindows);
+        if (result == null)
         {
             result = uaWindows;
-            return result;
         }
+
+        return result;
     }
 
     @Override
@@ -254,6 +255,9 @@ public class RegexpUserAgentParser extends UserAgentParser
             }
             return ua;
         }
+
+        // PATTERN_PC_WIN_IE must be after PATTERN_WIN_PHONE because it catches
+        // WindowsPhone UserAgents and sets wrong attributes
         match = PATTERN_PC_WIN_IE.matcher(userAgentString);
         if (match.find())
         {
@@ -390,7 +394,5 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             return new UserAgent();
         }
-
     }
-
 }
