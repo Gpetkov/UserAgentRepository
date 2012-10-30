@@ -36,7 +36,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding Windows Phone OS User Agents example: Mozilla/5.0 (compatible; MSIE 9.0; Windows Phone OS 7.5; Trident/5.0;
      * IEMobile/9.0; HTC; HD7 T9292)
      */
-    private static final String REGEX_WIN_PHONE = "(?<browser>(?i:msie)\\s?)?(?<browserVersion>\\d+.\\d+)?.\\s?(?<os>(?i:windows phone os)+?)\\s?(?<osVersion>\\d.\\d)+;\\s?(?i:trident/\\d.\\d;)\\s?(?i:iemobile/\\d.\\d;)\\s?(?<deviceMaker>\\w+);\\s?(?<deviceModel>(\\w+\\s?\\w*[-]?\\s?\\w*)+?).";
+    private static final String REGEX_WIN_PHONE = "((?i:msie))\\s?(\\d+.\\d+)?.\\s?((?i:windows phone os)+?)\\s?(\\d.\\d)+;\\s?(?i:trident/\\d.\\d;)\\s?(?i:iemobile/\\d.\\d;)\\s?(\\w+);\\s?((\\w+\\s?\\w*[-]?\\s?\\w*)+?).";
     private static Pattern PATTERN_WIN_PHONE = Pattern.compile(REGEX_WIN_PHONE);
 
     /**
@@ -72,7 +72,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding PC Opera browser User Agents example: Opera/9.80 (Windows NT 6.1; WOW64; U; fi) Presto/2.10.289
      * Version/12.02
      */
-    private static final String REGEX_PC_OPERA = "(?<browser>(?i:opera)+)/[\\s?\\S*]+?(?<os>(?i:windows\\s?nt)|(?i:mac\\s?os\\s?x)|(?i:freebsd|sunos))+?\\s?(?<osVersion>\\d+.?\\d*[_\\.]?\\d*)?";
+    private static final String REGEX_PC_OPERA = "((?i:opera)+)/[\\s?\\S*]+?((?i:windows\\s?nt)|(?i:mac\\s?os\\s?x)|(?i:freebsd|sunos))+?\\s?(\\d+.?\\d*[_\\.]?\\d*)?";
     private static Pattern PATTERN_PC_OPERA = Pattern.compile(REGEX_PC_OPERA);
 
     /**
@@ -104,7 +104,7 @@ public class RegexpUserAgentParser extends UserAgentParser
     /**
      * regex add-on for finding browser and browser version in User Agents
      */
-    private static final String ADDON_REGEX_BROWSER = "(?<browser>(?i:chrome|version|firefox|iron|Comodo_Dragon|Maxthon|RockMelt|OmniWeb|NetNewsWire|camino|QupZilla|Iceweasel|SeaMonkey|thunderbird)+?)\\s?/\\s?(?<browserVersion>(\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
+    private static final String ADDON_REGEX_BROWSER = "((?i:chrome|version|firefox|iron|Comodo_Dragon|Maxthon|RockMelt|OmniWeb|NetNewsWire|camino|QupZilla|Iceweasel|SeaMonkey|thunderbird)+?)\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
     private static Pattern PATTERN_BROWSER = Pattern.compile(ADDON_REGEX_BROWSER);
     private static Matcher browserMatch;
 
@@ -212,13 +212,13 @@ public class RegexpUserAgentParser extends UserAgentParser
         if (match.find())
         {
             ua.setDeviceType(UserAgent.MOBILE);
-            ua.setDeviceMaker(match.group("deviceMaker"));
-            ua.setDeviceModel(match.group("deviceModel"));
-            ua.setDeviceModelVersion(match.group("deviceModel"));
-            ua.setOS(match.group("os"));
-            ua.setOSVersion(match.group("osVersion"));
-            ua.setBrowser(match.group("browser").trim());
-            ua.setBrowserVersion(match.group("browserVersion"));
+            ua.setDeviceMaker(match.group(5));
+            ua.setDeviceModel(match.group(6));
+            ua.setDeviceModelVersion(match.group(6));
+            ua.setOS(match.group(3));
+            ua.setOSVersion(match.group(4));
+            ua.setBrowser(match.group(1).trim());
+            ua.setBrowserVersion(match.group(2));
             return ua;
         }
         match = PATTERN_iOS.matcher(userAgentString);
@@ -252,7 +252,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 ua.setDeviceMaker("Apple");
                 if (match.group(3) != null)
                 {
-                    ua.setOSVersion(match.group("osVersion"));
+                    ua.setOSVersion(match.group(3));
                 }
                 ua.setOS(match.group(2));
             }
@@ -261,7 +261,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 ua.setDeviceMaker(UserAgent.UNKNOWN);
                 if (match.group(3) != null)
                 {
-                    ua.setOSVersion(getWindowsVersion(match.group("osVersion")));
+                    ua.setOSVersion(getWindowsVersion(match.group(3)));
                 }
 
                 ua.setOS(match.group(2).replaceAll("\\s?NT", ""));
@@ -269,8 +269,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                ua.setBrowser(match.group("browser"));
-                ua.setBrowserVersion(browserMatch.group("browserVersion"));
+                ua.setBrowser(match.group(1));
+                ua.setBrowserVersion(browserMatch.group(2));
             }
             return ua;
         }
@@ -310,15 +310,15 @@ public class RegexpUserAgentParser extends UserAgentParser
             inMatch = PATTERN_BROWSER.matcher(match.group(2));
             if (inMatch.find())
             {
-                if (inMatch.group("browser").equalsIgnoreCase("version"))
+                if (inMatch.group(1).equalsIgnoreCase("version"))
                 {
                     ua.setBrowser("Safari");
                 }
                 else
                 {
-                    ua.setBrowser(inMatch.group("browser"));
+                    ua.setBrowser(inMatch.group(1));
                 }
-                ua.setBrowserVersion(inMatch.group("browserVersion"));
+                ua.setBrowserVersion(inMatch.group(2));
             }
             return ua;
         }
@@ -330,15 +330,15 @@ public class RegexpUserAgentParser extends UserAgentParser
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                if (!browserMatch.group("browser").equalsIgnoreCase("version"))
+                if (!browserMatch.group(1).equalsIgnoreCase("version"))
                 {
-                    ua.setBrowser(browserMatch.group("browser"));
+                    ua.setBrowser(browserMatch.group(1));
                 }
                 else
                 {
                     ua.setBrowser("Safari");
                 }
-                ua.setBrowserVersion(browserMatch.group("browserVersion"));
+                ua.setBrowserVersion(browserMatch.group(2));
             }
             ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(2)));
@@ -352,15 +352,15 @@ public class RegexpUserAgentParser extends UserAgentParser
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                if (!browserMatch.group("browser").equalsIgnoreCase("version"))
+                if (!browserMatch.group(1).equalsIgnoreCase("version"))
                 {
-                    ua.setBrowser(browserMatch.group("browser"));
+                    ua.setBrowser(browserMatch.group(1));
                 }
                 else
                 {
                     ua.setBrowser("Safari");
                 }
-                ua.setBrowserVersion(browserMatch.group("browserVersion"));
+                ua.setBrowserVersion(browserMatch.group(2));
             }
             ua.setOS(match.group(1));
             if (match.group(2) != null)
@@ -378,15 +378,15 @@ public class RegexpUserAgentParser extends UserAgentParser
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                if (!browserMatch.group("browser").equalsIgnoreCase("version"))
+                if (!browserMatch.group(1).equalsIgnoreCase("version"))
                 {
-                    ua.setBrowser(browserMatch.group("browser"));
+                    ua.setBrowser(browserMatch.group(1));
                 }
                 else
                 {
                     ua.setBrowser("Safari");
                 }
-                ua.setBrowserVersion(browserMatch.group("browserVersion"));
+                ua.setBrowserVersion(browserMatch.group(2));
             }
             if (match.group(1).equalsIgnoreCase("cros"))
             {

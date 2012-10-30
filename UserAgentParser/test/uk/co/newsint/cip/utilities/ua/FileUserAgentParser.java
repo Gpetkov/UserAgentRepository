@@ -46,7 +46,7 @@ public class FileUserAgentParser
                         continue;
                     }
                     userAgent = compositeUserAgent.parse(userAgentString);
-                    onUserAgentParsed(currentLine, userAgent);
+                    onUserAgentParsed(userAgentString, userAgent);
                 }
                 catch (Exception e)
                 {
