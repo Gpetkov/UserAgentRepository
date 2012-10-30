@@ -31,7 +31,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
 
             if (subUserAgentString != null)
             {
-                this.currentUserAgentString = subUserAgentString.replaceAll(", ", " ");
+                this.currentUserAgentString = "\"" + subUserAgentString + "\"";
             }
             else
             {
@@ -59,7 +59,8 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         // Instance of this class
         FileUserAgentParserUtility userAgentUtility = new FileUserAgentParserUtility();
         userAgentUtility.createFile();
-        userAgentUtility.parseAll(new File("resources\\top_1000_user-agents.txt"));
+        userAgentUtility.parseAll(new File(FileUserAgentParserUtility.class.getClassLoader()
+                .getResource("top_1000_user-agents.txt").toURI()));
     }
 
     /**
@@ -70,7 +71,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
     {
         try
         {
-            FileWriter writer = new FileWriter("ParserResults.txt");
+            FileWriter writer = new FileWriter("top_1000_user-agents_parsered.csv");
 
             // Adding header fields
             writer.append("PAGE HITS");
@@ -116,7 +117,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         int counterUnknown = 0;
         try
         {
-            FileWriter writer = new FileWriter("ParserResults.txt", true);
+            FileWriter writer = new FileWriter("top_1000_user-agents_parsered.csv", true);
 
             // Adding page hits for the current string
             writer.append(String.valueOf(this.pageViewHit));
