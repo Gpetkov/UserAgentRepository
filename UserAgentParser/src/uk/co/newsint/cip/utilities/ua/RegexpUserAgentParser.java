@@ -203,7 +203,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceMaker("BlackBerry");
             ua.setDeviceModel(match.group(1));
             ua.setDeviceModelVersion(match.group(1));
-            ua.setOS(match.group(2));
+            ua.setOS(match.group(2).trim());
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
             return ua;
