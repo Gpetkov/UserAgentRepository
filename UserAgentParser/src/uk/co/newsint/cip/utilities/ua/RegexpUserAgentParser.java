@@ -1,5 +1,6 @@
 package uk.co.newsint.cip.utilities.ua;
 
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -119,40 +120,25 @@ public class RegexpUserAgentParser extends UserAgentParser
      */
     private String getWindowsVersion(String uaWindows)
     {
+        HashMap<String, String> winVer = new HashMap<String, String>();
+        winVer.put("4.0", "95");
+        winVer.put("5.0", "2000");
+        winVer.put("5.1", "XP");
+        winVer.put("5.2", "XP 64-bit");
+        winVer.put("6.0", "Vista");
+        winVer.put("6.1", "7");
+        winVer.put("6.2", "8");
         String result = "";
-        if (uaWindows.equals("4.0"))
+        for (String s : winVer.keySet())
         {
-            result = "95";
-            return result;
+            if (s.equalsIgnoreCase(uaWindows))
+            {
+                result = winVer.get(s);
+                break;
+            }
         }
-        if (uaWindows.equals("5.0"))
+        if (!result.equals(""))
         {
-            result = "2000";
-            return result;
-        }
-        if (uaWindows.equals("5.1"))
-        {
-            result = "XP";
-            return result;
-        }
-        if (uaWindows.equals("5.2"))
-        {
-            result = "XP 64-bit";
-            return result;
-        }
-        if (uaWindows.equals("6.0"))
-        {
-            result = "Vista";
-            return result;
-        }
-        if (uaWindows.equals("6.1"))
-        {
-            result = "7";
-            return result;
-        }
-        if (uaWindows.equals("6.2"))
-        {
-            result = "8";
             return result;
         }
         else
