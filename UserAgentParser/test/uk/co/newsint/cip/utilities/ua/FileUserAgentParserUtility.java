@@ -6,6 +6,11 @@ import java.io.IOException;
 
 public class FileUserAgentParserUtility extends FileUserAgentParser
 {
+    // page hits for the current user-agent string in "top_1000_user_agents.txt"
+    private int pageViewHit;
+    // user-agent string from "top_1000_user_agents.txt" without it's page hits
+    private String currentUserAgentString;
+
     @Override
     protected String extractUserAgentString(String line)
     {
@@ -13,7 +18,25 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         if (userAgentString != null)
         {
             int firstSpace = userAgentString.indexOf(" ");
-            userAgentString = userAgentString.substring(firstSpace + 1, line.length());
+            String subUserAgentString = userAgentString.substring(firstSpace + 1, line.length());
+            String pageHitString = userAgentString.substring(0, firstSpace);
+            if (pageHitString != null)
+            {
+                this.pageViewHit = Integer.valueOf(userAgentString.substring(0, firstSpace));
+            }
+            else
+            {
+                this.pageViewHit = 0;
+            }
+
+            if (subUserAgentString != null)
+            {
+                this.currentUserAgentString = subUserAgentString.replaceAll(", ", " ");
+            }
+            else
+            {
+                this.currentUserAgentString = null;
+            }
         }
         return userAgentString;
 
@@ -50,7 +73,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             FileWriter writer = new FileWriter("ParserResults.txt");
 
             // Adding header fields
-            writer.append("LINE NUMBER");
+            writer.append("PAGE HITS");
             writer.append(",");
             writer.append("USER-AGENT-STRING");
             writer.append(",");
@@ -95,12 +118,12 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         {
             FileWriter writer = new FileWriter("ParserResults.txt", true);
 
-            // Adding number of current line
-            writer.append(String.valueOf(lineNumber));
+            // Adding page hits for the current string
+            writer.append(String.valueOf(this.pageViewHit));
             writer.append(',');
 
             // Adding current string for parse
-            writer.append(userAgentString);
+            writer.append(this.currentUserAgentString);
             writer.append(',');
 
             // Adding result after parse (result agent's properties)
