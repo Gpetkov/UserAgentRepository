@@ -68,6 +68,18 @@ public class RegexpUserAgentParserTest
         // Assert for version 9.
         assertUserAgentEquals("BlackBerry9320/9.49.0.31 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/118 The Times/1.0",
                 new UserAgent(UserAgent.MOBILE, "BlackBerry", "9320", "9320", "OS9", "9.49.0.31", "BlackBerry", UserAgent.UNKNOWN));
+
+        // Assert for Playbook.
+        assertUserAgentEquals(
+                "Mozilla/5.0 (PlayBook; U; Android 2.3.3; en-gb; PlayBook Build/2.0.1.30) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
+                new UserAgent(UserAgent.TABLET, "BlackBerry", "PlayBook", "PlayBook", "Android", "2.3.3", "BlackBerry",
+                        UserAgent.UNKNOWN));
+
+        // Assert for Playbook.
+        assertUserAgentEquals(
+                "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 1.0.0; en-US) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.1.0.7 Safari/534.11+",
+                new UserAgent(UserAgent.TABLET, "BlackBerry", "PlayBook", "PlayBook", "RIM Tablet OS", "1.0.0", "BlackBerry",
+                        UserAgent.UNKNOWN));
     }
 
     /**
