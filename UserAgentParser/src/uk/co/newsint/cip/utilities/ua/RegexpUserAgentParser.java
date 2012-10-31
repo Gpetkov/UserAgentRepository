@@ -448,7 +448,6 @@ public class RegexpUserAgentParser extends UserAgentParser
         ua.setBrowser("BlackBerry");
         return ua;
     }
-
     /**
      * Method for filling all known UserAgent attributes based on PATTERN_WIN_PHONE
      * 
