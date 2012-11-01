@@ -40,10 +40,18 @@ public class CompositeUserAgentParser extends UserAgentParser
             userAgent.setOS(regexpAgent.getOS());
         if (UserAgent.UNKNOWN.equals(userAgent.getOSVersion()))
             userAgent.setOSVersion(regexpAgent.getOSVersion());
+        if (UserAgent.UNKNOWN.equals(userAgent.getOSMaker()))
+            userAgent.setOSMaker(regexpAgent.getOSMaker());
         if (UserAgent.UNKNOWN.equals(userAgent.getBrowser()))
             userAgent.setBrowser(regexpAgent.getBrowser());
         if (UserAgent.UNKNOWN.equals(userAgent.getBrowserVersion()))
             userAgent.setBrowserVersion(regexpAgent.getBrowserVersion());
+        if (UserAgent.UNKNOWN.equals(userAgent.getApplication()))
+            userAgent.setApplication(regexpAgent.getApplication());
+        if (UserAgent.UNKNOWN.equals(userAgent.getApplicationVersion()))
+            userAgent.setApplicationVersion(regexpAgent.getLanguage());
+        if (UserAgent.UNKNOWN.equals(userAgent.getApplication()))
+            userAgent.setLanguage(regexpAgent.getLanguage());
 
         return userAgent;
     }
