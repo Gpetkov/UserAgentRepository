@@ -27,10 +27,18 @@ public class UserAgent
     private String os = UNKNOWN;
     // Operation system version (example --> 5.0)
     private String osVersion = UNKNOWN;
+    // Operation system maker (example --> Android maker - Google Inc.
+    private String osMaker = UNKNOWN;
     // Current browser MSIE,Safari,Chrome
     private String browser = UNKNOWN;
     // Current browser version example --> 534.57.2 (Safari)
     private String browserVersion = UNKNOWN;
+    // Application (example --> iPadTimesAnvil/2.7 => application = iPadTimesAnvil)
+    private String application = UNKNOWN;
+    // Application version (example --> iPadTimesAnvil/2.7 => applicationVersion = 2.7)
+    private String applicationVersion = UNKNOWN;
+    // Language (example --> English United Kingdom - "en-GB")
+    private String language = UNKNOWN;
 
     public UserAgent()
     {
@@ -49,18 +57,39 @@ public class UserAgent
         this.browserVersion = browserVersion;
     }
 
+    public UserAgent(String deviceType, String deviceMaker, String deviceModel, String deviceModelVersion, String os,
+            String osVersion, String osMaker, String browser, String browserVersion, String application, String applicationVersion,
+            String language)
+    {
+        this.deviceType = deviceType;
+        this.deviceMaker = deviceMaker;
+        this.deviceModel = deviceModel;
+        this.deviceModelVersion = deviceModelVersion;
+        this.os = os;
+        this.osVersion = osVersion;
+        this.osMaker = osMaker;
+        this.browser = browser;
+        this.browserVersion = browserVersion;
+        this.application = application;
+        this.applicationVersion = applicationVersion;
+    }
+
     @Override
     public int hashCode()
     {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((application == null) ? 0 : application.hashCode());
+        result = prime * result + ((applicationVersion == null) ? 0 : applicationVersion.hashCode());
         result = prime * result + ((browser == null) ? 0 : browser.hashCode());
         result = prime * result + ((browserVersion == null) ? 0 : browserVersion.hashCode());
         result = prime * result + ((deviceMaker == null) ? 0 : deviceMaker.hashCode());
         result = prime * result + ((deviceModel == null) ? 0 : deviceModel.hashCode());
         result = prime * result + ((deviceModelVersion == null) ? 0 : deviceModelVersion.hashCode());
         result = prime * result + ((deviceType == null) ? 0 : deviceType.hashCode());
+        result = prime * result + ((language == null) ? 0 : language.hashCode());
         result = prime * result + ((os == null) ? 0 : os.hashCode());
+        result = prime * result + ((osMaker == null) ? 0 : osMaker.hashCode());
         result = prime * result + ((osVersion == null) ? 0 : osVersion.hashCode());
         return result;
     }
@@ -75,6 +104,20 @@ public class UserAgent
         if (getClass() != obj.getClass())
             return false;
         UserAgent other = (UserAgent) obj;
+        if (application == null)
+        {
+            if (other.application != null)
+                return false;
+        }
+        else if (!application.equals(other.application))
+            return false;
+        if (applicationVersion == null)
+        {
+            if (other.applicationVersion != null)
+                return false;
+        }
+        else if (!applicationVersion.equals(other.applicationVersion))
+            return false;
         if (browser == null)
         {
             if (other.browser != null)
@@ -117,12 +160,26 @@ public class UserAgent
         }
         else if (!deviceType.equals(other.deviceType))
             return false;
+        if (language == null)
+        {
+            if (other.language != null)
+                return false;
+        }
+        else if (!language.equals(other.language))
+            return false;
         if (os == null)
         {
             if (other.os != null)
                 return false;
         }
         else if (!os.equals(other.os))
+            return false;
+        if (osMaker == null)
+        {
+            if (other.osMaker != null)
+                return false;
+        }
+        else if (!osMaker.equals(other.osMaker))
             return false;
         if (osVersion == null)
         {
@@ -194,6 +251,16 @@ public class UserAgent
         this.osVersion = osVersion;
     }
 
+    public String getOSMaker()
+    {
+        return osMaker;
+    }
+
+    public void setOSMaker(String osMaker)
+    {
+        this.osMaker = osMaker;
+    }
+
     public String getBrowser()
     {
         return browser;
@@ -214,4 +281,33 @@ public class UserAgent
         this.browserVersion = browserVersion;
     }
 
+    public String getApplication()
+    {
+        return application;
+    }
+
+    public void setApplication(String application)
+    {
+        this.application = application;
+    }
+
+    public String getApplicationVersion()
+    {
+        return applicationVersion;
+    }
+
+    public void setApplicationVersion(String applicationVersion)
+    {
+        this.applicationVersion = applicationVersion;
+    }
+
+    public String getLanguage()
+    {
+        return language;
+    }
+
+    public void setLanguage(String language)
+    {
+        this.language = language;
+    }
 }

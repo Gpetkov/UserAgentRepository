@@ -3,6 +3,7 @@ package uk.co.newsint.cip.utilities.ua;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import nl.bitwalker.useragentutils.Application;
 import nl.bitwalker.useragentutils.Browser;
 import nl.bitwalker.useragentutils.DeviceType;
 import nl.bitwalker.useragentutils.OperatingSystem;
@@ -60,6 +61,18 @@ public class UserAgentUtilsParser extends UserAgentParser
                 }
             }
 
+            String osMaker = os.getManufacturer().getName();
+            if (osMaker != null)
+            {
+                result.setOSMaker(osMaker);
+            }
+
+            String application = Application.parseReferrerString(userAgentString).getName();
+            if (application != null)
+            {
+                result.setApplication(application);
+            }
+
         }
 
         Browser browser = ua.getBrowser();
@@ -74,6 +87,7 @@ public class UserAgentUtilsParser extends UserAgentParser
         {
             result.setBrowserVersion(version.getVersion());
         }
+        // Application application = ua.get
 
         return result;
     }

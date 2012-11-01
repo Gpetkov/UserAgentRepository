@@ -90,9 +90,17 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             writer.append(",");
             writer.append("OS VERSION");
             writer.append(",");
+            writer.append("OS MAKER");
+            writer.append(",");
             writer.append("BROWSER");
             writer.append(",");
             writer.append("BROWSER VERSION");
+            writer.append(",");
+            writer.append("APPLICATION");
+            writer.append(",");
+            writer.append("APPLICATION VERSION");
+            writer.append(",");
+            writer.append("LANGUAGE");
             writer.append(",");
             writer.append("UNKNOWN PROPERTIES");
             writer.append("\n");
@@ -140,9 +148,17 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             writer.append(',');
             writer.append(currentUserAgent.getOSVersion());
             writer.append(',');
+            writer.append(currentUserAgent.getOSMaker());
+            writer.append(',');
             writer.append(currentUserAgent.getBrowser());
             writer.append(',');
             writer.append(currentUserAgent.getBrowserVersion());
+            writer.append(',');
+            writer.append(currentUserAgent.getApplication());
+            writer.append(',');
+            writer.append(currentUserAgent.getApplicationVersion());
+            writer.append(',');
+            writer.append(currentUserAgent.getLanguage());
 
             // Check the properties for Unknown values
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceType()))
@@ -174,6 +190,18 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
                 counterUnknown++;
             }
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getBrowserVersion()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getApplication()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getApplicationVersion()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getLanguage()))
             {
                 counterUnknown++;
             }
