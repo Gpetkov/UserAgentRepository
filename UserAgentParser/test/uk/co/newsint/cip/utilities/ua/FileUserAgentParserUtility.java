@@ -39,7 +39,6 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             }
         }
         return userAgentString;
-
     };
 
     @Override
@@ -47,7 +46,6 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
     {
         super.onUserAgentParsed(line, userAgent);
         generateCsvFileContent(this.toParse, line, userAgent);
-
     }
 
     /**
@@ -71,7 +69,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
     {
         try
         {
-            FileWriter writer = new FileWriter("top_1000_user-agents_parsered.csv");
+            FileWriter writer = new FileWriter("top_1000_user-agents_parsed.csv");
 
             // Adding header fields
             writer.append("PAGE HITS");
@@ -125,7 +123,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         int counterUnknown = 0;
         try
         {
-            FileWriter writer = new FileWriter("top_1000_user-agents_parsered.csv", true);
+            FileWriter writer = new FileWriter("top_1000_user-agents_parsed.csv", true);
 
             // Adding page hits for the current string
             writer.append(String.valueOf(this.pageViewHit));
