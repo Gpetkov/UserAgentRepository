@@ -166,7 +166,6 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             result = uaWindows;
         }
-
         return result;
     }
 
@@ -175,7 +174,6 @@ public class RegexpUserAgentParser extends UserAgentParser
     {
         UserAgent ua = new UserAgent();
         uaList = new ArrayList<UserAgent>();
-
         uaList.add(parseBlackBerry45(userAgentString, ua));
         uaList.add(parseBlackBerry67(userAgentString, ua));
         uaList.add(parseBlackBerryPlayBook(userAgentString, ua));
@@ -198,7 +196,6 @@ public class RegexpUserAgentParser extends UserAgentParser
             }
         }
         return new UserAgent();
-
     }
 
     /**
