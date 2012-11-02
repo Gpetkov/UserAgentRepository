@@ -72,14 +72,15 @@ public class RegexpUserAgentParserTest
         // Assert for Playbook.
         assertUserAgentEquals(
                 "Mozilla/5.0 (PlayBook; U; Android 2.3.3; en-gb; PlayBook Build/2.0.1.30) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1",
-                new UserAgent(UserAgent.TABLET, "BlackBerry", "PlayBook", "PlayBook", "Android", "2.3.3", "BlackBerry",
-                        UserAgent.UNKNOWN));
+                new UserAgent(UserAgent.TABLET, "BlackBerry", "PlayBook", "PlayBook", "Android", "2.3.3", "Google Inc.",
+                        "BlackBerry", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "English"));
 
         // Assert for Playbook.
         assertUserAgentEquals(
                 "Mozilla/5.0 (PlayBook; U; RIM Tablet OS 1.0.0; en-US) AppleWebKit/534.11+ (KHTML, like Gecko) Version/7.1.0.7 Safari/534.11+",
-                new UserAgent(UserAgent.TABLET, "BlackBerry", "PlayBook", "PlayBook", "RIM Tablet OS", "1.0.0", "BlackBerry",
-                        UserAgent.UNKNOWN));
+                new UserAgent(UserAgent.TABLET, "BlackBerry", "PlayBook", "PlayBook", "RIM Tablet OS", "1.0.0",
+                        "Research In Motion Limited", "BlackBerry", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        "English"));
     }
 
     /**
@@ -91,24 +92,26 @@ public class RegexpUserAgentParserTest
     {
         // Assertion for IPhone
         assertUserAgentEquals("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-JP)" + " Times/1.0.2", new UserAgent(
-                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "iOS", "4.3.3", UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "iOS", "4.3.3", "Apple Inc.", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Japanese"));
         // Assertion for IPhone
         assertUserAgentEquals("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_5 like Mac OS X; ca-es) "
                 + "AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8L1 " + "Safari/6533.18.5", new UserAgent(
-                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "iOS", "4.3.5", UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "iOS", "4.3.5", "Apple Inc.", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Catalan"));
 
         // Assertion for iPad
         assertUserAgentEquals("Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X; de-de) AppleWebKit/534.46.0 (KHTML, like Gecko) "
                 + "CriOS/21.0.1180.77 Mobile/9B206 Safari/7534.48.3", new UserAgent(UserAgent.TABLET, "Apple", "iPad", "iPad",
-                "iOS", "5.1.1", UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+                "iOS", "5.1.1", "Apple Inc.", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "German"));
         // Assertion for iPad
         assertUserAgentEquals("Mozilla/5.0 (iPad; U; CPU OS 4_2_1 like Mac OS X; it-it) AppleWebKit/533.17.9 "
                 + "(KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5", new UserAgent(UserAgent.TABLET, "Apple",
-                "iPad", "iPad", "iOS", "4.2.1", UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+                "iPad", "iPad", "iOS", "4.2.1", "Apple Inc.", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Italian"));
         // Assertion for iPod
         assertUserAgentEquals("Mozilla/5.0 (iPod touch; U; CPU iPhone OS 5_1_1 like Mac OS X; zh-CN) " + "Times/1.2.1",
-                new UserAgent(UserAgent.MOBILE, "Apple", "iPod touch", "iPod touch", "iOS", "5.1.1", UserAgent.UNKNOWN,
-                        UserAgent.UNKNOWN));
+                new UserAgent(UserAgent.MOBILE, "Apple", "iPod touch", "iPod touch", "iOS", "5.1.1", "Apple Inc.", UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Chinese"));
         // Assertion for iPod
         assertUserAgentEquals("Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) "
                 + "Version/5.1 Mobile/9A334 Safari/7534.48.3", new UserAgent(UserAgent.MOBILE, "Apple", "iPod", "iPod", "iOS",

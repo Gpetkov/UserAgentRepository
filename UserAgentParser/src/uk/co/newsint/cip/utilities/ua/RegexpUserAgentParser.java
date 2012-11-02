@@ -94,22 +94,22 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static Pattern PATTERN_ANDROID = Pattern.compile(REGEX_ANDROID);
 
     /**
-     * regex add-on for finding Android OS and OS version in Android User Agents
+     * regex for finding Android OS and OS version in Android User Agents
      */
-    private static final String ADDON_REGEX_ANDROID_OS = "((?i:android)+)\\s?((\\d+\\.\\d+\\.?\\d*)+)";
-    private static Pattern PATTERN_ANDROID_OS = Pattern.compile(ADDON_REGEX_ANDROID_OS);
+    private static final String REGEX_ANDROID_OS = "((?i:android)+)\\s?((\\d+\\.\\d+\\.?\\d*)+)";
+    private static Pattern PATTERN_ANDROID_OS = Pattern.compile(REGEX_ANDROID_OS);
 
     /**
-     * regex add-on for finding Android device maker and device model in Android User Agents
+     * regex for finding Android device maker and device model in Android User Agents
      */
-    private static final String ADDON_REGEX_ANDROID_MODEL = ";\\s?((?i:htc|lg|samsung|sonyericsson|sony|asus|onda|woxter|huawei|dell|archos|motorola))?[\\s_/-]?(\\w+-?(\\s*\\w+)*)+?";
-    private static Pattern PATTERN_ANDROID_MODEL = Pattern.compile(ADDON_REGEX_ANDROID_MODEL);
+    private static final String REGEX_ANDROID_MODEL = ";\\s?((?i:htc|lg|samsung|sonyericsson|sony|asus|onda|woxter|huawei|dell|archos|motorola))?[\\s_/-]?(\\w+-?(\\s*\\w+)*)+?";
+    private static Pattern PATTERN_ANDROID_MODEL = Pattern.compile(REGEX_ANDROID_MODEL);
 
     /**
-     * regex add-on for finding browser and browser version in User Agents
+     * regex for finding browser and browser version in User Agents
      */
-    private static final String ADDON_REGEX_BROWSER = "((?i:chrome|version|firefox|iron|Comodo_Dragon|Maxthon|RockMelt|OmniWeb|NetNewsWire|camino|QupZilla|Iceweasel|SeaMonkey|thunderbird)+?)\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
-    private static Pattern PATTERN_BROWSER = Pattern.compile(ADDON_REGEX_BROWSER);
+    private static final String REGEX_BROWSER = "((?i:chrome|version|firefox|iron|Comodo_Dragon|Maxthon|RockMelt|OmniWeb|NetNewsWire|camino|QupZilla|Iceweasel|SeaMonkey|thunderbird)+?)\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
+    private static Pattern PATTERN_BROWSER = Pattern.compile(REGEX_BROWSER);
     private static Matcher browserMatch;
 
     /**
@@ -118,9 +118,13 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static final String BOT = "((?i:bot)+?)";
     private static Pattern PATTERN_BOT = Pattern.compile(BOT);
 
-    // TODO: if match first letter of result is capital then is valid else not valid
-    // (new Locale(match.group(1)).getDisplayLanguage()
-    private static final String LANGUAGE = "\\s+(\\w{2})-\\w{2}[;\\)\\s+]+";
+    /**
+     * regex for finding language in User Agents
+     */
+    private static final String REGEX_LANGUAGE = "\\s+(\\w{2})-\\w{2}[;\\)\\s+]+";
+    private static Pattern PATTERN_LANGUAGE = Pattern.compile(REGEX_LANGUAGE);
+    
+    private static final String REGEX_APPLICATION = "\\w+\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
 
     /**
      * Windows version converter HashMap
@@ -235,6 +239,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setOS("ChromeOS");
             }
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -268,6 +273,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setOSVersion(match.group(2).replaceAll("_", "."));
             }
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -295,6 +301,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             }
             ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(2)));
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -339,6 +346,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 }
                 ua.setBrowserVersion(inMatch.group(2));
             }
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -363,6 +371,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setBrowserVersion(match.group(2));
             ua.setOS(match.group(3).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(4)));
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -391,6 +400,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOS(match.group(2).replaceAll("\\s?NT", ""));
             ua.setOSMaker("Microsoft Corporation");
             ua.setBrowser(match.group(1));
+            applyLanguage(userAgentString, ua);
 
             if (match.group(2).equalsIgnoreCase("mac os x"))
             {
@@ -432,6 +442,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(1));
             ua.setOS("iOS");
             ua.setOSMaker("Apple Inc.");
+            applyLanguage(userAgentString, ua);
             if (match.group(2) != null)
             {
                 ua.setOSVersion(match.group(2).replaceAll("_", ".").trim());
@@ -462,6 +473,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOSMaker("Research In Motion Limited");
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -488,6 +500,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOS("OS" + match.group(3).charAt(0));
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -514,6 +527,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOS("OS" + match.group(3).charAt(0));
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -541,6 +555,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOSVersion(match.group(4));
             ua.setBrowser(match.group(1).trim());
             ua.setBrowserVersion(match.group(2));
+            applyLanguage(userAgentString, ua);
             return ua;
         }
         else
@@ -552,7 +567,7 @@ public class RegexpUserAgentParser extends UserAgentParser
     /**
      * Method for filling UserAgent browser attributes based on PATTERN_BROWSER
      */
-    private static void applyBrowser(UserAgent ua)
+    private void applyBrowser(UserAgent ua)
     {
         ua.setBrowser(browserMatch.group(1));
         if (browserMatch.group(1).equalsIgnoreCase("version"))
@@ -560,6 +575,21 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setBrowser("Safari");
         }
         ua.setBrowserVersion(browserMatch.group(2));
+    }
+
+    /**
+     * Method for finding UserAgent language attributes
+     */
+    private void applyLanguage(String userAgentString, UserAgent ua)
+    {
+        Matcher match = PATTERN_LANGUAGE.matcher(userAgentString);
+        if (match.find())
+        {
+            if (Character.isUpperCase(match.group(1).charAt(0)))
+            {
+                ua.setLanguage(new Locale(match.group(1)).getDisplayLanguage());
+            }
+        }
     }
 
 }
