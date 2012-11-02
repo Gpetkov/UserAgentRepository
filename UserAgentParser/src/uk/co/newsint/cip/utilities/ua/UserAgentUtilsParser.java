@@ -67,10 +67,10 @@ public class UserAgentUtilsParser extends UserAgentParser
                 result.setOSMaker(osMaker);
             }
 
-            String application = Application.parseReferrerString(userAgentString).getName();
-            if (application != null)
+            Application application = Application.parseReferrerString(userAgentString);
+            if (application.getName() != null)
             {
-                result.setApplication(application);
+                result.setApplication(application.getName());
             }
 
         }

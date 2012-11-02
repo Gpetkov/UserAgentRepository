@@ -1,15 +1,14 @@
 package uk.co.newsint.cip.utilities.ua;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 
 public class CompositeUserAgentParserTest
 {
-
     /**
-     * Instance of type UserAgentParser which method "parse" we're using
+     * Instance of type {@link UserAgentParser} which method "parse" we're using
      * 
+     * @see UserAgentParser#parse(String)
      */
     protected UserAgentParser testUserAgentParser = new CompositeUserAgentParser();
 
@@ -23,15 +22,12 @@ public class CompositeUserAgentParserTest
      * Test method for BlackBerry
      * 
      */
-
     @Test
     public void testBlackBerryParse() throws Exception
     {
-
         // Assert for version 4.
         assertUserAgentEquals("BlackBerry8520/4.6.1.314 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/301", new UserAgent(
                 UserAgent.MOBILE, "BlackBerry", "8520", "8520", "BlackBerry", "4.6.1.314", "BlackBerry", UserAgent.UNKNOWN));
-
         // Assert for version 5.
         assertUserAgentEquals("BlackBerry9105/5.0.0.748 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/125", new UserAgent(
                 UserAgent.MOBILE, "BlackBerry", "9105", "9105", "BlackBerry", "5.0.0.748", "BlackBerry", UserAgent.UNKNOWN));
@@ -39,12 +35,10 @@ public class CompositeUserAgentParserTest
         assertUserAgentEquals("BlackBerry9300/6.6.0.124 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/310 The Times/1.0",
                 new UserAgent(UserAgent.MOBILE, "BlackBerry", "9300", "9300", "BlackBerry", "6.6.0.124", "BlackBerry",
                         UserAgent.UNKNOWN));
-
         // Assert for version 9.
         assertUserAgentEquals("BlackBerry9320/9.49.0.31 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/118 The Times/1.0",
                 new UserAgent(UserAgent.MOBILE, "BlackBerry", "9320", "9320", "BlackBerry", "9.49.0.31", "BlackBerry",
                         UserAgent.UNKNOWN));
-
     }
 
     /**
@@ -77,18 +71,15 @@ public class CompositeUserAgentParserTest
         assertUserAgentEquals("Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) "
                 + "Version/5.1 Mobile/9A334 Safari/7534.48.3", new UserAgent(UserAgent.MOBILE, "Apple", "iPod", "iPod", "iOS",
                 "5.0", "Safari", "5.1"));
-
     }
 
     /**
      * Test method for Android
      * 
      */
-
     @Test
     public void testAndroidParse() throws Exception
     {
-
     }
 
     /**
@@ -149,19 +140,16 @@ public class CompositeUserAgentParserTest
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.0 Chrome/18.0.966.0 "
                 + "Safari/535.122", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                 "Windows", "XP", "Chrome", "18.0.966.0"));
-
         // Assertion for Chrome browser. The user agent has Maxthon, Chrome and Safari browser signature
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.3.6.2000"
                 + "Chrome/18.0.966.0 Safari/535.12 AppEngine-Google; (+http://code.google.com/appengine; " + "appid: s~popi0391)",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "XP",
                         "Chrome", "18.0.966.0"));
-
         // Assertion for Chrome browser.The user agent has RockMelt, Chrome and Safari browser signature
         assertUserAgentEquals(
                 "Mozilla/5.0 (Windows NT 5.2; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) RockMelt/0.16.91.483 Chrome/16.0.912.77 Safari/535.7",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "XP",
                         "Chrome", "16.0.912.77"));
-
         // Assertion for Safari browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.0.2 "
                 + "Safari/533.18.5", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
@@ -170,7 +158,6 @@ public class CompositeUserAgentParserTest
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 "
                 + "Safari/534.57.2", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                 "Windows", "7", "Safari", "5.1.7"));
-
         // // Assertion for Opera browser for Macintosh
         assertUserAgentEquals("Opera/9.80 (Macintosh; Intel Mac OS X 10.8.1; U; nl) Presto/2.10.289 Version/12.02", new UserAgent(
                 UserAgent.COMPUTER, "Apple", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Mac OS X", "10.8.1", "Opera", "12.02"));
@@ -178,7 +165,6 @@ public class CompositeUserAgentParserTest
         assertUserAgentEquals("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) "
                 + "Version/5.1.7 Safari/534.57.2", new UserAgent(UserAgent.COMPUTER, "Apple", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                 "Mac OS X", "10.7.4", "Safari", "5.1.7"));
-
     }
 
     /**
@@ -189,12 +175,9 @@ public class CompositeUserAgentParserTest
     @Test
     public void testPCParseFixedIssue() throws Exception
     {
-        // // the expected os version is Windows 6.2 but user-agent-utils 1.6 library extracts Windows Vista
-
+        // the expected os version is Windows 6.2 but user-agent-utils 1.6 library extracts Windows Vista
         assertUserAgentEquals("Opera/9.80 (Windows NT 6.2; U; Edition IBIS; zh-cn) Presto/2.10.289 Version/12.00", new UserAgent(
-
-        UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "8", "Opera", "12.00"));
-
+                UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "8", "Opera", "12.00"));
     }
 
     /**
@@ -203,7 +186,6 @@ public class CompositeUserAgentParserTest
      * @see RegexpUserAgentParser#parse(String)
      * 
      */
-
     protected void assertUserAgentEquals(String userAgentString, UserAgent expectedUserAgent) throws Exception
     {
         UserAgent actualUserAgent = testUserAgentParser.parse(userAgentString);
@@ -214,11 +196,16 @@ public class CompositeUserAgentParserTest
         assertEquals(templateFail + "deviceModel property", expectedUserAgent.getDeviceModel(), actualUserAgent.getDeviceModel());
         assertEquals(templateFail + "deviceModelVersion property", expectedUserAgent.getDeviceModelVersion(),
                 actualUserAgent.getDeviceModelVersion());
-        assertEquals(templateFail + "OS property", expectedUserAgent.getOS(), actualUserAgent.getOS());
-        assertEquals(templateFail + "OSVersion property", expectedUserAgent.getOSVersion(), actualUserAgent.getOSVersion());
-        assertEquals(templateFail + "Browser property", expectedUserAgent.getBrowser(), actualUserAgent.getBrowser());
-        assertEquals(templateFail + "BrowserVersion property", expectedUserAgent.getBrowserVersion(),
+        assertEquals(templateFail + "os property", expectedUserAgent.getOS(), actualUserAgent.getOS());
+        assertEquals(templateFail + "osVersion property", expectedUserAgent.getOSVersion(), actualUserAgent.getOSVersion());
+        assertEquals(templateFail + "osMaker property", expectedUserAgent.getOSMaker(), actualUserAgent.getOSMaker());
+        assertEquals(templateFail + "browser property", expectedUserAgent.getBrowser(), actualUserAgent.getBrowser());
+        assertEquals(templateFail + "browserVersion property", expectedUserAgent.getBrowserVersion(),
                 actualUserAgent.getBrowserVersion());
+        assertEquals(templateFail + "application property", expectedUserAgent.getApplication(), actualUserAgent.getApplication());
+        assertEquals(templateFail + "applicationVersion  property", expectedUserAgent.getApplicationVersion(),
+                actualUserAgent.getApplicationVersion());
+        assertEquals(templateFail + "language  property", expectedUserAgent.getLanguage(), actualUserAgent.getLanguage());
     }
 
 }

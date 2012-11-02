@@ -3,9 +3,10 @@ package uk.co.newsint.cip.utilities.ua;
 import nl.bitwalker.useragentutils.DeviceType;
 
 /**
- * This class contain info about user agent request
+ * This class contain info about the user agent request
  * 
- * @author Zhivko Kalev
+ * @author Georgi Petkov
+ * @since 1.0
  */
 public class UserAgent
 {
@@ -309,5 +310,38 @@ public class UserAgent
     public void setLanguage(String language)
     {
         this.language = language;
+    }
+
+    /**
+     * Merge User Agents
+     * 
+     * @param UserAgent
+     */
+    public void merge(UserAgent currentUserAgent)
+    {
+        if (UserAgent.UNKNOWN.equals(this.getDeviceType()))
+            this.setDeviceType(currentUserAgent.getDeviceType());
+        if (UserAgent.UNKNOWN.equals(this.getDeviceMaker()))
+            this.setDeviceMaker(currentUserAgent.getDeviceMaker());
+        if (UserAgent.UNKNOWN.equals(this.getDeviceModel()))
+            this.setDeviceModel(currentUserAgent.getDeviceModel());
+        if (UserAgent.UNKNOWN.equals(this.getDeviceModelVersion()))
+            this.setDeviceModelVersion(currentUserAgent.getDeviceModelVersion());
+        if (UserAgent.UNKNOWN.equals(this.getOS()))
+            this.setOS(currentUserAgent.getOS());
+        if (UserAgent.UNKNOWN.equals(this.getOSVersion()))
+            this.setOSVersion(currentUserAgent.getOSVersion());
+        if (UserAgent.UNKNOWN.equals(this.getOSMaker()))
+            this.setOSMaker(currentUserAgent.getOSMaker());
+        if (UserAgent.UNKNOWN.equals(this.getBrowser()))
+            this.setBrowser(currentUserAgent.getBrowser());
+        if (UserAgent.UNKNOWN.equals(this.getBrowserVersion()))
+            this.setBrowserVersion(currentUserAgent.getBrowserVersion());
+        if (UserAgent.UNKNOWN.equals(this.getApplication()))
+            this.setApplication(currentUserAgent.getApplication());
+        if (UserAgent.UNKNOWN.equals(this.getApplicationVersion()))
+            this.setApplicationVersion(currentUserAgent.getLanguage());
+        if (UserAgent.UNKNOWN.equals(this.getApplication()))
+            this.setLanguage(currentUserAgent.getLanguage());
     }
 }

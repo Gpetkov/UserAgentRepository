@@ -10,7 +10,6 @@ public class FileUserAgentParserTest
     @Test
     public void testParseAll() throws Exception
     {
-
         FileUserAgentParser parser = new FileUserAgentParser()
         {
             private final int MAX_ERRORS = 222;
@@ -43,13 +42,11 @@ public class FileUserAgentParserTest
         };
 
         parser.parseAll(new File(getClass().getClassLoader().getResource("user_agents.txt").toURI()));
-
     }
 
     @Test
     public void testParseTopUserAgents() throws Exception
     {
-
         FileUserAgentParser parser = new FileUserAgentParser()
         {
             private int currentError = 0;
@@ -66,8 +63,8 @@ public class FileUserAgentParserTest
                     currentStringOccurred = Integer.valueOf(userAgentString.substring(0, firstSpace));
                     userAgentString = userAgentString.substring(firstSpace + 1, line.length());
                 }
-                return userAgentString;
 
+                return userAgentString;
             };
 
             @Override
@@ -94,12 +91,9 @@ public class FileUserAgentParserTest
                             toParse, parsed, errors);
                     System.out.println("-----------------------------------");
                 }
-
             }
         };
 
         parser.parseAll(new File(getClass().getClassLoader().getResource("top_1000_user-agents.txt").toURI()));
-
     }
-
 }
