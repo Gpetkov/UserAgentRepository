@@ -73,6 +73,7 @@ public class UserAgent
         this.browserVersion = browserVersion;
         this.application = application;
         this.applicationVersion = applicationVersion;
+        this.language = language;
     }
 
     @Override
@@ -340,8 +341,8 @@ public class UserAgent
         if (UserAgent.UNKNOWN.equals(this.getApplication()))
             this.setApplication(currentUserAgent.getApplication());
         if (UserAgent.UNKNOWN.equals(this.getApplicationVersion()))
-            this.setApplicationVersion(currentUserAgent.getLanguage());
-        if (UserAgent.UNKNOWN.equals(this.getApplication()))
+            this.setApplicationVersion(currentUserAgent.getApplicationVersion());
+        if (UserAgent.UNKNOWN.equals(this.getLanguage()))
             this.setLanguage(currentUserAgent.getLanguage());
     }
 }
