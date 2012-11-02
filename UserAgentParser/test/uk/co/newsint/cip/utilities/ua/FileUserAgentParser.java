@@ -74,7 +74,6 @@ public class FileUserAgentParser
                     // do nothing
                 }
         }
-
     }
 
     /**

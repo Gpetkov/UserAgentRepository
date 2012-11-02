@@ -14,7 +14,6 @@ import java.util.regex.Pattern;
 
 public class RegexpUserAgentParser extends UserAgentParser
 {
-
     /**
      * regex for finding BlackBerry OS version 4 and 5 User Agents example: BlackBerry8520/4.6.1.314 Profile/MIDP-2.0
      * Configuration/CLDC-1.1 VendorID/301
@@ -229,7 +228,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         Matcher match = PATTERN_PC_LINUX.matcher(userAgentString);
         if (match.find() && !userAgentString.contains("Android") && !userAgentString.contains("Opera"))
         {
-            ua.setDeviceType(UserAgent.COMPUTER);                     
+            ua.setDeviceType(UserAgent.COMPUTER);
             ua.setOS(match.group(1));
             if (match.group(1).equalsIgnoreCase("cros"))
             {
@@ -260,7 +259,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceMaker("Apple");
-            ua.setOSMaker("Apple Inc.");            
+            ua.setOSMaker("Apple Inc.");
             ua.setOS(match.group(1));
             if (match.group(2) != null)
             {
@@ -288,7 +287,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         if (match.find() && !userAgentString.contains("Opera"))
         {
             ua.setDeviceType(UserAgent.COMPUTER);
-            ua.setOSMaker("Microsoft Corporation");            
+            ua.setOSMaker("Microsoft Corporation");
             ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(2)));
             applyBrowser(userAgentString, ua);
@@ -570,13 +569,14 @@ public class RegexpUserAgentParser extends UserAgentParser
     private void applyBrowser(String userAgentString, UserAgent ua)
     {
         Matcher match = PATTERN_BROWSER.matcher(userAgentString);
-        if (match.find()){
-        ua.setBrowser(match.group(1));
-        if (match.group(1).equalsIgnoreCase("version"))
+        if (match.find())
         {
-            ua.setBrowser("Safari");
-        }
-        ua.setBrowserVersion(match.group(2));
+            ua.setBrowser(match.group(1));
+            if (match.group(1).equalsIgnoreCase("version"))
+            {
+                ua.setBrowser("Safari");
+            }
+            ua.setBrowserVersion(match.group(2));
         }
     }
 

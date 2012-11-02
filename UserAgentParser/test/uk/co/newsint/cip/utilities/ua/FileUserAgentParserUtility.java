@@ -56,7 +56,9 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
     {
         // Instance of this class
         FileUserAgentParserUtility userAgentUtility = new FileUserAgentParserUtility();
+        // Create a file
         userAgentUtility.createFile();
+        // Parsing the user-agent strings from "top_1000_user-agents.txt"
         userAgentUtility.parseAll(new File(FileUserAgentParserUtility.class.getClassLoader()
                 .getResource("top_1000_user-agents.txt").toURI()));
     }
@@ -70,7 +72,6 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         try
         {
             FileWriter writer = new FileWriter("top_1000_user-agents_parsed.csv");
-
             // Adding header fields
             writer.append("PAGE HITS");
             writer.append(",");
@@ -124,15 +125,12 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         try
         {
             FileWriter writer = new FileWriter("top_1000_user-agents_parsed.csv", true);
-
             // Adding page hits for the current string
             writer.append(String.valueOf(this.pageViewHit));
             writer.append(',');
-
             // Adding current string for parse
             writer.append(this.currentUserAgentString);
             writer.append(',');
-
             // Adding result after parse (result agent's properties)
             writer.append(currentUserAgent.getDeviceType());
             writer.append(',');
@@ -157,7 +155,6 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             writer.append(currentUserAgent.getApplicationVersion());
             writer.append(',');
             writer.append(currentUserAgent.getLanguage());
-
             // Check the properties for Unknown values
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceType()))
             {
@@ -203,12 +200,10 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             {
                 counterUnknown++;
             }
-
             // Adding in file the count of properties which are Unknown
             writer.append(',');
             writer.append(String.valueOf(counterUnknown));
             writer.append("\n");
-
             // flush and close the writer
             writer.flush();
             writer.close();
