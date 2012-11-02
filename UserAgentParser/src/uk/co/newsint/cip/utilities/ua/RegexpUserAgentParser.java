@@ -1,8 +1,6 @@
 package uk.co.newsint.cip.utilities.ua;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -136,11 +134,6 @@ public class RegexpUserAgentParser extends UserAgentParser
     private HashMap<String, String> winVer;
 
     /**
-     * List for UserAgent parsers
-     */
-    private List<UserAgent> uaList;
-
-    /**
      * Constructor for the class
      */
     public RegexpUserAgentParser()
@@ -171,29 +164,18 @@ public class RegexpUserAgentParser extends UserAgentParser
     @Override
     public UserAgent parse(String userAgentString)
     {
-        UserAgent ua = new UserAgent();
-        uaList = new ArrayList<UserAgent>();
-        uaList.add(parseBlackBerry45(userAgentString, ua));
-        uaList.add(parseBlackBerry67(userAgentString, ua));
-        uaList.add(parseBlackBerryPlayBook(userAgentString, ua));
-        uaList.add(parseWinPhone(userAgentString, ua));
-        uaList.add(parseiOS(userAgentString, ua));
-        uaList.add(parsePCOpera(userAgentString, ua));
-        uaList.add(parsePCWinIE(userAgentString, ua));
-        uaList.add(parseAndroid(userAgentString, ua));
-        uaList.add(parsePCWin(userAgentString, ua));
-        uaList.add(parsePCMac(userAgentString, ua));
-        uaList.add(parsePCLinux(userAgentString, ua));
-        uaList.add(parseBot(userAgentString, ua));
-
-        for (int i = 0; i < uaList.size(); i++)
+        UserAgent ua;
+        // @formatter:off
+        if ((ua = parseBlackBerry45(userAgentString)) != null || (ua = parseBlackBerry67(userAgentString)) != null
+                || (ua = parseBlackBerryPlayBook(userAgentString)) != null || (ua = parseWinPhone(userAgentString)) != null
+                || (ua = parseiOS(userAgentString)) != null || (ua = parsePCOpera(userAgentString)) != null
+                || (ua = parsePCWinIE(userAgentString)) != null || (ua = parseAndroid(userAgentString)) != null
+                || (ua = parsePCWin(userAgentString)) != null || (ua = parsePCLinux(userAgentString)) != null
+                || (ua = parseBot(userAgentString)) != null || (ua = parsePCMac(userAgentString)) != null)
         {
-            ua = uaList.get(i);
-            if (!ua.equals(new UserAgent()))
-            {
-                return ua;
-            }
+            return ua;
         }
+        // @formatter:on
         return new UserAgent();
     }
 
@@ -202,20 +184,18 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parseBot(String userAgentString, UserAgent ua)
+    private UserAgent parseBot(String userAgentString)
     {
         Matcher match = PATTERN_BOT.matcher(userAgentString);
         if (match.find())
         {
-            ua.setBrowser("Safari");
+            UserAgent ua = new UserAgent();
+            ua.setBrowser("BOT");
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setOS("BOT");
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -223,11 +203,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parsePCLinux(String userAgentString, UserAgent ua)
+    private UserAgent parsePCLinux(String userAgentString)
     {
         Matcher match = PATTERN_PC_LINUX.matcher(userAgentString);
         if (match.find() && !userAgentString.contains("Android") && !userAgentString.contains("Opera"))
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setOS(match.group(1));
             if (match.group(1).equalsIgnoreCase("cros"))
@@ -239,10 +220,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -250,13 +228,14 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parsePCMac(String userAgentString, UserAgent ua)
+    private UserAgent parsePCMac(String userAgentString)
     {
         Matcher match = PATTERN_PC_MAC.matcher(userAgentString);
         if (match.find() && !userAgentString.contains("Opera") && !userAgentString.contains("iPhone")
                 && !userAgentString.contains("iPod") && !userAgentString.contains("iPad")
                 && !userAgentString.contains("iPod touch"))
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceMaker("Apple");
             ua.setOSMaker("Apple Inc.");
@@ -270,10 +249,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -281,11 +257,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parsePCWin(String userAgentString, UserAgent ua)
+    private UserAgent parsePCWin(String userAgentString)
     {
         Matcher match = PATTERN_PC_WIN.matcher(userAgentString);
         if (match.find() && !userAgentString.contains("Opera"))
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setOSMaker("Microsoft Corporation");
             ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
@@ -295,10 +272,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -306,11 +280,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parseAndroid(String userAgentString, UserAgent ua)
+    private UserAgent parseAndroid(String userAgentString)
     {
         Matcher match = PATTERN_ANDROID.matcher(userAgentString);
         if (match.find() && !userAgentString.contains("PlayBook"))
         {
+            UserAgent ua = new UserAgent();
             Matcher inMatch = PATTERN_ANDROID_OS.matcher(match.group(1));
             if (inMatch.find())
             {
@@ -341,10 +316,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -352,11 +324,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parsePCWinIE(String userAgentString, UserAgent ua)
+    private UserAgent parsePCWinIE(String userAgentString)
     {
         Matcher match = PATTERN_PC_WIN_IE.matcher(userAgentString);
         if (match.find())
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setOSMaker("Microsoft Corporation");
             ua.setBrowser(match.group(1));
@@ -367,10 +340,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -378,11 +348,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parsePCOpera(String userAgentString, UserAgent ua)
+    private UserAgent parsePCOpera(String userAgentString)
     {
         Matcher match = PATTERN_PC_OPERA.matcher(userAgentString);
         if (match.find())
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
 
             if (match.group(3) != null)
@@ -410,10 +381,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -421,11 +389,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parseiOS(String userAgentString, UserAgent ua)
+    private UserAgent parseiOS(String userAgentString)
     {
         Matcher match = PATTERN_iOS.matcher(userAgentString);
         if (match.find())
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.MOBILE);
             if (match.group(1).equalsIgnoreCase("ipad"))
             {
@@ -444,10 +413,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -455,11 +421,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parseBlackBerryPlayBook(String userAgentString, UserAgent ua)
+    private UserAgent parseBlackBerryPlayBook(String userAgentString)
     {
         Matcher match = PATTERN_BB_PLAYBOOK.matcher(userAgentString);
         if (match.find())
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.TABLET);
             ua.setDeviceMaker("BlackBerry");
             ua.setDeviceModel(match.group(1));
@@ -472,10 +439,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -483,11 +447,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parseBlackBerry67(String userAgentString, UserAgent ua)
+    private UserAgent parseBlackBerry67(String userAgentString)
     {
         Matcher match = PATTERN_BB_6_7.matcher(userAgentString);
         if (match.find())
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.MOBILE);
             ua.setDeviceMaker(match.group(1));
             ua.setDeviceModel(match.group(2));
@@ -500,10 +465,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -511,11 +473,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parseBlackBerry45(String userAgentString, UserAgent ua)
+    private UserAgent parseBlackBerry45(String userAgentString)
     {
         Matcher match = PATTERN_BB_4_5.matcher(userAgentString);
         if (match.find())
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.MOBILE);
             ua.setDeviceMaker(match.group(1));
             ua.setDeviceModel(match.group(2));
@@ -528,10 +491,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**
@@ -539,11 +499,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      * 
      * @return {@link UserAgent}
      */
-    private UserAgent parseWinPhone(String userAgentString, UserAgent ua)
+    private UserAgent parseWinPhone(String userAgentString)
     {
         Matcher match = PATTERN_WIN_PHONE.matcher(userAgentString);
         if (match.find())
         {
+            UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.MOBILE);
             ua.setDeviceMaker(match.group(5));
             ua.setDeviceModel(match.group(6));
@@ -557,10 +518,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             applyAPP(userAgentString, ua);
             return ua;
         }
-        else
-        {
-            return new UserAgent();
-        }
+        return null;
     }
 
     /**

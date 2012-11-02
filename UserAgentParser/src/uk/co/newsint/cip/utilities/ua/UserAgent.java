@@ -46,19 +46,6 @@ public class UserAgent
     }
 
     public UserAgent(String deviceType, String deviceMaker, String deviceModel, String deviceModelVersion, String os,
-            String osVersion, String browser, String browserVersion)
-    {
-        this.deviceType = deviceType;
-        this.deviceMaker = deviceMaker;
-        this.deviceModel = deviceModel;
-        this.deviceModelVersion = deviceModelVersion;
-        this.os = os;
-        this.osVersion = osVersion;
-        this.browser = browser;
-        this.browserVersion = browserVersion;
-    }
-
-    public UserAgent(String deviceType, String deviceMaker, String deviceModel, String deviceModelVersion, String os,
             String osVersion, String osMaker, String browser, String browserVersion, String application, String applicationVersion,
             String language)
     {

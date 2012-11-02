@@ -277,12 +277,13 @@ public class RegexpUserAgentParserTest
                         UserAgent.UNKNOWN));
         // Assertion for FireFox browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; Linux x86_64; rv:10.0.3) Gecko/20120314 Firefox/10.0.3", new UserAgent(
-                UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN, "Firefox",
-                "10.0.3"));
+                UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux", UserAgent.UNKNOWN,
+                UserAgent.UNKNOWN, "Firefox", "10.0.3", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Iceweasel browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.0.7) Gecko/2009032803 Iceweasel/3.0.6 (Debian-3.0.6-1)",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
-                        UserAgent.UNKNOWN, "Iceweasel", "3.0.6"));
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Iceweasel", "3.0.6", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN));
         // Assertion for SeaMonkey browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.22) Gecko/20090610 SeaMonkey/1.1.17",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
@@ -291,7 +292,8 @@ public class RegexpUserAgentParserTest
         // Assertion for QupZilla browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) QupZilla/1.3.1 Safari/534.34",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Linux",
-                        UserAgent.UNKNOWN, "QupZilla", "1.3.1"));
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, "QupZilla", "1.3.1", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN));
         // Assertion for Firefox browser for SunOS
         assertUserAgentEquals("Mozilla/5.0 (X11; U; SunOS i86pc; en-US; rv:1.9.0.11) Gecko/2009060311 Firefox/3.0.6",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "SunOS",
@@ -300,12 +302,14 @@ public class RegexpUserAgentParserTest
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; FreeBSD amd64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "FreeBSD",
-                        UserAgent.UNKNOWN, "Chrome", "21.0.1180.89"));
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Chrome", "21.0.1180.89", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN));
         // Assertion for Chrome browser for ChromeOS
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; CrOS i686 2465.142.0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
                 new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "ChromeOS",
-                        UserAgent.UNKNOWN, "Chrome", "21.0.1180.89"));
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Chrome", "21.0.1180.89", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN));
     }
 
     /**
