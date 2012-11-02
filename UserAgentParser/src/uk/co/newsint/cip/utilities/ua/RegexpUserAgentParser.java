@@ -128,7 +128,7 @@ public class RegexpUserAgentParser extends UserAgentParser
     /**
      * regex for finding application and application version in User Agents
      */
-    private static final String REGEX_APPLICATION = "\\s?(([\\w+\\s+]+)?((?i:times)+)([\\w+\\s+]+)?)+\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
+    private static final String REGEX_APPLICATION = "\\s+(([\\w+\\s+]+)?((?i:times)+)([\\w+\\s+]+)?)+\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
     private static Pattern PATTERN_APP = Pattern.compile(REGEX_APPLICATION);
 
     /**
@@ -367,8 +367,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setBrowserVersion(match.group(2));
             ua.setOS(match.group(3).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(4)));
-            applyLanguage(userAgentString, ua);
-            applyAPP(userAgentString, ua);
+//            applyLanguage(userAgentString, ua);
+//            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -572,14 +572,15 @@ public class RegexpUserAgentParser extends UserAgentParser
      */
     private void applyBrowser(String userAgentString, UserAgent ua)
     {
-        browserMatch = PATTERN_BROWSER.matcher(userAgentString);
-        if (browserMatch.find())
-        ua.setBrowser(browserMatch.group(1));
-        if (browserMatch.group(1).equalsIgnoreCase("version"))
+        Matcher match = PATTERN_BROWSER.matcher(userAgentString);
+        if (match.find()){
+        ua.setBrowser(match.group(1));
+        if (match.group(1).equalsIgnoreCase("version"))
         {
             ua.setBrowser("Safari");
         }
-        ua.setBrowserVersion(browserMatch.group(2));
+        ua.setBrowserVersion(match.group(2));
+        }
     }
 
     /**
