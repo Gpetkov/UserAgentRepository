@@ -232,18 +232,13 @@ public class RegexpUserAgentParser extends UserAgentParser
         Matcher match = PATTERN_PC_LINUX.matcher(userAgentString);
         if (match.find() && !userAgentString.contains("Android") && !userAgentString.contains("Opera"))
         {
-            ua.setDeviceType(UserAgent.COMPUTER);
-            ua.setDeviceMaker(UserAgent.UNKNOWN);
-            browserMatch = PATTERN_BROWSER.matcher(userAgentString);
-            if (browserMatch.find())
-            {
-                applyBrowser(ua);
-            }
+            ua.setDeviceType(UserAgent.COMPUTER);                     
             ua.setOS(match.group(1));
             if (match.group(1).equalsIgnoreCase("cros"))
             {
                 ua.setOS("ChromeOS");
             }
+            applyBrowser(userAgentString, ua);
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
             return ua;
@@ -268,17 +263,13 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceMaker("Apple");
-            ua.setOSMaker("Apple Inc.");
-            browserMatch = PATTERN_BROWSER.matcher(userAgentString);
-            if (browserMatch.find())
-            {
-                applyBrowser(ua);
-            }
+            ua.setOSMaker("Apple Inc.");            
             ua.setOS(match.group(1));
             if (match.group(2) != null)
             {
                 ua.setOSVersion(match.group(2).replaceAll("_", "."));
             }
+            applyBrowser(userAgentString, ua);
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
             return ua;
@@ -300,14 +291,10 @@ public class RegexpUserAgentParser extends UserAgentParser
         if (match.find() && !userAgentString.contains("Opera"))
         {
             ua.setDeviceType(UserAgent.COMPUTER);
-            ua.setOSMaker("Microsoft Corporation");
-            browserMatch = PATTERN_BROWSER.matcher(userAgentString);
-            if (browserMatch.find())
-            {
-                applyBrowser(ua);
-            }
+            ua.setOSMaker("Microsoft Corporation");            
             ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(2)));
+            applyBrowser(userAgentString, ua);
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
             return ua;
@@ -583,8 +570,10 @@ public class RegexpUserAgentParser extends UserAgentParser
     /**
      * Method for filling UserAgent browser attributes based on PATTERN_BROWSER
      */
-    private void applyBrowser(UserAgent ua)
+    private void applyBrowser(String userAgentString, UserAgent ua)
     {
+        browserMatch = PATTERN_BROWSER.matcher(userAgentString);
+        if (browserMatch.find())
         ua.setBrowser(browserMatch.group(1));
         if (browserMatch.group(1).equalsIgnoreCase("version"))
         {
