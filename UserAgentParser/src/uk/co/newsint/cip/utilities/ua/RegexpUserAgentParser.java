@@ -592,7 +592,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         Matcher match = PATTERN_LANGUAGE.matcher(userAgentString);
         if (match.find())
         {
-            if (Character.isUpperCase(match.group(1).charAt(0)))
+            if (Character.isUpperCase(new Locale(match.group(1)).getDisplayLanguage().charAt(0)))
             {
                 ua.setLanguage(new Locale(match.group(1)).getDisplayLanguage());
             }
