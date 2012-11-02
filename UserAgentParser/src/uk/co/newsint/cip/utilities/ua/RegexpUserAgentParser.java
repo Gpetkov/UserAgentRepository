@@ -166,12 +166,18 @@ public class RegexpUserAgentParser extends UserAgentParser
     {
         UserAgent ua;
         // @formatter:off
-        if ((ua = parseBlackBerry45(userAgentString)) != null || (ua = parseBlackBerry67(userAgentString)) != null
-                || (ua = parseBlackBerryPlayBook(userAgentString)) != null || (ua = parseWinPhone(userAgentString)) != null
-                || (ua = parseiOS(userAgentString)) != null || (ua = parsePCOpera(userAgentString)) != null
-                || (ua = parsePCWinIE(userAgentString)) != null || (ua = parseAndroid(userAgentString)) != null
-                || (ua = parsePCWin(userAgentString)) != null || (ua = parsePCLinux(userAgentString)) != null
-                || (ua = parseBot(userAgentString)) != null || (ua = parsePCMac(userAgentString)) != null)
+        if ((ua = parseBlackBerry45(userAgentString)) != null 
+                || (ua = parseBlackBerry67(userAgentString)) != null
+                || (ua = parseBlackBerryPlayBook(userAgentString)) != null 
+                || (ua = parseWinPhone(userAgentString)) != null
+                || (ua = parseiOS(userAgentString)) != null 
+                || (ua = parsePCOpera(userAgentString)) != null
+                || (ua = parsePCWinIE(userAgentString)) != null 
+                || (ua = parseAndroid(userAgentString)) != null
+                || (ua = parsePCWin(userAgentString)) != null 
+                || (ua = parsePCLinux(userAgentString)) != null
+                || (ua = parseBot(userAgentString)) != null 
+                || (ua = parsePCMac(userAgentString)) != null)
         {
             return ua;
         }
