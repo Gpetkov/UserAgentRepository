@@ -367,8 +367,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setBrowserVersion(match.group(2));
             ua.setOS(match.group(3).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(4)));
-//            applyLanguage(userAgentString, ua);
-//            applyAPP(userAgentString, ua);
+            applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
