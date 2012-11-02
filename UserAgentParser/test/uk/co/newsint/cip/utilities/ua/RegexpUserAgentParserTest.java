@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 /**
- * The UserAgentParserTest class represents a test for {@link RegexpUserAgentParserTest} parse method
+ * The {@link RegexpUserAgentParserTest} class represents a test for {@link RegexpUserAgentParser} parse method
  * 
  * @author Georgi Petkov
  * @since 1.0

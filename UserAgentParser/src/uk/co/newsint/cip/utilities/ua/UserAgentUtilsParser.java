@@ -12,10 +12,9 @@ import nl.bitwalker.useragentutils.Version;
 /**
  * This is User Agent parser implementation that utilizes User Agent Java library hosted at http://user-agent-utils.java.net/.
  * 
- * @author Zhivko Kalev
+ * @author Georgi Petkov
  * @since 1.0
  */
-
 public class UserAgentUtilsParser extends UserAgentParser
 {
     /**
@@ -35,7 +34,6 @@ public class UserAgentUtilsParser extends UserAgentParser
     {
         // ask the library to parse the UA
         nl.bitwalker.useragentutils.UserAgent ua = nl.bitwalker.useragentutils.UserAgent.parseUserAgentString(userAgentString);
-
         // construct UserAgent result
         UserAgent result = new UserAgent();
         OperatingSystem os = ua.getOperatingSystem();
@@ -45,9 +43,8 @@ public class UserAgentUtilsParser extends UserAgentParser
             if (deviceType != null)
             {
                 result.setDeviceType(deviceType.getName());
-
             }
-
+            // array for the operation system(splitedOs[0] == osName and splitedOs[1] == osVersion)
             String[] splitedOs = splitOperationSystem(os.getName());
             if (splitedOs != null)
             {
@@ -60,35 +57,27 @@ public class UserAgentUtilsParser extends UserAgentParser
                     result.setOSVersion(splitedOs[1]);
                 }
             }
-
             String osMaker = os.getManufacturer().getName();
             if (osMaker != null)
             {
                 result.setOSMaker(osMaker);
             }
-
-            Application application = Application.parseReferrerString(userAgentString);
-            if (application.getName() != null)
-            {
-                result.setApplication(application.getName());
-            }
-
         }
-
         Browser browser = ua.getBrowser();
         if (browser != null)
         {
-
             result.setBrowser(browser.getGroup().getName());
         }
-
         Version version = ua.getBrowserVersion();
         if (version != null)
         {
             result.setBrowserVersion(version.getVersion());
         }
-        // Application application = ua.get
-
+        Application application = Application.parseReferrerString(userAgentString);
+        if (application.getName() != null)
+        {
+            result.setApplication(application.getName());
+        }
         return result;
     }
 
@@ -118,7 +107,6 @@ public class UserAgentUtilsParser extends UserAgentParser
             {
                 splitedOS[1] = osVersion;
             }
-
         }
         else
         {
@@ -143,7 +131,6 @@ public class UserAgentUtilsParser extends UserAgentParser
                 splitedOS[1] = null;
             }
         }
-
         return splitedOS;
     }
 

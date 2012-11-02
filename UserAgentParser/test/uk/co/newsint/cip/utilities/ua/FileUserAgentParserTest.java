@@ -4,9 +4,22 @@ import java.io.File;
 
 import org.junit.Test;
 
+/**
+ * The {@link FileUserAgentParserTest} class represents a test for {@link FileUserAgentParser} parse method It creates statistics
+ * i.e. which strings can be parsed and which one can't be.
+ * 
+ * @author Georgi Petkov
+ * @since 1.0
+ * @see CompositeUserAgentParser#parse(String)
+ */
 public class FileUserAgentParserTest
 {
-
+    /**
+     * Test for the "user_agents.txt" file
+     * 
+     * @see FileUserAgentParser#parseAll(File)
+     * @throws Exception
+     */
     @Test
     public void testParseAll() throws Exception
     {
@@ -44,6 +57,12 @@ public class FileUserAgentParserTest
         parser.parseAll(new File(getClass().getClassLoader().getResource("user_agents.txt").toURI()));
     }
 
+    /**
+     * Test for the "top_1000_user-agents.txt" file
+     * 
+     * @see FileUserAgentParser#parseAll(File)
+     * @throws Exception
+     */
     @Test
     public void testParseTopUserAgents() throws Exception
     {

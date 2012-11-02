@@ -3,6 +3,13 @@ package uk.co.newsint.cip.utilities.ua;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
+/**
+ * The {@link CompositeUserAgentParserTest} class represents a test for {@link CompositeUserAgentParser} parse method
+ * 
+ * @author Georgi Petkov
+ * @since 1.0
+ * @see CompositeUserAgentParser#parse(String)
+ */
 public class CompositeUserAgentParserTest
 {
     /**
@@ -13,14 +20,9 @@ public class CompositeUserAgentParserTest
     protected UserAgentParser testUserAgentParser = new CompositeUserAgentParser();
 
     /**
-     * Methods which test the different cases for user agent string
-     * 
-     * @see UserAgentParser#parse(String)
-     * 
-     */
-    /**
      * Test method for BlackBerry
      * 
+     * @throws Exception
      */
     @Test
     public void testBlackBerryParse() throws Exception
@@ -46,8 +48,8 @@ public class CompositeUserAgentParserTest
     /**
      * Test method for Apple
      * 
+     * @throws Exception
      */
-
     @Test
     public void testAppleParse() throws Exception
     {
@@ -81,6 +83,7 @@ public class CompositeUserAgentParserTest
     /**
      * Test method for Android
      * 
+     * @throws Exception
      */
     @Test
     public void testAndroidParse() throws Exception
@@ -130,6 +133,7 @@ public class CompositeUserAgentParserTest
     /**
      * Test method for WindowsPhone
      * 
+     * @throws Exception
      */
     @Test
     public void testWindowsPhoneParse() throws Exception
@@ -149,6 +153,7 @@ public class CompositeUserAgentParserTest
     /**
      * Test method for PC
      * 
+     * @throws Exception
      */
     @Test
     public void testPCParse() throws Exception
@@ -261,7 +266,7 @@ public class CompositeUserAgentParserTest
      * Method which makes asserts for for every of the UserAgent's properties (equal for every of the properties)
      * 
      * @see RegexpUserAgentParser#parse(String)
-     * 
+     * @throws Exception
      */
     protected void assertUserAgentEquals(String userAgentString, UserAgent expectedUserAgent) throws Exception
     {

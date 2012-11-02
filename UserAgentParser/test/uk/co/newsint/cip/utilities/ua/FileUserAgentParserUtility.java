@@ -4,6 +4,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The {@link FileUserAgentParserUtility} class crates a CSV file with results of parsing "top_1000_user_agents.txt"
+ * 
+ * @author Georgi Petkov
+ * @since 1.0
+ */
 public class FileUserAgentParserUtility extends FileUserAgentParser
 {
     // page hits for the current user-agent string in "top_1000_user_agents.txt"
@@ -51,6 +57,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
     /**
      * Main method which read the "top_1000_user-agents.txt" file and parse every user-agent string in it
      * 
+     * @throws Exception
      */
     public static void main(String[] args) throws Exception
     {
@@ -213,5 +220,4 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             e.printStackTrace();
         }
     }
-
 }
