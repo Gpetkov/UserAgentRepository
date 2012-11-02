@@ -113,7 +113,8 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static Matcher browserMatch;
 
     /**
-     * regex for finding bot User Agents
+     * regex for finding bot User Agents example: Mozilla/5.0 (compatible; archive.is bot; +http://archive.is/01EP)
+     * AppleWebKit/535.19 Safari/535.19
      */
     private static final String BOT = "((?i:bot)+?)";
     private static Pattern PATTERN_BOT = Pattern.compile(BOT);
@@ -123,8 +124,12 @@ public class RegexpUserAgentParser extends UserAgentParser
      */
     private static final String REGEX_LANGUAGE = "\\s+(\\w{2})-\\w{2}[;\\)\\s+]+";
     private static Pattern PATTERN_LANGUAGE = Pattern.compile(REGEX_LANGUAGE);
-    
-    private static final String REGEX_APPLICATION = "\\w+\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
+
+    /**
+     * regex for finding application and application version in User Agents
+     */
+    private static final String REGEX_APPLICATION = "\\s?(([\\w+\\s+]+)?((?i:times)+)([\\w+\\s+]+)?)+\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
+    private static Pattern PATTERN_APP = Pattern.compile(REGEX_APPLICATION);
 
     /**
      * Windows version converter HashMap
@@ -240,6 +245,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 ua.setOS("ChromeOS");
             }
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -274,6 +280,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 ua.setOSVersion(match.group(2).replaceAll("_", "."));
             }
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -302,6 +309,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(2)));
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -347,6 +355,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 ua.setBrowserVersion(inMatch.group(2));
             }
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -372,6 +381,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOS(match.group(3).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(4)));
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -400,7 +410,6 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOS(match.group(2).replaceAll("\\s?NT", ""));
             ua.setOSMaker("Microsoft Corporation");
             ua.setBrowser(match.group(1));
-            applyLanguage(userAgentString, ua);
 
             if (match.group(2).equalsIgnoreCase("mac os x"))
             {
@@ -414,6 +423,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setBrowserVersion(browserMatch.group(2));
             }
+            applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -442,11 +453,12 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(1));
             ua.setOS("iOS");
             ua.setOSMaker("Apple Inc.");
-            applyLanguage(userAgentString, ua);
             if (match.group(2) != null)
             {
                 ua.setOSVersion(match.group(2).replaceAll("_", ".").trim());
             }
+            applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -474,6 +486,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -501,6 +514,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -528,6 +542,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -556,6 +571,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setBrowser(match.group(1).trim());
             ua.setBrowserVersion(match.group(2));
             applyLanguage(userAgentString, ua);
+            applyAPP(userAgentString, ua);
             return ua;
         }
         else
@@ -578,7 +594,8 @@ public class RegexpUserAgentParser extends UserAgentParser
     }
 
     /**
-     * Method for finding UserAgent language attributes
+     * Method for finding UserAgent language attributes. Catches only pair language-country e.g. en-US and sets {@link UserAgent}
+     * language attribute to "English"
      */
     private void applyLanguage(String userAgentString, UserAgent ua)
     {
@@ -589,6 +606,19 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setLanguage(new Locale(match.group(1)).getDisplayLanguage());
             }
+        }
+    }
+
+    /**
+     * Method for filling UserAgent application attributes
+     */
+    private void applyAPP(String userAgentString, UserAgent ua)
+    {
+        Matcher match = PATTERN_APP.matcher(userAgentString);
+        if (match.find())
+        {
+            ua.setApplication(match.group(1));
+            ua.setApplicationVersion(match.group(5));
         }
     }
 
