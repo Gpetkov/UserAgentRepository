@@ -24,7 +24,7 @@ public class CompositeUserAgentParser extends UserAgentParser
 
         // 3. Merge the user-agents (merge --> regexpUserAgent with utilitiesUserAgent)
         regexpUserAgent.merge(utilitiesUserAgent);
-        
+
         return regexpUserAgent;
     }
 

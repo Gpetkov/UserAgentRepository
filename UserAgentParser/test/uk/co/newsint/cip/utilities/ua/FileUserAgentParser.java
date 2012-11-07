@@ -32,10 +32,11 @@ public class FileUserAgentParser
         UserAgent userAgent = null;
         CompositeUserAgentParser compositeUserAgent = new CompositeUserAgentParser();
         BufferedReader reader = null;
+        String currentLine = null;
+
         try
         {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
-            String currentLine;
             while ((currentLine = reader.readLine()) != null)
             {
                 try
@@ -61,6 +62,7 @@ public class FileUserAgentParser
         catch (NullPointerException e)
         {
             System.out.println("File is NULL!!!");
+            System.out.printf("------------------------- %s\n", currentLine);
         }
         finally
         {

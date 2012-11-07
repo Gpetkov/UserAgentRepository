@@ -46,11 +46,7 @@ public class UserAgentUtilsParser extends UserAgentParser
             {
                 if (splitedOs[0] != null)
                 {
-                    if ((splitedOs[1] != null) && (!splitedOs[1].toString().equals("Mobile 7")))
-                    {
-                        result.setOS(splitedOs[0]);
-                    }
-
+                    result.setOS(splitedOs[0]);
                 }
                 if (splitedOs[1] != null)
                 {
@@ -63,7 +59,7 @@ public class UserAgentUtilsParser extends UserAgentParser
                 result.setOSMaker(osMaker);
             }
             DeviceType deviceType = null;
-            //The library can't match iPad like a Tablet
+            // The library can't match iPad like a Tablet
             if ((splitedOs[0] != null) && (!splitedOs[0].equals("iOS")))
             {
                 deviceType = os.getDeviceType();
@@ -103,25 +99,25 @@ public class UserAgentUtilsParser extends UserAgentParser
         String[] splitedOS = new String[2];
         String osName = null;
         String osVersion = null;
-        
-        //Initialize current pattern
+
+        // Initialize current pattern
         Pattern pattern = Pattern.compile(REGEX_WIN_GOOGLE_MAC);
         Matcher match = pattern.matcher(operationSystem.toString());
-        
+
         if (match.find())
         {
             osName = match.group(1);
             osVersion = match.group(2);
-            
-            //The library can't recognize iPad to be a tablet
-            if ((osName.equals("MAC_OS"))
+
+            // The library can't recognize iPad to be a tablet
+            if ((osName.equals("MAC_OS")) && (osVersion != null)
                     && ((osVersion.equals("X_IPAD")) || (osVersion.equals("X_IPOD")) || (osVersion.equals("X_IPHONE"))))
             {
                 osName = "iOS";
                 osVersion = null;
             }
-            
-            //The library can't recognize Windows 8 it sets 8 to Vista
+
+            // The library can't recognize Windows 8 it sets 8 to Vista
             if ((osVersion != null) && (osVersion.trim().equals("Vista")))
             {
                 osVersion = null;
@@ -142,8 +138,8 @@ public class UserAgentUtilsParser extends UserAgentParser
                 }
             }
         }
-        
-        //initialize splitedOs
+
+        // initialize splitedOs
         splitedOS[0] = osName;
         splitedOS[1] = osVersion;
         return splitedOS;

@@ -27,21 +27,21 @@ public class CompositeUserAgentParserTest
     @Test
     public void testBlackBerryParse() throws Exception
     {
-        /*
-         * // Assert for version 4.
-         * assertUserAgentEquals("BlackBerry8520/4.6.1.314 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/301", new UserAgent(
-         * UserAgent.MOBILE, "BlackBerry", "8520", "8520", "BlackBerry", "4.6.1.314", "Research In Motion Limited", "BlackBerry",
-         * UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN)); // Assert for version 5.
-         * assertUserAgentEquals("BlackBerry9105/5.0.0.748 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/125", new UserAgent(
-         * UserAgent.MOBILE, "BlackBerry", "9105", "9105", "BlackBerry", "5.0.0.748", "Research In Motion Limited", "BlackBerry",
-         * UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN)); // Assert for version 6.
-         * assertUserAgentEquals("BlackBerry9300/6.6.0.124 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/310 The Times/1.0", new
-         * UserAgent(UserAgent.MOBILE, "BlackBerry", "9300", "9300", "BlackBerry", "6.6.0.124", "Research In Motion Limited",
-         * "BlackBerry", UserAgent.UNKNOWN, "The Times", "1.0", UserAgent.UNKNOWN)); // Assert for version 9.
-         * assertUserAgentEquals("BlackBerry9320/9.49.0.31 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/118 The Times/1.0", new
-         * UserAgent(UserAgent.MOBILE, "BlackBerry", "9320", "9320", "BlackBerry", "9.49.0.31", "Research In Motion Limited",
-         * "BlackBerry", UserAgent.UNKNOWN, "The Times", "1.0", UserAgent.UNKNOWN));
-         */}
+        // Assert for version 4.
+        assertUserAgentEquals("BlackBerry8520/4.6.1.314 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/301", new UserAgent(
+                UserAgent.MOBILE, "BlackBerry", "8520", "8520", "OS4", "4.6.1.314", "Research In Motion Limited", "BlackBerry",
+                UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN)); // Assert for version 5.
+        assertUserAgentEquals("BlackBerry9105/5.0.0.748 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/125", new UserAgent(
+                UserAgent.MOBILE, "BlackBerry", "9105", "9105", "OS5", "5.0.0.748", "Research In Motion Limited", "BlackBerry",
+                UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN)); // Assert for version 6.
+        assertUserAgentEquals("BlackBerry9300/6.6.0.124 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/310 The Times/1.0",
+                new UserAgent(UserAgent.MOBILE, "BlackBerry", "9300", "9300", "OS6", "6.6.0.124", "Research In Motion Limited",
+                        "BlackBerry", UserAgent.UNKNOWN, "The Times", "1.0", UserAgent.UNKNOWN));
+        // Assert for version 9.
+        assertUserAgentEquals("BlackBerry9320/9.49.0.31 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/118 The Times/1.0",
+                new UserAgent(UserAgent.MOBILE, "BlackBerry", "9320", "9320", "OS9", "9.49.0.31", "Research In Motion Limited",
+                        "BlackBerry", UserAgent.UNKNOWN, "The Times", "1.0", UserAgent.UNKNOWN));
+    }
 
     /**
      * Test method for Apple
@@ -217,9 +217,9 @@ public class CompositeUserAgentParserTest
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Chrome browser. The user agent has Maxthon, Chrome and Safari browser signature
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.0 Chrome/18.0.966.0 "
-                + "Safari/535.122", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
-                "WINDOWS", "XP", "Microsoft Corporation", "Maxthon", "3.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
-                UserAgent.UNKNOWN));
+                + "Safari/535.122",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "XP",
+                        "Microsoft Corporation", "Maxthon", "3.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Chrome browser. The user agent has Maxthon, Chrome and Safari browser signature
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.3.6.2000"
                 + "Chrome/18.0.966.0 Safari/535.12 AppEngine-Google; (+http://code.google.com/appengine; " + "appid: s~popi0391)",
