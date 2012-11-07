@@ -74,7 +74,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
      * This method create a CSV file and adding in it header fields
      * 
      */
-    private void createFile()
+    protected void createFile()
     {
         try
         {
@@ -125,7 +125,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
      * 
      * @param lineNumber,userAgentString,currentUserAgent
      */
-    private void generateCsvFileContent(int lineNumber, String userAgentString, UserAgent currentUserAgent)
+    protected void generateCsvFileContent(int lineNumber, String userAgentString, UserAgent currentUserAgent)
     {
         // Counter for properties with Unknown value
         int counterUnknown = 0;
