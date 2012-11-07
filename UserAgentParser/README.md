@@ -27,7 +27,7 @@ The project is for parsing User Agent String to User Agent Object
 All tree classes @Override parse(String userAgentString) method
 
 
-### EXAMPLE
+####EXAMPLE
 
 	String userAgentString="BlackBerry8520/4.6.1.314 Profile/MIDP-2.0 Configuration/CLDC-1.1 VendorID/301";*<p>
 	UserAgentParser userAgentParser = new CompositeUserAgentParser();*<p>
