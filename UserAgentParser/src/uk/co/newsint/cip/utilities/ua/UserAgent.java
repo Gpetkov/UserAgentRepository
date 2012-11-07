@@ -37,8 +37,10 @@ public class UserAgent
     private String application = UNKNOWN;
     // Application version (example --> iPadTimesAnvil/2.7 => applicationVersion = 2.7)
     private String applicationVersion = UNKNOWN;
-    // Language (example --> English United Kingdom - "en-GB")
+    // LanguageCode (example --> "en-GB" => languageCode = en)
     private String languageCode = UNKNOWN;
+    // Country Code (example --> "en-GB" => country Code = GB)
+    private String countryCode = UNKNOWN;
 
     public UserAgent()
     {
@@ -46,7 +48,7 @@ public class UserAgent
 
     public UserAgent(String deviceType, String deviceMaker, String deviceModel, String deviceModelVersion, String os,
             String osVersion, String osMaker, String browser, String browserVersion, String application, String applicationVersion,
-            String language)
+            String languageCode, String countryCode)
     {
         this.deviceType = deviceType;
         this.deviceMaker = deviceMaker;
@@ -59,7 +61,8 @@ public class UserAgent
         this.browserVersion = browserVersion;
         this.application = application;
         this.applicationVersion = applicationVersion;
-        this.languageCode = language;
+        this.languageCode = languageCode;
+        this.countryCode = countryCode;
     }
 
     @Override
@@ -71,6 +74,7 @@ public class UserAgent
         result = prime * result + ((applicationVersion == null) ? 0 : applicationVersion.hashCode());
         result = prime * result + ((browser == null) ? 0 : browser.hashCode());
         result = prime * result + ((browserVersion == null) ? 0 : browserVersion.hashCode());
+        result = prime * result + ((countryCode == null) ? 0 : countryCode.hashCode());
         result = prime * result + ((deviceMaker == null) ? 0 : deviceMaker.hashCode());
         result = prime * result + ((deviceModel == null) ? 0 : deviceModel.hashCode());
         result = prime * result + ((deviceModelVersion == null) ? 0 : deviceModelVersion.hashCode());
@@ -119,6 +123,13 @@ public class UserAgent
                 return false;
         }
         else if (!browserVersion.equals(other.browserVersion))
+            return false;
+        if (countryCode == null)
+        {
+            if (other.countryCode != null)
+                return false;
+        }
+        else if (!countryCode.equals(other.countryCode))
             return false;
         if (deviceMaker == null)
         {
@@ -289,14 +300,24 @@ public class UserAgent
         this.applicationVersion = applicationVersion;
     }
 
-    public String getLanguage()
+    public String getLanguageCode()
     {
         return languageCode;
     }
 
-    public void setLanguage(String language)
+    public void setLanguageCode(String languageCode)
     {
-        this.languageCode = language;
+        this.languageCode = languageCode;
+    }
+
+    public String getCountryCode()
+    {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode)
+    {
+        this.countryCode = countryCode;
     }
 
     /**
@@ -328,7 +349,9 @@ public class UserAgent
             this.setApplication(currentUserAgent.getApplication());
         if (UserAgent.UNKNOWN.equals(this.getApplicationVersion()))
             this.setApplicationVersion(currentUserAgent.getApplicationVersion());
-        if (UserAgent.UNKNOWN.equals(this.getLanguage()))
-            this.setLanguage(currentUserAgent.getLanguage());
+        if (UserAgent.UNKNOWN.equals(this.getLanguageCode()))
+            this.setLanguageCode(currentUserAgent.getLanguageCode());
+        if (UserAgent.UNKNOWN.equals(this.getCountryCode()))
+            this.setCountryCode(currentUserAgent.getCountryCode());
     }
 }

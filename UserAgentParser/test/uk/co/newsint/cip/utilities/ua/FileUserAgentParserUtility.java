@@ -161,7 +161,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             writer.append(',');
             writer.append(currentUserAgent.getApplicationVersion());
             writer.append(',');
-            writer.append(currentUserAgent.getLanguage());
+            writer.append(currentUserAgent.getLanguageCode());
             // Check the properties for Unknown values
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceType()))
             {
@@ -203,7 +203,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             {
                 counterUnknown++;
             }
-            if (UserAgent.UNKNOWN.equals(currentUserAgent.getLanguage()))
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getLanguageCode()))
             {
                 counterUnknown++;
             }

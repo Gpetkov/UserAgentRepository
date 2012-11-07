@@ -559,7 +559,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             if (Character.isLowerCase(match.group(1).charAt(0)))
             {
-                ua.setLanguage(match.group(1));
+                ua.setLanguageCode(match.group(1));
             }
         }
     }
