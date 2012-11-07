@@ -211,6 +211,10 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             {
                 counterUnknown++;
             }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getCountryCode()))
+            {
+                counterUnknown++;
+            }
             // Adding in file the count of properties which are Unknown
             writer.append(',');
             writer.append(String.valueOf(counterUnknown));
