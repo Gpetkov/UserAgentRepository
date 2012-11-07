@@ -61,14 +61,6 @@ public class RegexpUserAgentParser extends UserAgentParser
     private static Pattern PATTERN_PC_LINUX = Pattern.compile(REGEX_PC_LINUX);
 
     /**
-     * regex for finding PC Microsoft IE User Agents example: Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Win64; x64;
-     * Trident/4.0; .NET CLR 2.0.50727; SLCC2; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; HPDTDF; Tablet PC 2.0;
-     * .NET4.0C)
-     */
-    private static final String REGEX_PC_WIN_IE = "((?i:msie)+?)\\s?(\\d.\\d)+?;?\\s?((?i:windows nt)+?)\\s?((\\d.\\d)+?);?";
-    private static Pattern PATTERN_PC_WIN_IE = Pattern.compile(REGEX_PC_WIN_IE);
-
-    /**
      * regex for finding PC Windows User Agents example: Mozilla/5.0 (Windows NT 6.0; WOW64; rv:11.0) Gecko/20100101
      * Firefox/11.0,platform,unknown
      */
@@ -104,7 +96,7 @@ public class RegexpUserAgentParser extends UserAgentParser
     /**
      * regex for finding browser and browser version in User Agents
      */
-    private static final String REGEX_BROWSER = "((?i:chrome|version|firefox|iron|Comodo_Dragon|Maxthon|RockMelt|OmniWeb|NetNewsWire|camino|QupZilla|Iceweasel|SeaMonkey|thunderbird)+?)\\s?/\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
+    private static final String REGEX_BROWSER = "((?i:crios|chrome|version|firefox|iron|Comodo_Dragon|Maxthon|RockMelt|OmniWeb|NetNewsWire|camino|QupZilla|Iceweasel|SeaMonkey|thunderbird|msie)+?)\\s?/?\\s?((\\d+.\\d+[\\.]?\\d*[\\.]?\\d*)+?)";
     private static Pattern PATTERN_BROWSER = Pattern.compile(REGEX_BROWSER);
     private static Matcher browserMatch;
 
@@ -171,7 +163,6 @@ public class RegexpUserAgentParser extends UserAgentParser
                 || (ua = parseWinPhone(userAgentString)) != null
                 || (ua = parseiOS(userAgentString)) != null 
                 || (ua = parsePCOpera(userAgentString)) != null
-                || (ua = parsePCWinIE(userAgentString)) != null 
                 || (ua = parseAndroid(userAgentString)) != null
                 || (ua = parsePCWin(userAgentString)) != null 
                 || (ua = parsePCLinux(userAgentString)) != null
@@ -328,31 +319,6 @@ public class RegexpUserAgentParser extends UserAgentParser
     }
 
     /**
-     * Method for parsing PC Windows IE UserAgents
-     * 
-     * @return {@link UserAgent}
-     */
-    private UserAgent parsePCWinIE(String userAgentString)
-    {
-        Matcher match = PATTERN_PC_WIN_IE.matcher(userAgentString);
-        if (match.find())
-        {
-            UserAgent ua = new UserAgent();
-            ua.setDeviceType(UserAgent.COMPUTER);
-            ua.setDeviceModel(UserAgent.COMPUTER);
-            ua.setOSMaker("Microsoft Corporation");
-            ua.setBrowser("Internet Explorer");
-            ua.setBrowserVersion(match.group(2));
-            ua.setOS(match.group(3).replaceAll("\\s?NT", "").toUpperCase());
-            ua.setOSVersion(getWindowsVersion(match.group(4)));
-            applyLanguage(userAgentString, ua);
-            applyAPP(userAgentString, ua);
-            return ua;
-        }
-        return null;
-    }
-
-    /**
      * Method for parsing PC Opera UserAgents
      * 
      * @return {@link UserAgent}
@@ -419,6 +385,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setOSVersion(match.group(2).replaceAll("_", ".").trim());
             }
+            applyBrowser(userAgentString, ua);
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
             return ua;
@@ -543,6 +510,14 @@ public class RegexpUserAgentParser extends UserAgentParser
             if (match.group(1).equalsIgnoreCase("version"))
             {
                 ua.setBrowser("Safari");
+            }
+            if (match.group(1).equalsIgnoreCase("crios"))
+            {
+                ua.setBrowser("Chrome");
+            }
+            if (match.group(1).equalsIgnoreCase("msie"))
+            {
+                ua.setBrowser("Internet Explorer");
             }
             ua.setBrowserVersion(match.group(2));
         }

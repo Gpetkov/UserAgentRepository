@@ -55,7 +55,7 @@ public class CompositeUserAgentParserTest
     {
         // Assertion for IPhone
         assertUserAgentEquals("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-JP)" + " Times/1.0.2", new UserAgent(
-                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "iOS", "4.3.3", "Apple Inc.", "Mozilla", UserAgent.UNKNOWN, "Times",
+                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "iOS", "4.3.3", "Apple Inc.", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Times",
                 "1.0.2", "ja", "JP"));
         // Assertion for IPhone
         assertUserAgentEquals("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_5 like Mac OS X; ca-es) "
@@ -82,6 +82,9 @@ public class CompositeUserAgentParserTest
         assertUserAgentEquals("Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) "
                 + "Version/5.1 Mobile/9A334 Safari/7534.48.3", new UserAgent(UserAgent.MOBILE, "Apple", "iPod", "iPod", "iOS",
                 "5.0", "Apple Inc.", "Safari", "5.1", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+     // Assertion for iPod
+        assertUserAgentEquals("Mozilla/5.0 (iPad; U; CPU iPhone OS 4_3_5 like Mac OS X; en-GB) iPadTimesAnvil/2.7", new UserAgent(UserAgent.TABLET, "Apple", "iPad", "iPad", "iOS",
+                "4.3.5", "Apple Inc.", "Safari", "5.1", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
     }
 
     /**

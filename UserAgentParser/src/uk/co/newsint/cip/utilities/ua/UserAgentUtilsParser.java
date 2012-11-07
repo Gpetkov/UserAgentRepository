@@ -79,12 +79,12 @@ public class UserAgentUtilsParser extends UserAgentParser
         Browser browser = ua.getBrowser();
         if (browser != null)
         {
-            result.setBrowser(browser.getGroup().getName());
+          //  result.setBrowser(browser.getGroup().getName());
         }
         Version version = ua.getBrowserVersion();
         if (version != null)
         {
-            result.setBrowserVersion(version.getVersion());
+            //result.setBrowserVersion(version.getVersion());
         }
         Application application = Application.parseReferrerString(userAgentString);
         if (application.getName() != null)

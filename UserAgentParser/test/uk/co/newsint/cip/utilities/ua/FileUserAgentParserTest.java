@@ -25,7 +25,7 @@ public class FileUserAgentParserTest
     {
         FileUserAgentParser parser = new FileUserAgentParser()
         {
-            private final int MAX_ERRORS = 179;
+            private final int MAX_ERRORS = 1742;
             private int currentError = 0;
 
             @Override
