@@ -16,16 +16,16 @@ public class CompositeUserAgentParser extends UserAgentParser
     @Override
     public UserAgent parse(String userAgentString)
     {
-        // 1. Use UserAgentUtilsParser to try parse the UA string
-        UserAgent utilitiesUserAgent = utilsParser.parse(userAgentString);
-
-        // 2. Use RegexpUserAgentParser to try parse the UA string
+        // 1. Use RegexpUserAgentParser to try parse the UA string
         UserAgent regexpUserAgent = regexpParser.parse(userAgentString);
 
-        // 3. Merge the user-agents (merge --> utilitiesUserAgent and regexpUserAgent)
-        utilitiesUserAgent.merge(regexpUserAgent);
+        // 2. Use UserAgentUtilsParser to try parse the UA string
+        UserAgent utilitiesUserAgent = utilsParser.parse(userAgentString);
 
-        return utilitiesUserAgent;
+        // 3. Merge the user-agents (merge --> regexpUserAgent with utilitiesUserAgent)
+        regexpUserAgent.merge(utilitiesUserAgent);
+        
+        return regexpUserAgent;
     }
 
 }

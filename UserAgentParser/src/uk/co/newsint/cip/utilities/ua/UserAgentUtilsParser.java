@@ -26,7 +26,7 @@ public class UserAgentUtilsParser extends UserAgentParser
      * android,bada,blackberry,ios,kindle,linux,maemo,palm,psp,roku,symbian,webos,wii,sun_os,sony_ericsson,series40 Example iOS5 -->
      * operation system (iOS) operation system version (5)
      */
-    private static final String REGEX_ALL_OTHERS = "((?i:android|bada|blackberry|ios|kindle|linux|maemo|palm|psp|roku|symbian|"
+    private static final String REGEX_ALL_OTHERS = "((?i:android|bada|blackberry|iOS|kindle|linux|maemo|palm|psp|roku|symbian|"
             + "webos|wii|sun_os|sony_ericsson|series40))((\\d\\w*))?";
 
     @Override
@@ -39,18 +39,18 @@ public class UserAgentUtilsParser extends UserAgentParser
         OperatingSystem os = ua.getOperatingSystem();
         if (os != null)
         {
-            DeviceType deviceType = os.getDeviceType();
-            if (deviceType != null)
-            {
-                result.setDeviceType(deviceType.getName());
-            }
+
             // array for the operation system(splitedOs[0] == osName and splitedOs[1] == osVersion)
-            String[] splitedOs = splitOperationSystem(os.getName());
+            String[] splitedOs = splitOperationSystem(os);
             if (splitedOs != null)
             {
                 if (splitedOs[0] != null)
                 {
-                    result.setOS(splitedOs[0]);
+                    if ((splitedOs[1] != null) && (!splitedOs[1].toString().equals("Mobile 7")))
+                    {
+                        result.setOS(splitedOs[0]);
+                    }
+
                 }
                 if (splitedOs[1] != null)
                 {
@@ -61,6 +61,16 @@ public class UserAgentUtilsParser extends UserAgentParser
             if (osMaker != null)
             {
                 result.setOSMaker(osMaker);
+            }
+            DeviceType deviceType = null;
+            //The library can't match iPad like a Tablet
+            if ((splitedOs[0] != null) && (!splitedOs[0].equals("iOS")))
+            {
+                deviceType = os.getDeviceType();
+            }
+            if (deviceType != null)
+            {
+                result.setDeviceType(deviceType.getName());
             }
         }
         Browser browser = ua.getBrowser();
@@ -88,49 +98,54 @@ public class UserAgentUtilsParser extends UserAgentParser
      * @return splitedOs[2](splitedOs[0] --> osName, splitedOs[1] --> osVersion)
      * 
      */
-    private String[] splitOperationSystem(String operationSystem)
+    private String[] splitOperationSystem(OperatingSystem operationSystem)
     {
         String[] splitedOS = new String[2];
+        String osName = null;
+        String osVersion = null;
+        
+        //Initialize current pattern
         Pattern pattern = Pattern.compile(REGEX_WIN_GOOGLE_MAC);
-        Matcher match = pattern.matcher(operationSystem);
+        Matcher match = pattern.matcher(operationSystem.toString());
+        
         if (match.find())
         {
-            String osName = match.group(1);
-            String osVersion = match.group(2);
-            splitedOS[0] = osName;
-
+            osName = match.group(1);
+            osVersion = match.group(2);
+            
+            //The library can't recognize iPad to be a tablet
+            if ((osName.equals("MAC_OS"))
+                    && ((osVersion.equals("X_IPAD")) || (osVersion.equals("X_IPOD")) || (osVersion.equals("X_IPHONE"))))
+            {
+                osName = "iOS";
+                osVersion = null;
+            }
+            
+            //The library can't recognize Windows 8 it sets 8 to Vista
             if ((osVersion != null) && (osVersion.trim().equals("Vista")))
             {
-                splitedOS[1] = null;
-            }
-            else
-            {
-                splitedOS[1] = osVersion;
+                osVersion = null;
             }
         }
         else
         {
             pattern = Pattern.compile(REGEX_ALL_OTHERS);
-            match = pattern.matcher(operationSystem);
+            match = pattern.matcher(operationSystem.toString());
             if (match.find())
             {
-                String osName = match.group(1);
-                String osVersion = match.group(2);
-
+                osName = match.group(1);
+                osVersion = match.group(2);
                 if (osName.toString().equalsIgnoreCase("SERIES40"))
                 {
                     osName = "NOKIA_OS";
                     osVersion = "SERIES40";
                 }
-                splitedOS[0] = osName;
-                splitedOS[1] = osVersion;
-            }
-            else
-            {
-                splitedOS[0] = null;
-                splitedOS[1] = null;
             }
         }
+        
+        //initialize splitedOs
+        splitedOS[0] = osName;
+        splitedOS[1] = osVersion;
         return splitedOS;
     }
 

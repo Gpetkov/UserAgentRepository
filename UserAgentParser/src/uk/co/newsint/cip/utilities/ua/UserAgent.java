@@ -38,7 +38,7 @@ public class UserAgent
     // Application version (example --> iPadTimesAnvil/2.7 => applicationVersion = 2.7)
     private String applicationVersion = UNKNOWN;
     // Language (example --> English United Kingdom - "en-GB")
-    private String language = UNKNOWN;
+    private String languageCode = UNKNOWN;
 
     public UserAgent()
     {
@@ -59,7 +59,7 @@ public class UserAgent
         this.browserVersion = browserVersion;
         this.application = application;
         this.applicationVersion = applicationVersion;
-        this.language = language;
+        this.languageCode = language;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class UserAgent
         result = prime * result + ((deviceModel == null) ? 0 : deviceModel.hashCode());
         result = prime * result + ((deviceModelVersion == null) ? 0 : deviceModelVersion.hashCode());
         result = prime * result + ((deviceType == null) ? 0 : deviceType.hashCode());
-        result = prime * result + ((language == null) ? 0 : language.hashCode());
+        result = prime * result + ((languageCode == null) ? 0 : languageCode.hashCode());
         result = prime * result + ((os == null) ? 0 : os.hashCode());
         result = prime * result + ((osMaker == null) ? 0 : osMaker.hashCode());
         result = prime * result + ((osVersion == null) ? 0 : osVersion.hashCode());
@@ -148,12 +148,12 @@ public class UserAgent
         }
         else if (!deviceType.equals(other.deviceType))
             return false;
-        if (language == null)
+        if (languageCode == null)
         {
-            if (other.language != null)
+            if (other.languageCode != null)
                 return false;
         }
-        else if (!language.equals(other.language))
+        else if (!languageCode.equals(other.languageCode))
             return false;
         if (os == null)
         {
@@ -291,12 +291,12 @@ public class UserAgent
 
     public String getLanguage()
     {
-        return language;
+        return languageCode;
     }
 
     public void setLanguage(String language)
     {
-        this.language = language;
+        this.languageCode = language;
     }
 
     /**
