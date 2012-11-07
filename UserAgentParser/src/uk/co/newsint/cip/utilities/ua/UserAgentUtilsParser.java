@@ -66,7 +66,14 @@ public class UserAgentUtilsParser extends UserAgentParser
             }
             if (deviceType != null)
             {
-                result.setDeviceType(deviceType.getName());
+                if (deviceType.equals(DeviceType.MOBILE))
+                {
+                    result.setDeviceType("Smartphone");
+                }
+                else
+                {
+                    result.setDeviceType(deviceType.getName());
+                }
             }
         }
         Browser browser = ua.getBrowser();
