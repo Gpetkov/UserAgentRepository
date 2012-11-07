@@ -215,6 +215,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
+            ua.setDeviceModel(UserAgent.COMPUTER);
             ua.setOS(match.group(1).toUpperCase());
             if (match.group(1).equalsIgnoreCase("cros"))
             {
@@ -242,6 +243,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
+            ua.setDeviceModel(UserAgent.COMPUTER);
             ua.setDeviceMaker("Apple");
             ua.setOSMaker("Apple Inc.");
             ua.setOS(match.group(1).toUpperCase());
@@ -269,6 +271,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
+            ua.setDeviceModel(UserAgent.COMPUTER);
             ua.setOSMaker("Microsoft Corporation");
             ua.setOS(match.group(1).replaceAll("\\s?NT", "").toUpperCase());
             ua.setOSVersion(getWindowsVersion(match.group(2)));
@@ -336,6 +339,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
+            ua.setDeviceModel(UserAgent.COMPUTER);
             ua.setOSMaker("Microsoft Corporation");
             ua.setBrowser("Internet Explorer");
             ua.setBrowserVersion(match.group(2));
@@ -360,6 +364,7 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
+            ua.setDeviceModel(UserAgent.COMPUTER);
 
             if (match.group(3) != null)
             {

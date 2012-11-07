@@ -168,146 +168,146 @@ public class RegexpUserAgentParserTest
     {
         // Assertion for Internet Explorer browser
         assertUserAgentEquals("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)", new UserAgent(UserAgent.COMPUTER,
-                UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "7", "Microsoft Corporation", "Internet Explorer", "9.0",
+                UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "7", "Microsoft Corporation", "Internet Explorer", "9.0",
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Internet Explorer
         assertUserAgentEquals("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)", new UserAgent(UserAgent.COMPUTER,
-                UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "7", "Microsoft Corporation", "Internet Explorer", "9.0",
+                UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "7", "Microsoft Corporation", "Internet Explorer", "9.0",
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Chrome browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 4.0) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.5 "
-                + "Safari/534.30", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Safari/534.30", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN,
                 "WINDOWS", "95", "Microsoft Corporation", "Chrome", "12.0.742.5", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN));
         // Assertion for Chrome browser
         assertUserAgentEquals(
                 "Mozilla/5.0 (Windows NT 5.0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.77 Safari/537.1",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "2000",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "2000",
                         "Microsoft Corporation", "Chrome", "21.0.1180.77", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Firefox browser
         assertUserAgentEquals("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.4) Gecko/2008102920 Firefox/3.0.4",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "XP",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "XP",
                         "Microsoft Corporation", "Firefox", "3.0.4", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "en"));
         // Assertion for Firefox browser
         assertUserAgentEquals("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.19) Gecko/2010031422 YFF3 "
-                + "Firefox/3.0.19", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Firefox/3.0.19", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN,
                 "WINDOWS", "XP", "Microsoft Corporation", "Firefox", "3.0.19", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "en"));
         // Assertion for Firefox browser
         assertUserAgentEquals("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.1.13) Gecko/20100914 "
-                + "update/105618 Firefox/3.5.13", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "update/105618 Firefox/3.5.13", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER,
                 UserAgent.UNKNOWN, "WINDOWS", "XP", "Microsoft Corporation", "Firefox", "3.5.13", UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN, "en"));
         // Assertion for Firefox browser Bot
         assertUserAgentEquals("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.2.24) Gecko/20111103 AskTbFTB/3.14.1.20007 "
-                + "Firefox/3.6.24 (.NET CLR 3.5.30729)", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Firefox/3.6.24 (.NET CLR 3.5.30729)", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER,
                 UserAgent.UNKNOWN, "WINDOWS", "XP", "Microsoft Corporation", "Firefox", "3.6.24", UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN, "en"));
         // Assertion for Firefox Bot
         assertUserAgentEquals("Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2) Gecko/20100115 AskTbARS/3.15.1.22229 "
-                + "Firefox/3.6", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Firefox/3.6", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN,
                 "WINDOWS", "XP", "Microsoft Corporation", "Firefox", "3.6", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "en"));
         // Assertion for Iron browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Iron/12.0.750.0 "
-                + "Chrome/12.0.750.0 Safari/534.30", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Chrome/12.0.750.0 Safari/534.30", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER,
                 UserAgent.UNKNOWN, "WINDOWS", "XP", "Microsoft Corporation", "Iron", "12.0.750.0", UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Comodo_Dragon browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Comodo_Dragon/12.1.0.0 "
-                + "Chrome/12.0.742.91 Safari/534.30", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Chrome/12.0.742.91 Safari/534.30", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER,
                 UserAgent.UNKNOWN, "WINDOWS", "XP", "Microsoft Corporation", "Comodo_Dragon", "12.1.0.0", UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Comodo_Dragon browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/534.30 (KHTML, like Gecko) Comodo_Dragon/12.2.0.0 "
-                + "Chrome/12.0.742.112 Safari/534.30", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Chrome/12.0.742.112 Safari/534.30", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER,
                 UserAgent.UNKNOWN, "WINDOWS", "XP", "Microsoft Corporation", "Comodo_Dragon", "12.2.0.0", UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Maxthon browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.2) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.0 Chrome/18.0.966.0 "
-                + "Safari/535.122", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Safari/535.122", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN,
                 "WINDOWS", "XP 64-bit", "Microsoft Corporation", "Maxthon", "3.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN));
         // Assertion for Maxthon browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 5.1) AppleWebKit/535.12 (KHTML, like Gecko) Maxthon/3.3.6.2000 "
                 + "Chrome/18.0.966.0 Safari/535.12 AppEngine-Google; (+http://code.google.com/appengine; " + "appid: s~popi0391)",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "XP",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "XP",
                         "Microsoft Corporation", "Maxthon", "3.3.6.2000", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for RockMelt browser
         assertUserAgentEquals(
                 "Mozilla/5.0 (Windows NT 5.2; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) RockMelt/0.16.91.483 Chrome/16.0.912.77 Safari/535.7",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "XP 64-bit",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "XP 64-bit",
                         "Microsoft Corporation", "RockMelt", "0.16.91.483", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Safari browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.51.22 (KHTML, like Gecko) Version/5.0.2 "
                 + "Safari/533.18.5",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "7",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "7",
                         "Microsoft Corporation", "Safari", "5.0.2", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Safari browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 6.1) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 "
                 + "Safari/534.57.2",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "7",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "7",
                         "Microsoft Corporation", "Safari", "5.1.7", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Opera browser
         assertUserAgentEquals("Opera/9.80 (Windows NT 6.2; U; Edition IBIS; zh-cn) Presto/2.10.289 Version/12.00", new UserAgent(
-                UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "8",
+                UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "WINDOWS", "8",
                 "Microsoft Corporation", "Opera", "12.00", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "zh"));
         // Assertion for Opera browser for Macintosh
         assertUserAgentEquals("Opera/9.80 (Macintosh; Intel Mac OS X 10.8.1; U; nl) Presto/2.10.289 Version/12.02", new UserAgent(
-                UserAgent.COMPUTER, "Apple", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "MAC OS X", "10.8.1", "Apple Inc.", "Opera",
+                UserAgent.COMPUTER, "Apple", UserAgent.COMPUTER, UserAgent.UNKNOWN, "MAC OS X", "10.8.1", "Apple Inc.", "Opera",
                 "12.02", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Safari browser for Macintosh
         assertUserAgentEquals("101653 Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_4) AppleWebKit/534.57.2 (KHTML, like Gecko) "
-                + "Version/5.1.7 Safari/534.57.2", new UserAgent(UserAgent.COMPUTER, "Apple", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                + "Version/5.1.7 Safari/534.57.2", new UserAgent(UserAgent.COMPUTER, "Apple", UserAgent.COMPUTER, UserAgent.UNKNOWN,
                 "MAC OS X", "10.7.4", "Apple Inc.", "Safari", "5.1.7", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Safari browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.7 (KHTML, like Gecko) Version/5.0 Safari/534.7",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "LINUX",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "LINUX",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Safari", "5.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
         // Assertion for Chrome browser for Linux
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/11.0.696.34 Safari/534.24",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "LINUX",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "LINUX",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Chrome", "11.0.696.34", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
         // Assertion for Iron browser for Linux
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.19 (KHTML, like Gecko) Iron/18.0.1050.0 Chrome/18.0.1050.0 Safari/535.19",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "LINUX",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "LINUX",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Iron", "18.0.1050.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
         // Assertion for FireFox browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; Linux x86_64; rv:10.0.3) Gecko/20120314 Firefox/10.0.3", new UserAgent(
-                UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "LINUX", UserAgent.UNKNOWN,
+                UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "LINUX", UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN, "Firefox", "10.0.3", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Iceweasel browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; U; Linux i686; de; rv:1.9.0.7) Gecko/2009032803 Iceweasel/3.0.6 (Debian-3.0.6-1)",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "LINUX",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "LINUX",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Iceweasel", "3.0.6", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
         // Assertion for SeaMonkey browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.22) Gecko/20090610 SeaMonkey/1.1.17",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "LINUX",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "LINUX",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "SeaMonkey", "1.1.17", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                         "en"));
         // Assertion for QupZilla browser for Linux
         assertUserAgentEquals("Mozilla/5.0 (X11; Linux i686) AppleWebKit/534.34 (KHTML, like Gecko) QupZilla/1.3.1 Safari/534.34",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "LINUX",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "LINUX",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "QupZilla", "1.3.1", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
         // Assertion for Firefox browser for SunOS
         assertUserAgentEquals("Mozilla/5.0 (X11; U; SunOS i86pc; en-US; rv:1.9.0.11) Gecko/2009060311 Firefox/3.0.6",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "SUNOS",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "SUNOS",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Firefox", "3.0.6", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "en"));
         // Assertion for Chrome browser for FreeBSD
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; FreeBSD amd64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "FREEBSD",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "FREEBSD",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Chrome", "21.0.1180.89", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
         // Assertion for Chrome browser for ChromeOS
         assertUserAgentEquals(
                 "Mozilla/5.0 (X11; CrOS i686 2465.142.0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
-                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "ChromeOS",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, "ChromeOS",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Chrome", "21.0.1180.89", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                         UserAgent.UNKNOWN));
     }
