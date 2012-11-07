@@ -11,7 +11,7 @@ import nl.bitwalker.useragentutils.DeviceType;
 public class UserAgent
 {
     public static final String UNKNOWN = DeviceType.UNKNOWN.getName();
-    public static final String MOBILE = DeviceType.MOBILE.getName();
+    public static final String MOBILE = "Smartphone";
     public static final String TABLET = DeviceType.TABLET.getName();
     public static final String COMPUTER = DeviceType.COMPUTER.getName();
 
