@@ -337,7 +337,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setOSMaker("Microsoft Corporation");
-            ua.setBrowser(match.group(1));
+            ua.setBrowser("Internet Explorer");
             ua.setBrowserVersion(match.group(2));
             ua.setOS(match.group(3).replaceAll("\\s?NT", "").toUpperCase());
             ua.setOSVersion(getWindowsVersion(match.group(4)));
@@ -515,9 +515,9 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModel(match.group(6));
             ua.setDeviceModelVersion(match.group(6));
             ua.setOSMaker("Microsoft Corporation");
-            ua.setOS(match.group(3).toUpperCase());
+            ua.setOS("WINDOWS PHONE");
             ua.setOSVersion(match.group(4));
-            ua.setBrowser(match.group(1).trim());
+            ua.setBrowser("Internet Explorer");
             ua.setBrowserVersion(match.group(2));
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);

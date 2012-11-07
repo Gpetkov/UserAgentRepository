@@ -29,13 +29,13 @@ public class RegexpUserAgentParserTest
     {
         // Assert for Windows Phone OS.
         assertUserAgentEquals("Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; Acer; Allegro)",
-                new UserAgent(UserAgent.MOBILE, "Acer", "Allegro", "Allegro", "WINDOWS PHONE OS", "7.0", "Microsoft Corporation",
-                        "MSIE", "7.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+                new UserAgent(UserAgent.MOBILE, "Acer", "Allegro", "Allegro", "WINDOWS PHONE", "7.0", "Microsoft Corporation",
+                        "Internet Explorer", "7.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assert for Windows Phone OS.
         assertUserAgentEquals(
                 "Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.5; Trident/3.1; IEMobile/7.0; HTC; 7 Mozart T8698)",
-                new UserAgent(UserAgent.MOBILE, "HTC", "7 Mozart T8698", "7 Mozart T8698", "WINDOWS PHONE OS", "7.5",
-                        "Microsoft Corporation", "MSIE", "7.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+                new UserAgent(UserAgent.MOBILE, "HTC", "7 Mozart T8698", "7 Mozart T8698", "WINDOWS PHONE", "7.5",
+                        "Microsoft Corporation", "Internet Explorer", "7.0", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
     }
 
     /**
@@ -168,11 +168,11 @@ public class RegexpUserAgentParserTest
     {
         // Assertion for Internet Explorer browser
         assertUserAgentEquals("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)", new UserAgent(UserAgent.COMPUTER,
-                UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "7", "Microsoft Corporation", "MSIE", "9.0",
+                UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "7", "Microsoft Corporation", "Internet Explorer", "9.0",
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Internet Explorer
         assertUserAgentEquals("Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)", new UserAgent(UserAgent.COMPUTER,
-                UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "7", "Microsoft Corporation", "MSIE", "9.0",
+                UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "WINDOWS", "7", "Microsoft Corporation", "Internet Explorer", "9.0",
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
         // Assertion for Chrome browser
         assertUserAgentEquals("Mozilla/5.0 (Windows NT 4.0) AppleWebKit/534.30 (KHTML, like Gecko) Chrome/12.0.742.5 "
