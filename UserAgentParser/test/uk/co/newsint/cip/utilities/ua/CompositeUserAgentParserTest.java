@@ -55,8 +55,8 @@ public class CompositeUserAgentParserTest
     {
         // Assertion for IPhone
         assertUserAgentEquals("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_3 like Mac OS X; ja-JP)" + " Times/1.0.2", new UserAgent(
-                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "iOS", "4.3.3", "Apple Inc.", "Mozilla", UserAgent.UNKNOWN, "Times",
-                "1.0.2", "ja", "JP"));
+                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "iOS", "4.3.3", "Apple Inc.", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                "Times", "1.0.2", "ja", "JP"));
         // Assertion for IPhone
         assertUserAgentEquals("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_5 like Mac OS X; ca-es) "
                 + "AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8L1 " + "Safari/6533.18.5", new UserAgent(
@@ -65,19 +65,19 @@ public class CompositeUserAgentParserTest
         // Assertion for iPad
         assertUserAgentEquals("Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X; de-de) AppleWebKit/534.46.0 (KHTML, like Gecko) "
                 + "CriOS/21.0.1180.77 Mobile/9B206 Safari/7534.48.3", new UserAgent(UserAgent.TABLET, "Apple", "iPad", "iPad",
-                "iOS", "5.1.1", "Apple Inc.", "Safari", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, "de", "de"));
+                "iOS", "5.1.1", "Apple Inc.", "Chrome", "21.0.1180.77", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "de", "de"));
         // Assertion for iPad
         assertUserAgentEquals("Mozilla/5.0 (iPad; U; CPU OS 4_2_1 like Mac OS X; it-it) AppleWebKit/533.17.9 "
                 + "(KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5", new UserAgent(UserAgent.TABLET, "Apple",
                 "iPad", "iPad", "iOS", "4.2.1", "Apple Inc.", "Safari", "5.0.2", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "it", "it"));
         // Assertion foriPad
         assertUserAgentEquals("Mozilla/5.0 (iPad; U; CPU iPhone OS 5_1_1 like Mac OS X; en-GB) iPadTimesAnvil/2.7", new UserAgent(
-                UserAgent.TABLET, "Apple", "iPad", "iPad", "iOS", "5.1.1", "Apple Inc.", "Mozilla", UserAgent.UNKNOWN,
+                UserAgent.TABLET, "Apple", "iPad", "iPad", "iOS", "5.1.1", "Apple Inc.", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                 "iPadTimesAnvil", "2.7", "en", "GB"));
         // Assertion foriPod
         assertUserAgentEquals("Mozilla/5.0 (iPod touch; U; CPU iPhone OS 5_1_1 like Mac OS X; zh-CN) " + "Times/1.2.1",
-                new UserAgent(UserAgent.MOBILE, "Apple", "iPod touch", "iPod touch", "iOS", "5.1.1", "Apple Inc.", "Mozilla",
-                        UserAgent.UNKNOWN, "Times", "1.2.1", "zh", "CN"));
+                new UserAgent(UserAgent.MOBILE, "Apple", "iPod touch", "iPod touch", "iOS", "5.1.1", "Apple Inc.",
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Times", "1.2.1", "zh", "CN"));
         // Assertion for iPod
         assertUserAgentEquals("Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) "
                 + "Version/5.1 Mobile/9A334 Safari/7534.48.3", new UserAgent(UserAgent.MOBILE, "Apple", "iPod", "iPod", "iOS",
