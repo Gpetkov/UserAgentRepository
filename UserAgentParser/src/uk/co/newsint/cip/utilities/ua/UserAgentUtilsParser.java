@@ -66,9 +66,10 @@ public class UserAgentUtilsParser extends UserAgentParser
             }
             if (deviceType != null)
             {
+                //Change Mobile to Smartphone
                 if (deviceType.equals(DeviceType.MOBILE))
                 {
-                    result.setDeviceType("Smartphone");
+                    result.setDeviceType(UserAgent.MOBILE);
                 }
                 else
                 {
