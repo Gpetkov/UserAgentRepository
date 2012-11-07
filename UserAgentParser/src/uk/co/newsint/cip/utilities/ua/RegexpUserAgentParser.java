@@ -118,7 +118,7 @@ public class RegexpUserAgentParser extends UserAgentParser
     /**
      * regex for finding language in User Agents
      */
-    private static final String REGEX_LANGUAGE = "\\s+(\\w{2})-\\w{2}[;\\)\\s+]+";
+    private static final String REGEX_LANGUAGE = "\\s+(\\w{2})-(\\w{2})[;\\)\\s+]+";
     private static Pattern PATTERN_LANGUAGE = Pattern.compile(REGEX_LANGUAGE);
 
     /**
@@ -560,6 +560,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             if (Character.isLowerCase(match.group(1).charAt(0)))
             {
                 ua.setLanguageCode(match.group(1));
+                ua.setCountryCode(match.group(2));
             }
         }
     }
