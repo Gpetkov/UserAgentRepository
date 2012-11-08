@@ -94,23 +94,23 @@ public class DdrUserAgentParser extends UserAgentParser
             // Initialize UserAgentProperties
             if (vendor.exists())
             {
-                resultUserAgent.setDeviceMaker(vendor.getString());
+                resultUserAgent.setDeviceMaker(vendor.getString().equalsIgnoreCase("desktop") ? UserAgent.UNKNOWN : vendor.getString());
             }
             if (model.exists())
             {
-                resultUserAgent.setDeviceModel(model.getString());
+                resultUserAgent.setDeviceModel(model.getString().equalsIgnoreCase("desktop") ? UserAgent.COMPUTER : model.getString());
             }
             if (displayWidth.exists())
             {
-                resultUserAgent.setDisplayWidth(displayWidth.getString());
+                resultUserAgent.setDisplayWidth(vendor.getString().equalsIgnoreCase("desktop") ? UserAgent.UNKNOWN : displayWidth.getString());
             }
             if (displayHeight.exists())
             {
-                resultUserAgent.setDisplayHeight(displayHeight.getString());
+                resultUserAgent.setDisplayHeight(vendor.getString().equalsIgnoreCase("desktop") ? UserAgent.UNKNOWN : displayHeight.getString());
             }
             if (displayWidth.exists() && displayHeight.exists())
             {
-                resultUserAgent.setDisplayResolution(displayWidth.getString() + " x " + displayHeight.getString());
+                resultUserAgent.setDisplayResolution(vendor.getString().equalsIgnoreCase("desktop") ? UserAgent.UNKNOWN : (displayWidth.getString() + " x " + displayHeight.getString()));
             }
             if (deviceOs.exists() && deviceOs.getString().equalsIgnoreCase("Android") && isTablet.exists())
             {
@@ -180,7 +180,7 @@ public class DdrUserAgentParser extends UserAgentParser
                 mobileBrowserRef, mobileBrowserVersionRef, deviceOsVersionRef, physicalscreenWidthRef, isTabletRef, marketNameRef };
         Evidence e = new ODDRHTTPEvidence();
         e.put("User-Agent",
-                "Mozilla/5.0 (Linux; U; Android 4.0.4; en-gb; GT-I9300 Build/IMM76D) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30");
+                "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_8; en-us) AppleWebKit/533.21.1 (KHTML, like Gecko) Version/5.0.5 Safari/533.21.1");
         PropertyValues propertyValues = identificationService.getPropertyValues(e, propertyRefs);
         PropertyValue vendor = propertyValues.getValue(vendorRef);
         PropertyValue model = propertyValues.getValue(modelRef);
@@ -188,8 +188,8 @@ public class DdrUserAgentParser extends UserAgentParser
         PropertyValue displayHeight = propertyValues.getValue(displayHeightRef);
         PropertyValue deviceOs = propertyValues.getValue(deviceOsRef);
         PropertyValue deviceOsVersion = propertyValues.getValue(deviceOsRef);
-        PropertyValue mobileBrowser = propertyValues.getValue(mobileBrowserRef);
-        PropertyValue mobileBrowserVersion = propertyValues.getValue(mobileBrowserVersionRef);
+        //PropertyValue mobileBrowser = propertyValues.getValue(mobileBrowserRef);
+        //PropertyValue mobileBrowserVersion = propertyValues.getValue(mobileBrowserVersionRef);
         PropertyValue physicalScreenWidth = propertyValues.getValue(physicalscreenWidthRef);
         PropertyValue isTablet = propertyValues.getValue(isTabletRef);
         PropertyValue marketingName = propertyValues.getValue(marketNameRef);
