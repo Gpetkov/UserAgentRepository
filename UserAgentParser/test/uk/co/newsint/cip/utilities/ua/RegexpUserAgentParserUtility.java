@@ -8,9 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class RegexpUserAgentParserUtility extends FileUserAgentParserUtility
+public class RegexpUserAgentParserUtility extends FileUserAgentParser
 {
-
     @Override
     public void parseAll(File file) throws IOException
     {
@@ -121,7 +120,6 @@ public class RegexpUserAgentParserUtility extends FileUserAgentParserUtility
                 .getResource("top_1000_user-agents.txt").toURI()));
     }
 
-    @Override
     protected void createFile()
     {
         try
@@ -167,7 +165,6 @@ public class RegexpUserAgentParserUtility extends FileUserAgentParserUtility
         }
     }
 
-    @Override
     protected void generateCsvFileContent(int lineNumber, String userAgentString, UserAgent currentUserAgent)
     {
         // Counter for properties with Unknown value
@@ -263,5 +260,4 @@ public class RegexpUserAgentParserUtility extends FileUserAgentParserUtility
             e.printStackTrace();
         }
     }
-
 }

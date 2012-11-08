@@ -23,13 +23,19 @@ public class UserAgent
     private String deviceModel = UNKNOWN;
     // device Model Version (example --> 9900)
     private String deviceModelVersion = UNKNOWN;
+    // device Display pixel width
+    private String displayWidth = UNKNOWN;
+    // device Display pixel height
+    private String displayHeight = UNKNOWN;
+    // device Display resolution
+    private String displayResolution = UNKNOWN;
     // Operation system (example --> Windows)
     private String os = UNKNOWN;
     // Operation system version (example --> 5.0)
     private String osVersion = UNKNOWN;
     // Operation system maker (example --> Android maker - Google Inc.
     private String osMaker = UNKNOWN;
-    // Current browser MSIE,Safari,Chrome
+    // Current browser MSIE, Safari, Chrome
     private String browser = UNKNOWN;
     // Current browser version example --> 534.57.2 (Safari)
     private String browserVersion = UNKNOWN;
@@ -65,6 +71,28 @@ public class UserAgent
         this.countryCode = countryCode;
     }
 
+    public UserAgent(String deviceType, String deviceMaker, String deviceModel, String deviceModelVersion, String displayWidth,
+            String displayHeight, String displayResolution, String os, String osVersion, String osMaker, String browser,
+            String browserVersion, String application, String applicationVersion, String languageCode, String countryCode)
+    {
+        this.deviceType = deviceType;
+        this.deviceMaker = deviceMaker;
+        this.deviceModel = deviceModel;
+        this.deviceModelVersion = deviceModelVersion;
+        this.displayWidth = displayWidth;
+        this.displayHeight = displayHeight;
+        this.displayResolution = displayResolution;
+        this.os = os;
+        this.osVersion = osVersion;
+        this.osMaker = osMaker;
+        this.browser = browser;
+        this.browserVersion = browserVersion;
+        this.application = application;
+        this.applicationVersion = applicationVersion;
+        this.languageCode = languageCode;
+        this.countryCode = countryCode;
+    }
+
     @Override
     public int hashCode()
     {
@@ -79,6 +107,9 @@ public class UserAgent
         result = prime * result + ((deviceModel == null) ? 0 : deviceModel.hashCode());
         result = prime * result + ((deviceModelVersion == null) ? 0 : deviceModelVersion.hashCode());
         result = prime * result + ((deviceType == null) ? 0 : deviceType.hashCode());
+        result = prime * result + ((displayHeight == null) ? 0 : displayHeight.hashCode());
+        result = prime * result + ((displayResolution == null) ? 0 : displayResolution.hashCode());
+        result = prime * result + ((displayWidth == null) ? 0 : displayWidth.hashCode());
         result = prime * result + ((languageCode == null) ? 0 : languageCode.hashCode());
         result = prime * result + ((os == null) ? 0 : os.hashCode());
         result = prime * result + ((osMaker == null) ? 0 : osMaker.hashCode());
@@ -159,6 +190,27 @@ public class UserAgent
         }
         else if (!deviceType.equals(other.deviceType))
             return false;
+        if (displayHeight == null)
+        {
+            if (other.displayHeight != null)
+                return false;
+        }
+        else if (!displayHeight.equals(other.displayHeight))
+            return false;
+        if (displayResolution == null)
+        {
+            if (other.displayResolution != null)
+                return false;
+        }
+        else if (!displayResolution.equals(other.displayResolution))
+            return false;
+        if (displayWidth == null)
+        {
+            if (other.displayWidth != null)
+                return false;
+        }
+        else if (!displayWidth.equals(other.displayWidth))
+            return false;
         if (languageCode == null)
         {
             if (other.languageCode != null)
@@ -228,6 +280,36 @@ public class UserAgent
     public void setDeviceModelVersion(String deviceModelVersion)
     {
         this.deviceModelVersion = deviceModelVersion;
+    }
+
+    public String getDisplayWidth()
+    {
+        return displayWidth;
+    }
+
+    public void setDisplayWidth(String displayWidth)
+    {
+        this.displayWidth = displayWidth;
+    }
+
+    public String getDisplayHeight()
+    {
+        return displayHeight;
+    }
+
+    public void setDisplayHeight(String displayHeight)
+    {
+        this.displayHeight = displayHeight;
+    }
+
+    public String getDisplayResolution()
+    {
+        return displayResolution;
+    }
+
+    public void setDisplayResolution(String displayResolution)
+    {
+        this.displayResolution = displayResolution;
     }
 
     public String getOS()
@@ -335,6 +417,12 @@ public class UserAgent
             this.setDeviceModel(currentUserAgent.getDeviceModel());
         if (UserAgent.UNKNOWN.equals(this.getDeviceModelVersion()))
             this.setDeviceModelVersion(currentUserAgent.getDeviceModelVersion());
+        if (UserAgent.UNKNOWN.equals(this.getDisplayWidth()))
+            this.setDisplayWidth(currentUserAgent.getDisplayWidth());
+        if (UserAgent.UNKNOWN.equals(this.getDisplayHeight()))
+            this.setDisplayHeight(currentUserAgent.getDisplayHeight());
+        if (UserAgent.UNKNOWN.equals(this.getDisplayResolution()))
+            this.setDisplayResolution(currentUserAgent.getDisplayResolution());
         if (UserAgent.UNKNOWN.equals(this.getOS()))
             this.setOS(currentUserAgent.getOS());
         if (UserAgent.UNKNOWN.equals(this.getOSVersion()))

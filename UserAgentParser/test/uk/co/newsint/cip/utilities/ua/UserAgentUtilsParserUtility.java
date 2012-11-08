@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class UserAgentUtilsParserUtility extends FileUserAgentParserUtility
+public class UserAgentUtilsParserUtility extends FileUserAgentParser
 {
 
     @Override
@@ -121,7 +121,6 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParserUtility
                 .getResource("top_1000_user-agents.txt").toURI()));
     }
 
-    @Override
     protected void createFile()
     {
         try
@@ -167,7 +166,6 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParserUtility
         }
     }
 
-    @Override
     protected void generateCsvFileContent(int lineNumber, String userAgentString, UserAgent currentUserAgent)
     {
         // Counter for properties with Unknown value
