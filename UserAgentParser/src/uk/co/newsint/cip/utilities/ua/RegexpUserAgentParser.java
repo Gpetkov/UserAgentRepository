@@ -104,7 +104,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding bot User Agents example: Mozilla/5.0 (compatible; archive.is bot; +http://archive.is/01EP)
      * AppleWebKit/535.19 Safari/535.19
      */
-    private static final String BOT = "((?i:bot)+?)";
+    private static final String BOT = "((?i:bot|slurp)+?)";
     private static Pattern PATTERN_BOT = Pattern.compile(BOT);
 
     /**
@@ -166,8 +166,8 @@ public class RegexpUserAgentParser extends UserAgentParser
                 || (ua = parseAndroid(userAgentString)) != null
                 || (ua = parsePCWin(userAgentString)) != null 
                 || (ua = parsePCLinux(userAgentString)) != null
-                || (ua = parseBot(userAgentString)) != null 
-                || (ua = parsePCMac(userAgentString)) != null)
+                || (ua = parsePCMac(userAgentString)) != null
+                || (ua = parseBot(userAgentString)) != null)
         {
             return ua;
         }
@@ -186,9 +186,9 @@ public class RegexpUserAgentParser extends UserAgentParser
         if (match.find())
         {
             UserAgent ua = new UserAgent();
-            ua.setBrowser("BOT");
-            ua.setDeviceType(UserAgent.COMPUTER);
-            ua.setOS("BOT");
+            ua.setBrowser("Robot/Spider");
+            ua.setDeviceType("Robot/Spider");
+            ua.setOS("Robot/Spider");
             return ua;
         }
         return null;
@@ -207,7 +207,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceModel(UserAgent.COMPUTER);
-            ua.setOS(match.group(1).toUpperCase());
+            ua.setOS(match.group(1));
             if (match.group(1).equalsIgnoreCase("cros"))
             {
                 ua.setOS("ChromeOS");
@@ -235,9 +235,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceModel(UserAgent.COMPUTER);
-            ua.setDeviceMaker("Apple");
             ua.setOSMaker("Apple Inc.");
-            ua.setOS(match.group(1).toUpperCase());
+            ua.setOS(match.group(1));
             if (match.group(2) != null)
             {
                 ua.setOSVersion(match.group(2).replaceAll("_", "."));
@@ -264,7 +263,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceModel(UserAgent.COMPUTER);
             ua.setOSMaker("Microsoft Corporation");
-            ua.setOS(match.group(1).replaceAll("\\s?NT", "").toUpperCase());
+            ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(2)));
             applyBrowser(userAgentString, ua);
             applyLanguage(userAgentString, ua);
@@ -288,7 +287,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             Matcher inMatch = PATTERN_ANDROID_OS.matcher(match.group(1));
             if (inMatch.find())
             {
-                ua.setOS(inMatch.group(1).toUpperCase());
+                ua.setOS(inMatch.group(1));
                 ua.setOSVersion(inMatch.group(2));
                 ua.setOSMaker("Google Inc.");
             }
@@ -309,7 +308,7 @@ public class RegexpUserAgentParser extends UserAgentParser
                 {
                     ua.setBrowser("Safari");
                 }
-                ua.setBrowserVersion(inMatch.group(2));
+                ua.setBrowserVersion(inMatch.group(2).substring(0, inMatch.group(2).indexOf('.')));
             }
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
@@ -337,21 +336,20 @@ public class RegexpUserAgentParser extends UserAgentParser
                 ua.setOSVersion(getWindowsVersion(match.group(3)));
             }
 
-            ua.setOS(match.group(2).replaceAll("\\s?NT", "").toUpperCase());
+            ua.setOS(match.group(2).replaceAll("\\s?NT", ""));
             ua.setOSMaker("Microsoft Corporation");
             ua.setBrowser(match.group(1));
 
             if (match.group(2).equalsIgnoreCase("mac os x"))
             {
-                ua.setDeviceMaker("Apple");
-                ua.setOS(match.group(2).toUpperCase());
+                ua.setOS(match.group(2));
                 ua.setOSMaker("Apple Inc.");
             }
 
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
             if (browserMatch.find())
             {
-                ua.setBrowserVersion(browserMatch.group(2));
+                ua.setBrowserVersion(browserMatch.group(2).substring(0, browserMatch.group(2).indexOf('.')));
             }
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
@@ -408,7 +406,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceMaker("BlackBerry");
             ua.setDeviceModel(match.group(1));
             ua.setDeviceModelVersion(match.group(1));
-            ua.setOS(match.group(2).trim().toUpperCase());
+            ua.setOS(match.group(2).trim());
             ua.setOSMaker("Research In Motion Limited");
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
@@ -487,10 +485,10 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModel(match.group(6));
             ua.setDeviceModelVersion(match.group(6));
             ua.setOSMaker("Microsoft Corporation");
-            ua.setOS("WINDOWS PHONE");
+            ua.setOS("Windows Phone");
             ua.setOSVersion(match.group(4));
             ua.setBrowser("Internet Explorer");
-            ua.setBrowserVersion(match.group(2));
+            ua.setBrowserVersion(match.group(2).substring(0, match.group(2).indexOf('.')));
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
             return ua;
@@ -519,7 +517,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setBrowser("Internet Explorer");
             }
-            ua.setBrowserVersion(match.group(2));
+            ua.setBrowserVersion(match.group(2).substring(0, match.group(2).indexOf('.')));
         }
     }
 
@@ -534,8 +532,8 @@ public class RegexpUserAgentParser extends UserAgentParser
         {
             if (Character.isLowerCase(match.group(1).charAt(0)))
             {
-                ua.setLanguageCode(match.group(1));
-                ua.setCountryCode(match.group(2));
+                ua.setLanguageCode(match.group(1).toLowerCase());
+                ua.setCountryCode(match.group(2).toUpperCase());
             }
         }
     }
