@@ -158,7 +158,9 @@ public class DdrUserAgentParserUitility extends FileUserAgentParser
             writer.append(",");
             writer.append("APPLICATION VERSION");
             writer.append(",");
-            writer.append("LANGUAGE");
+            writer.append("LANGUAGE CODE");
+            writer.append(",");
+            writer.append("COUNTRY CODE");
             writer.append(",");
             writer.append("UNKNOWN PROPERTIES");
             writer.append("\n");
@@ -214,6 +216,8 @@ public class DdrUserAgentParserUitility extends FileUserAgentParser
             writer.append(currentUserAgent.getApplicationVersion());
             writer.append(',');
             writer.append(currentUserAgent.getLanguageCode());
+            writer.append(',');
+            writer.append(currentUserAgent.getCountryCode());
             // Check the properties for Unknown values
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceType()))
             {
@@ -268,6 +272,10 @@ public class DdrUserAgentParserUitility extends FileUserAgentParser
                 counterUnknown++;
             }
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getLanguageCode()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getCountryCode()))
             {
                 counterUnknown++;
             }

@@ -79,7 +79,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         try
         {
             FileWriter writer = new FileWriter("top_1000_user-agents_parsed.csv");
-            // Adding header fields
+         // Adding header fields
             writer.append("PAGE HITS");
             writer.append(",");
             writer.append("USER-AGENT-STRING");
@@ -91,6 +91,12 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             writer.append("DEVICE MODEL");
             writer.append(",");
             writer.append("DEVICE MODEL VERSION");
+            writer.append(",");
+            writer.append("DEVICE DISPLAY WIDTH");
+            writer.append(",");
+            writer.append("DEVICE DISPLAY HEIGHT");
+            writer.append(",");
+            writer.append("DEVICE DISPLAY RESOLUTION");
             writer.append(",");
             writer.append("OS");
             writer.append(",");
@@ -134,7 +140,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         try
         {
             FileWriter writer = new FileWriter("top_1000_user-agents_parsed.csv", true);
-            // Adding page hits for the current string
+         // Adding page hits for the current string
             writer.append(String.valueOf(this.pageViewHit));
             writer.append(',');
             // Adding current string for parse
@@ -148,6 +154,12 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             writer.append(currentUserAgent.getDeviceModel());
             writer.append(',');
             writer.append(currentUserAgent.getDeviceModelVersion());
+            writer.append(',');
+            writer.append(currentUserAgent.getDisplayWidth());
+            writer.append(',');
+            writer.append(currentUserAgent.getDisplayHeight());
+            writer.append(',');
+            writer.append(currentUserAgent.getDisplayResolution());
             writer.append(',');
             writer.append(currentUserAgent.getOS());
             writer.append(',');
@@ -180,6 +192,18 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
                 counterUnknown++;
             }
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceModelVersion()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getDisplayWidth()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getDisplayHeight()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getDisplayResolution()))
             {
                 counterUnknown++;
             }

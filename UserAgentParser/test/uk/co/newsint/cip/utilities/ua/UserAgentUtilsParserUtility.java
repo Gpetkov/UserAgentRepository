@@ -139,6 +139,12 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParser
             writer.append(",");
             writer.append("DEVICE MODEL VERSION");
             writer.append(",");
+            writer.append("DEVICE DISPLAY WIDTH");
+            writer.append(",");
+            writer.append("DEVICE DISPLAY HEIGHT");
+            writer.append(",");
+            writer.append("DEVICE DISPLAY RESOLUTION");
+            writer.append(",");
             writer.append("OS");
             writer.append(",");
             writer.append("OS VERSION");
@@ -153,7 +159,9 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParser
             writer.append(",");
             writer.append("APPLICATION VERSION");
             writer.append(",");
-            writer.append("LANGUAGE");
+            writer.append("LANGUAGE CODE");
+            writer.append(",");
+            writer.append("COUNTRY CODE");
             writer.append(",");
             writer.append("UNKNOWN PROPERTIES");
             writer.append("\n");
@@ -188,6 +196,12 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParser
             writer.append(',');
             writer.append(currentUserAgent.getDeviceModelVersion());
             writer.append(',');
+            writer.append(currentUserAgent.getDisplayWidth());
+            writer.append(',');
+            writer.append(currentUserAgent.getDisplayHeight());
+            writer.append(',');
+            writer.append(currentUserAgent.getDisplayResolution());
+            writer.append(',');
             writer.append(currentUserAgent.getOS());
             writer.append(',');
             writer.append(currentUserAgent.getOSVersion());
@@ -203,6 +217,8 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParser
             writer.append(currentUserAgent.getApplicationVersion());
             writer.append(',');
             writer.append(currentUserAgent.getLanguageCode());
+            writer.append(',');
+            writer.append(currentUserAgent.getCountryCode());
             // Check the properties for Unknown values
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceType()))
             {
@@ -217,6 +233,18 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParser
                 counterUnknown++;
             }
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getDeviceModelVersion()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getDisplayWidth()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getDisplayHeight()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getDisplayResolution()))
             {
                 counterUnknown++;
             }
@@ -245,6 +273,10 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParser
                 counterUnknown++;
             }
             if (UserAgent.UNKNOWN.equals(currentUserAgent.getLanguageCode()))
+            {
+                counterUnknown++;
+            }
+            if (UserAgent.UNKNOWN.equals(currentUserAgent.getCountryCode()))
             {
                 counterUnknown++;
             }
