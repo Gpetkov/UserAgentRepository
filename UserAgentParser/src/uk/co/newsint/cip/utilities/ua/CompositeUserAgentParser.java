@@ -7,11 +7,10 @@ package uk.co.newsint.cip.utilities.ua;
  * @author Georgi Petkov
  * @since 1.0
  */
-
 public class CompositeUserAgentParser extends UserAgentParser
 {
-    //protected UserAgentUtilsParser utilsParser = new UserAgentUtilsParser();
-    protected DdrUserAgentParser ddrParser = new DdrUserAgentParser();
+    // protected UserAgentUtilsParser utilsParser = new UserAgentUtilsParser();
+    protected OpenDDRUserAgentParser openDDRParser = new OpenDDRUserAgentParser();
     protected RegexpUserAgentParser regexpParser = new RegexpUserAgentParser();
 
     @Override
@@ -19,14 +18,10 @@ public class CompositeUserAgentParser extends UserAgentParser
     {
         // 1. Use RegexpUserAgentParser to try parse the UA string
         UserAgent regexpUserAgent = regexpParser.parse(userAgentString);
-
-        // 2. Use UserAgentUtilsParser to try parse the UA string
-        UserAgent utilitiesUserAgent = ddrParser.parse(userAgentString);
-
+        // 2. Use OpenDDRParser to try parse the UA string
+        UserAgent openDDRUserAgent = openDDRParser.parse(userAgentString);
         // 3. Merge the user-agents (merge --> regexpUserAgent with utilitiesUserAgent)
-        regexpUserAgent.merge(utilitiesUserAgent);
-
+        regexpUserAgent.merge(openDDRUserAgent);
         return regexpUserAgent;
     }
-
 }
