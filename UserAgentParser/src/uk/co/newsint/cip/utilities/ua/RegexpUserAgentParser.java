@@ -239,7 +239,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOS(match.group(1));
             if (match.group(2) != null)
             {
-                ua.setOSVersion(match.group(2).replaceAll("_", "."));
+                String temp = match.group(2).replaceAll("_", ".");
+                ua.setOSVersion(temp.substring(0, temp.indexOf('.')));
             }
             applyBrowser(userAgentString, ua);
             applyLanguage(userAgentString, ua);
@@ -288,7 +289,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             if (inMatch.find())
             {
                 ua.setOS(inMatch.group(1));
-                ua.setOSVersion(inMatch.group(2));
+                String[] androidOSVersionBuilder = inMatch.group(2).split("\\.");
+                ua.setOSVersion(androidOSVersionBuilder[0] + "." + androidOSVersionBuilder[1]);
                 ua.setOSMaker("Google Inc.");
             }
             inMatch = PATTERN_ANDROID_MODEL.matcher(match.group(1).substring(match.group(1).lastIndexOf(";")));
@@ -381,7 +383,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setOSMaker("Apple Inc.");
             if (match.group(2) != null)
             {
-                ua.setOSVersion(match.group(2).replaceAll("_", ".").trim());
+                String temp = match.group(2).replaceAll("_", ".").trim();
+                ua.setOSVersion(temp.substring(0, temp.indexOf('.')));
             }
             applyBrowser(userAgentString, ua);
             applyLanguage(userAgentString, ua);
@@ -408,7 +411,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(1));
             ua.setOS(match.group(2).trim());
             ua.setOSMaker("Research In Motion Limited");
-            ua.setOSVersion(match.group(3));
+            ua.setOSVersion(match.group(3).substring(0, match.group(3).indexOf('.')));
             ua.setBrowser("BlackBerry");
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
@@ -434,7 +437,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(2));
             ua.setOSMaker("Research In Motion Limited");
             ua.setOS("OS" + match.group(3).charAt(0));
-            ua.setOSVersion(match.group(3));
+            ua.setOSVersion(match.group(3).substring(0, match.group(3).indexOf('.')));
             ua.setBrowser("BlackBerry");
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
@@ -460,7 +463,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(2));
             ua.setOSMaker("Research In Motion Limited");
             ua.setOS("OS" + match.group(3).charAt(0));
-            ua.setOSVersion(match.group(3));
+            ua.setOSVersion(match.group(3).substring(0, match.group(3).indexOf('.')));
             ua.setBrowser("BlackBerry");
             applyLanguage(userAgentString, ua);
             applyAPP(userAgentString, ua);
@@ -486,7 +489,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModelVersion(match.group(6));
             ua.setOSMaker("Microsoft Corporation");
             ua.setOS("Windows Phone");
-            ua.setOSVersion(match.group(4));
+            ua.setOSVersion(match.group(4).substring(0, match.group(4).indexOf('.')));
             ua.setBrowser("Internet Explorer");
             ua.setBrowserVersion(match.group(2).substring(0, match.group(2).indexOf('.')));
             applyLanguage(userAgentString, ua);
