@@ -235,7 +235,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceModel(UserAgent.COMPUTER);
-            ua.setOSMaker("Apple Inc.");
+            ua.setOSMaker("Apple");
             ua.setOS(match.group(1));
             if (match.group(2) != null)
             {
@@ -263,7 +263,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             UserAgent ua = new UserAgent();
             ua.setDeviceType(UserAgent.COMPUTER);
             ua.setDeviceModel(UserAgent.COMPUTER);
-            ua.setOSMaker("Microsoft Corporation");
+            ua.setOSMaker("Microsoft");
             ua.setOS(match.group(1).replaceAll("\\s?NT", ""));
             ua.setOSVersion(getWindowsVersion(match.group(2)));
             applyBrowser(userAgentString, ua);
@@ -290,7 +290,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setOS(inMatch.group(1));
                 ua.setOSVersion(inMatch.group(2));
-                ua.setOSMaker("Google Inc.");
+                ua.setOSMaker("Google");
             }
             inMatch = PATTERN_ANDROID_MODEL.matcher(match.group(1).substring(match.group(1).lastIndexOf(";")));
             if (inMatch.find())
@@ -338,13 +338,13 @@ public class RegexpUserAgentParser extends UserAgentParser
             }
 
             ua.setOS(match.group(2).replaceAll("\\s?NT", ""));
-            ua.setOSMaker("Microsoft Corporation");
+            ua.setOSMaker("Microsoft");
             ua.setBrowser(match.group(1));
 
             if (match.group(2).equalsIgnoreCase("mac os x"))
             {
                 ua.setOS(match.group(2));
-                ua.setOSMaker("Apple Inc.");
+                ua.setOSMaker("Apple");
             }
 
             browserMatch = PATTERN_BROWSER.matcher(userAgentString);
@@ -379,7 +379,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModel(match.group(1));
             ua.setDeviceModelVersion(match.group(1));
             ua.setOS("iOS");
-            ua.setOSMaker("Apple Inc.");
+            ua.setOSMaker("Apple");
             if (match.group(2) != null)
             {
                 String temp = match.group(2).replaceAll("_", ".").trim();
@@ -409,7 +409,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceModel(match.group(1));
             ua.setDeviceModelVersion(match.group(1));
             ua.setOS(match.group(2).trim());
-            ua.setOSMaker("Research In Motion Limited");
+            ua.setOSMaker("RIM");
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
             applyLanguage(userAgentString, ua);
@@ -434,7 +434,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceMaker(match.group(1));
             ua.setDeviceModel(match.group(2));
             ua.setDeviceModelVersion(match.group(2));
-            ua.setOSMaker("Research In Motion Limited");
+            ua.setOSMaker("RIM");
             ua.setOS("OS" + match.group(3).charAt(0));
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
@@ -460,7 +460,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceMaker(match.group(1));
             ua.setDeviceModel(match.group(2));
             ua.setDeviceModelVersion(match.group(2));
-            ua.setOSMaker("Research In Motion Limited");
+            ua.setOSMaker("RIM");
             ua.setOS("OS" + match.group(3).charAt(0));
             ua.setOSVersion(match.group(3));
             ua.setBrowser("BlackBerry");
@@ -486,7 +486,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             ua.setDeviceMaker(match.group(5));
             ua.setDeviceModel(match.group(6));
             ua.setDeviceModelVersion(match.group(6));
-            ua.setOSMaker("Microsoft Corporation");
+            ua.setOSMaker("Microsoft");
             ua.setOS("Windows Phone");
             ua.setOSVersion(match.group(4));
             ua.setBrowser("Internet Explorer");
