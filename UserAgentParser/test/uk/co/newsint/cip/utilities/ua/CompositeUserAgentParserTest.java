@@ -96,10 +96,15 @@ public class CompositeUserAgentParserTest
         assertUserAgentEquals("Mozilla/5.0 (iPod; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) "
                 + "Version/5.1 Mobile/9A334 Safari/7534.48.3", new UserAgent(UserAgent.MOBILE, "Apple", "iPod", "iPod", "iOS",
                 "5.0", "Apple", "Safari", "5", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
-        // Assertion for iPhone
+        // Assertion for iPhone with display resolution
         assertUserAgentEquals("Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_4 like Mac OS X; en-GB) Times/1.3.1", new UserAgent(
-                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "320", "480", "320 x 480", "iOS", "4.3.4", "Apple", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Times",
-                "1.3.1", "en", "GB"));
+                UserAgent.MOBILE, "Apple", "iPhone", "iPhone", "320", "480", "320 x 480", "iOS", "4.3.4", "Apple",
+                UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Times", "1.3.1", "en", "GB"));
+        // Assertion for iPad with display resolution
+        assertUserAgentEquals(
+                "Mozilla/5.0 (iPad; CPU OS 5_1_1 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9B206 Safari/7534.48.3",
+                new UserAgent(UserAgent.TABLET, "Apple", "iPad", "iPad", "768", "1024", "768 x 1024", "iOS", "5.1.1", "Apple",
+                        "Safari", "5", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
     }
 
     /**
@@ -150,16 +155,14 @@ public class CompositeUserAgentParserTest
                 "Mozilla/5.0 (Linux; U; Android 4.0.3; de-de; HTC_One_S/1.53.161.3 Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30",
                 new UserAgent(UserAgent.MOBILE, "HTC", "One S", UserAgent.UNKNOWN, "Android", "4.0.3", "Google", "Safari", "4",
                         UserAgent.UNKNOWN, UserAgent.UNKNOWN, "de", "DE"));
-     // Assertion for Android
-        assertUserAgentEquals(
-                "Mozilla/5.0 (Linux; U; Android 4.0.4; en-gb; GT-I9300 Build/IMM76D) Times/1.3.0",
-                new UserAgent(UserAgent.MOBILE, "Samsung", "GT-I9300", UserAgent.UNKNOWN, "720", "1280", "720 x 1280", "Android", "4.0.4", "Google", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
-                        "Times", "1.3.0", "en", "GB"));
-     // Assertion for Android
-        assertUserAgentEquals(
-                "Mozilla/5.0 (Linux; U; Android 2.3.4; en-gb; LT15i Build/4.0.2.A.0.62) Times/1.3.0",
-                new UserAgent(UserAgent.MOBILE, "SonyEricsson", "LT15i", UserAgent.UNKNOWN, "480", "854", "480 x 854", "Android", "2.3.4", "Google", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
-                        "Times", "1.3.0", "en", "GB"));
+        // Assertion for Android with display resolution
+        assertUserAgentEquals("Mozilla/5.0 (Linux; U; Android 4.0.4; en-gb; GT-I9300 Build/IMM76D) Times/1.3.0", new UserAgent(
+                UserAgent.MOBILE, "Samsung", "GT-I9300", UserAgent.UNKNOWN, "720", "1280", "720 x 1280", "Android", "4.0.4",
+                "Google", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Times", "1.3.0", "en", "GB"));
+        // Assertion for Android with display resolution
+        assertUserAgentEquals("Mozilla/5.0 (Linux; U; Android 2.3.4; en-gb; LT15i Build/4.0.2.A.0.62) Times/1.3.0", new UserAgent(
+                UserAgent.MOBILE, "SonyEricsson", "LT15i", UserAgent.UNKNOWN, "480", "854", "480 x 854", "Android", "2.3.4",
+                "Google", UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Times", "1.3.0", "en", "GB"));
     }
 
     /**
@@ -179,11 +182,18 @@ public class CompositeUserAgentParserTest
                 "Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.5; Trident/3.1; IEMobile/7.0; HTC; 7 Mozart T8698)",
                 new UserAgent(UserAgent.MOBILE, "HTC", "7 Mozart T8698", "7 Mozart T8698", "Windows Phone", "7.5", "Microsoft",
                         "Internet Explorer", "7", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
-     // Assert for Windows Phone OS.
+        // Assert for Windows Phone OS with display resolution
         assertUserAgentEquals(
                 "Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; NOKIA; Lumia 800) TheTimes.App",
-                new UserAgent(UserAgent.MOBILE, "NOKIA", "Lumia 800", "Lumia 800", "480", "800", "480 x 800", "Windows Phone", "7.0", "Microsoft",
-                        "Internet Explorer", "7", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+                new UserAgent(UserAgent.MOBILE, "NOKIA", "Lumia 800", "Lumia 800", "480", "800", "480 x 800", "Windows Phone",
+                        "7.0", "Microsoft", "Internet Explorer", "7", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN));
+        // Assert for Windows Phone OS with display resolution
+        assertUserAgentEquals(
+                "Mozilla/4.0 (compatible; MSIE 7.0; Windows Phone OS 7.0; Trident/3.1; IEMobile/7.0; NOKIA; Lumia 900) TheTimes.App",
+                new UserAgent(UserAgent.MOBILE, "NOKIA", "Lumia 900", "Lumia 900", "480", "800", "480 x 800", "Windows Phone",
+                        "7.0", "Microsoft", "Internet Explorer", "7", UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN));
     }
 
     /**
@@ -281,6 +291,18 @@ public class CompositeUserAgentParserTest
                 + "Version/5.1.7 Safari/534.57.2", new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER,
                 UserAgent.UNKNOWN, "Mac OS X", "10.7.4", "Apple", "Safari", "5", UserAgent.UNKNOWN, UserAgent.UNKNOWN,
                 UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+        // Assertion for Chrome browser for Windows with display resolution
+        assertUserAgentEquals(
+                "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.89 Safari/537.1",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Windows", "7", "Microsoft", "Chrome", "21", UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
+        // Assertion for Safari browser for Macintosh with display resolution
+        assertUserAgentEquals(
+                "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/534.57.2 (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2",
+                new UserAgent(UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.COMPUTER, UserAgent.UNKNOWN, UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, "Mac OS X", "10.6.8", "Apple", "Safari", "5", UserAgent.UNKNOWN,
+                        UserAgent.UNKNOWN, UserAgent.UNKNOWN, UserAgent.UNKNOWN));
     }
 
     /**
