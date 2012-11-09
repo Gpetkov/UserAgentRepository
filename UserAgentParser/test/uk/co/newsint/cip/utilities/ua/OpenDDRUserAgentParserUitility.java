@@ -17,7 +17,6 @@ public class OpenDDRUserAgentParserUitility extends FileUserAgentParser
         OpenDDRUserAgentParser ddrUserAgentParser = new OpenDDRUserAgentParser();
         BufferedReader reader = null;
         String currentLine = null;
-
         try
         {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));

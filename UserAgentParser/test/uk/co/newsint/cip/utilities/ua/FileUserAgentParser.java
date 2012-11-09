@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 
 public class FileUserAgentParser
 {
-
     protected int toParse;
     protected int errors;
     protected int parsed;
@@ -33,7 +32,6 @@ public class FileUserAgentParser
         CompositeUserAgentParser compositeUserAgent = new CompositeUserAgentParser();
         BufferedReader reader = null;
         String currentLine = null;
-
         try
         {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
@@ -90,7 +88,6 @@ public class FileUserAgentParser
         {
             return null;
         }
-
         return line;
     }
 
