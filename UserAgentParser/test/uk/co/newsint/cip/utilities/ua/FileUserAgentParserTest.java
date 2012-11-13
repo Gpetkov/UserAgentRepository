@@ -82,7 +82,6 @@ public class FileUserAgentParserTest
                     currentStringOccurred = Integer.valueOf(userAgentString.substring(0, firstSpace));
                     userAgentString = userAgentString.substring(firstSpace + 1, line.length());
                 }
-
                 return userAgentString;
             };
 

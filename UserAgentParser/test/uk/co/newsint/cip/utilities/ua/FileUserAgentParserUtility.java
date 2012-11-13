@@ -34,7 +34,6 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
             {
                 this.pageViewHit = 0;
             }
-
             if (subUserAgentString != null)
             {
                 this.currentUserAgentString = "\"" + subUserAgentString + "\"";

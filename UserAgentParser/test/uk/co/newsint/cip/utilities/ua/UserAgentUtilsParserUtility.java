@@ -18,7 +18,6 @@ public class UserAgentUtilsParserUtility extends FileUserAgentParser
         UserAgentUtilsParser utilUserAgent = new UserAgentUtilsParser();
         BufferedReader reader = null;
         String currentLine = null;
-
         try
         {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));

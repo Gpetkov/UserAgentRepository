@@ -8,7 +8,6 @@ package uk.co.newsint.cip.utilities.ua;
  */
 public abstract class UserAgentParser
 {
-
     /**
      * Creates new UserAgentParser
      * 
