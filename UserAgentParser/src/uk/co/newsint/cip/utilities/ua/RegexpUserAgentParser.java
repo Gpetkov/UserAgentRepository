@@ -519,7 +519,7 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setBrowser("Internet Explorer");
             }
-            ua.setBrowserVersion(match.group(2).substring(0, match.group(2).indexOf('.')));
+            ua.setBrowserVersion(match.group(2).indexOf('.') != -1 ? match.group(2).substring(0, match.group(2).indexOf('.')) : UserAgent.UNKNOWN);
         }
     }
 
