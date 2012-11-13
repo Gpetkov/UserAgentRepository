@@ -79,7 +79,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         try
         {
             FileWriter writer = new FileWriter("top_1000_user-agents_parsed.csv");
-         // Adding header fields
+            // Adding header fields
             writer.append("PAGE HITS");
             writer.append(",");
             writer.append("USER-AGENT-STRING");
@@ -140,7 +140,7 @@ public class FileUserAgentParserUtility extends FileUserAgentParser
         try
         {
             FileWriter writer = new FileWriter("top_1000_user-agents_parsed.csv", true);
-         // Adding page hits for the current string
+            // Adding page hits for the current string
             writer.append(String.valueOf(this.pageViewHit));
             writer.append(',');
             // Adding current string for parse

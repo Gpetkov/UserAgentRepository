@@ -34,7 +34,6 @@ public class OpenDDRUserAgentParser extends UserAgentParser
             initializationProperties.load(OpenDDRUserAgentParser.class.getClassLoader().getResourceAsStream("oddr.properties"));
             this.identificationService = ServiceFactory.newService("org.openddr.simpleapi.oddr.ODDRService",
                     initializationProperties.getProperty(ODDRService.ODDR_VOCABULARY_IRI), initializationProperties);
-
         }
         catch (IOException e)
         {

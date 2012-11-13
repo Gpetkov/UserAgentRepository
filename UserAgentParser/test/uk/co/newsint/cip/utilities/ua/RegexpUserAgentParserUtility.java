@@ -17,7 +17,6 @@ public class RegexpUserAgentParserUtility extends FileUserAgentParser
         RegexpUserAgentParser regexpUserAgent = new RegexpUserAgentParser();
         BufferedReader reader = null;
         String currentLine = null;
-
         try
         {
             reader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));

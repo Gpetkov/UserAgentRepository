@@ -53,7 +53,6 @@ public class FileUserAgentParserTest
                 }
             }
         };
-
         parser.parseAll(new File(getClass().getClassLoader().getResource("user_agents.txt").toURI()));
     }
 
@@ -63,6 +62,7 @@ public class FileUserAgentParserTest
      * @see FileUserAgentParser#parseAll(File)
      * @throws Exception
      */
+
     @Test
     public void testParseTopUserAgents() throws Exception
     {
@@ -112,7 +112,6 @@ public class FileUserAgentParserTest
                 }
             }
         };
-
         parser.parseAll(new File(getClass().getClassLoader().getResource("top_1000_user-agents.txt").toURI()));
     }
 }

@@ -9,8 +9,16 @@ package uk.co.newsint.cip.utilities.ua;
  */
 public class CompositeUserAgentParser extends UserAgentParser
 {
-    protected OpenDDRUserAgentParser openDDRParser = new OpenDDRUserAgentParser();
-    protected RegexpUserAgentParser regexpParser = new RegexpUserAgentParser();
+    // OpenDDRUserAgentParser instance
+    protected OpenDDRUserAgentParser openDDRParser;
+    // RegexpUserAgentParser instance
+    protected RegexpUserAgentParser regexpParser;
+
+    public CompositeUserAgentParser()
+    {
+        this.openDDRParser = new OpenDDRUserAgentParser();
+        this.regexpParser = new RegexpUserAgentParser();
+    }
 
     @Override
     public UserAgent parse(String userAgentString)

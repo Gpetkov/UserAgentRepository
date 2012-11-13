@@ -39,7 +39,6 @@ public class UserAgentUtilsParser extends UserAgentParser
         OperatingSystem os = ua.getOperatingSystem();
         if (os != null)
         {
-
             // array for the operation system(splitedOs[0] == osName and splitedOs[1] == osVersion)
             String[] splitedOs = splitOperationSystem(os);
             if (splitedOs != null)
@@ -66,7 +65,7 @@ public class UserAgentUtilsParser extends UserAgentParser
             }
             if (deviceType != null)
             {
-                //Change Mobile to Smartphone
+                // Change Mobile to Smartphone
                 if (deviceType.equals(DeviceType.MOBILE))
                 {
                     result.setDeviceType(UserAgent.MOBILE);
@@ -80,12 +79,12 @@ public class UserAgentUtilsParser extends UserAgentParser
         Browser browser = ua.getBrowser();
         if (browser != null)
         {
-//            result.setBrowser(browser.getGroup().getName());
+            result.setBrowser(browser.getGroup().getName());
         }
         Version version = ua.getBrowserVersion();
         if (version != null)
         {
-//            result.setBrowserVersion(version.getVersion());
+            result.setBrowserVersion(version.getVersion());
         }
         Application application = Application.parseReferrerString(userAgentString);
         if (application.getName() != null)
@@ -107,16 +106,13 @@ public class UserAgentUtilsParser extends UserAgentParser
         String[] splitedOS = new String[2];
         String osName = null;
         String osVersion = null;
-
         // Initialize current pattern
         Pattern pattern = Pattern.compile(REGEX_WIN_GOOGLE_MAC);
         Matcher match = pattern.matcher(operationSystem.toString());
-
         if (match.find())
         {
             osName = match.group(1);
             osVersion = match.group(2);
-
             // The library can't recognize iPad to be a tablet
             if ((osName.equals("MAC_OS")) && (osVersion != null)
                     && ((osVersion.equals("X_IPAD")) || (osVersion.equals("X_IPOD")) || (osVersion.equals("X_IPHONE"))))
@@ -124,7 +120,6 @@ public class UserAgentUtilsParser extends UserAgentParser
                 osName = "iOS";
                 osVersion = null;
             }
-
             // The library can't recognize Windows 8 it sets 8 to Vista
             if ((osVersion != null) && (osVersion.trim().equals("Vista")))
             {
@@ -146,7 +141,6 @@ public class UserAgentUtilsParser extends UserAgentParser
                 }
             }
         }
-
         // initialize splitedOs
         splitedOS[0] = osName;
         splitedOS[1] = osVersion;

@@ -157,16 +157,11 @@ public class RegexpUserAgentParser extends UserAgentParser
     {
         UserAgent ua;
         // @formatter:off
-        if ((ua = parseBlackBerry45(userAgentString)) != null 
-                || (ua = parseBlackBerry67(userAgentString)) != null
-                || (ua = parseBlackBerryPlayBook(userAgentString)) != null 
-                || (ua = parseWinPhone(userAgentString)) != null
-                || (ua = parseiOS(userAgentString)) != null 
-                || (ua = parsePCOpera(userAgentString)) != null
-                || (ua = parseAndroid(userAgentString)) != null
-                || (ua = parsePCWin(userAgentString)) != null 
-                || (ua = parsePCLinux(userAgentString)) != null
-                || (ua = parsePCMac(userAgentString)) != null
+        if ((ua = parseBlackBerry45(userAgentString)) != null || (ua = parseBlackBerry67(userAgentString)) != null
+                || (ua = parseBlackBerryPlayBook(userAgentString)) != null || (ua = parseWinPhone(userAgentString)) != null
+                || (ua = parseiOS(userAgentString)) != null || (ua = parsePCOpera(userAgentString)) != null
+                || (ua = parseAndroid(userAgentString)) != null || (ua = parsePCWin(userAgentString)) != null
+                || (ua = parsePCLinux(userAgentString)) != null || (ua = parsePCMac(userAgentString)) != null
                 || (ua = parseBot(userAgentString)) != null)
         {
             return ua;
@@ -519,7 +514,8 @@ public class RegexpUserAgentParser extends UserAgentParser
             {
                 ua.setBrowser("Internet Explorer");
             }
-            ua.setBrowserVersion(match.group(2).indexOf('.') != -1 ? match.group(2).substring(0, match.group(2).indexOf('.')) : UserAgent.UNKNOWN);
+            ua.setBrowserVersion(match.group(2).indexOf('.') != -1 ? match.group(2).substring(0, match.group(2).indexOf('.'))
+                    : UserAgent.UNKNOWN);
         }
     }
 
