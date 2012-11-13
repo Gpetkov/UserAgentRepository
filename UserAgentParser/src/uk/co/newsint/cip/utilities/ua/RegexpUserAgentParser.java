@@ -71,7 +71,7 @@ public class RegexpUserAgentParser extends UserAgentParser
      * regex for finding PC Opera browser User Agents example: Opera/9.80 (Windows NT 6.1; WOW64; U; fi) Presto/2.10.289
      * Version/12.02
      */
-    private static final String REGEX_PC_OPERA = "((?i:opera)+)/[\\s?\\S*]+?((?i:windows\\s?nt)|(?i:mac\\s?os\\s?x)|(?i:freebsd|sunos))+?\\s?(\\d+.?\\d*[_\\.]?\\d*)?";
+    private static final String REGEX_PC_OPERA = "((?i:opera)+)/[\\s?\\S*]+?((?i:windows\\s?nt)|(?i:mac\\s?os\\s?x)|(?i:freebsd|sunos|linux))+?\\s?(\\d+.?\\d*[_\\.]?\\d*)?";
     private static Pattern PATTERN_PC_OPERA = Pattern.compile(REGEX_PC_OPERA);
 
     /**
